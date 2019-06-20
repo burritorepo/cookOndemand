@@ -1,3 +1,22 @@
 /*
-aca iran las declaraciones globales
+Global
 */
+.ant-layout {
+  //background: transparent;
+}
+
+
+/*
+Layout
+*/
+.d-flex {
+  display: flex;
+}
+
+.jc-space-between {
+  justify-content: space-between;
+}
+
+.ai-center {
+  align-items: center;
+}

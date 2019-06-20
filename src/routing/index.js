@@ -7,10 +7,10 @@ import {
 } from "react-router-dom";
 
 import { 
-  LoginLayout,
+  Login,
   Landing,
   RoutingDashboard
-} from '../features/dashboard';
+} from '../features';
 
 function RoutingRoot() {
   return (
@@ -18,8 +18,8 @@ function RoutingRoot() {
       <Switch>
         <Route path="/dashboard" component={RoutingDashboard}></Route>
         <Route path="/landing" component={Landing}></Route>
-        <Route path="/login" component={LoginLayout} />
-        <Redirect exact from="/" to="/login" />
+        <Route path="/login" component={Login} />
+        <Redirect exact from="/" to="/dashboard" />
       </Switch>
     </Router>
   )

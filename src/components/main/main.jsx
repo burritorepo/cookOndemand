@@ -1,11 +1,12 @@
 import React from "react";
-import './main.component.scss';
+import { Layout } from 'antd';
+import './main.scss';
 
 function Main(props) {
   const { children } = props;
 
   return (
-    <main className="main">{children}</main>
+    <Layout.Content className="main">{children}</Layout.Content>
   )
 }
 

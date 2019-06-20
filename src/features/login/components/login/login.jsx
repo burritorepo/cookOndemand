@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 
-class Landing extends Component {
+class Login extends Component {
   render() {
     return (
-      <div className="view-landing">
-        <h1>Landing</h1>
+      <div className="view-login">
+        Login
       </div>
     )
   }
 }
 
 export {
-  Landing
+  Login
 }
