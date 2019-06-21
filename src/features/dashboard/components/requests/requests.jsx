@@ -8,11 +8,13 @@ class DashboardRequests extends Component {
       <div className="view view-request">
         <Breadcrumb separator=">">
           <Breadcrumb.Item>
-            <NavLink to="/dashboard">Tablero</NavLink>
+            <NavLink to="/user">Tablero</NavLink>
           </Breadcrumb.Item>
           <Breadcrumb.Item>Solicitudes</Breadcrumb.Item>
         </Breadcrumb>
         <br />
+        <h1 className="title">Mis Solicitudes</h1>
+        <br/>
         <Row gutter={16}>
           <Col span={24}>
             <Card className="request__card" title="Solicitud 22/06/19">
@@ -49,7 +51,7 @@ class DashboardRequests extends Component {
               <div className="request__card__footer d-flex jc-space-between ai-center">
                 <Icon type="delete" />
                 <Button type="primary">
-                  <NavLink to="/dashboard/request-cheff">Ver propuestas</NavLink>
+                  <NavLink to="/user/request-cheff">Ver propuestas</NavLink>
                 </Button>
               </div>
             </Card>
@@ -92,7 +94,7 @@ class DashboardRequests extends Component {
               <div className="request__card__footer d-flex jc-space-between ai-center">
                 <Icon type="delete" />
                 <Button type="primary">
-                  <NavLink to="/dashboard/request-cheff">Ver propuestas</NavLink>
+                  <NavLink to="/user/request-cheff">Ver propuestas</NavLink>
                 </Button>
               </div>
             </Card>

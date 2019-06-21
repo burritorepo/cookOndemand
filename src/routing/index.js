@@ -10,18 +10,21 @@ import {
   WrappedLogin,
   Landing,
   RoutingDashboard,
-  WrappedRegister
+  WrappedRegister,
+  Reservation
 } from '../features';
 
 function RoutingRoot() {
   return (
     <Router>
       <Switch>
-        <Route path="/dashboard" component={RoutingDashboard}></Route>
-        <Route path="/landing" component={Landing}></Route>
+        <Route path="/user" component={RoutingDashboard}></Route>
+
+        <Route path="/reservation" component={Reservation} />
+        <Route path="/landing" component={Landing}></Route>        
         <Route path="/login" component={WrappedLogin} />
         <Route path="/register" component={WrappedRegister} />
-        <Redirect exact from="/" to="/dashboard" />
+        <Redirect exact from="/" to="/user" />
       </Switch>
     </Router>
   )

@@ -13,10 +13,10 @@ class DashboardRequestCheffDetail extends Component {
       <div className="view view-request">
         <Breadcrumb separator=">">
           <Breadcrumb.Item>
-            <NavLink to="/dashboard">Tablero</NavLink>
+            <NavLink to="/user">Tablero</NavLink>
           </Breadcrumb.Item>
           <Breadcrumb.Item>
-            <NavLink to="/dashboard/request-cheff">Solicitudes Cheffs</NavLink>
+            <NavLink to="/user/request-cheff">Solicitudes Cheffs</NavLink>
           </Breadcrumb.Item>
           <Breadcrumb.Item>Jose Luis</Breadcrumb.Item>
         </Breadcrumb>

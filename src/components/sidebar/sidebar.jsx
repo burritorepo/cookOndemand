@@ -10,7 +10,7 @@ function Sidebar(props) {
     <Layout.Sider className="sidebar">
       <Menu style={{ height: '100%', borderRight: 0 }}>
         <Menu.Item>
-          <NavLink to="/dashboard/request" activeClassName="is-active ant-menu-item-selected">Solicitudes</NavLink>
+          <NavLink to="/user/request" activeClassName="is-active ant-menu-item-selected">Solicitudes</NavLink>
         </Menu.Item>
       </Menu>
     </Layout.Sider>
