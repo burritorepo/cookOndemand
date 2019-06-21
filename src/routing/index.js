@@ -10,6 +10,7 @@ import {
   WrappedLogin,
   Landing,
   RoutingDashboard,
+  RoutingDashboardCheff,
   WrappedRegister,
   Reservation
 } from '../features';
@@ -19,12 +20,12 @@ function RoutingRoot() {
     <Router>
       <Switch>
         <Route path="/user" component={RoutingDashboard}></Route>
-
+        <Route path="/cheff" component={RoutingDashboardCheff}></Route>
         <Route path="/reservation" component={Reservation} />
         <Route path="/landing" component={Landing}></Route>        
         <Route path="/login" component={WrappedLogin} />
         <Route path="/register" component={WrappedRegister} />
-        <Redirect exact from="/" to="/user" />
+        <Redirect exact from="/" to="/cheff" />
       </Switch>
     </Router>
   )
