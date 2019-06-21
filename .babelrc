@@ -7,6 +7,7 @@
     "@babel/plugin-transform-async-to-generator",
     "@babel/plugin-proposal-async-generator-functions",
     "@babel/plugin-transform-runtime",
+    "@babel/plugin-proposal-class-properties",
     ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "scss" }] 
   ]
 }

@@ -5,7 +5,7 @@ function hasErrors(fieldsError) {
   return Object.keys(fieldsError).some(field => fieldsError[field]);
 }
 
-class Login extends React.Component {
+class Register extends React.Component {
   componentDidMount() {
     // To disabled submit button at the beginning.
     this.props.form.validateFields();
@@ -60,8 +60,8 @@ class Login extends React.Component {
   }
 }
 
-const WrappedLogin = Form.create({ name: 'login' })(Login);
+const WrappedRegister = Form.create({ name: 'register' })(Register);
 
 export {
-  WrappedLogin
+  WrappedRegister
 }
