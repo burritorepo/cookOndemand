@@ -6,7 +6,9 @@ class Reservation extends Component {
 
   render() {
     return (
-      <h1>Reservation</h1>
+      <div className="view view-reservation">
+        <h1>Reservation</h1>
+      </div>
     );
   }
 }
