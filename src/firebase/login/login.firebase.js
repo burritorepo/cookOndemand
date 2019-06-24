@@ -1,3 +1,5 @@
+import { storage } from "firebase";
+
 function registrar() {
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
@@ -92,3 +94,43 @@ function registrar() {
       console.log(error);
     });
   }
+
+  //Get Elements
+  var uploader = document.getElementById('uploader');
+  var filebutton = document.getElementById('filebutton');
+
+  //Listen for file selection 
+  filebutton.addEventListener('change', function(e) {
+    //Get file
+    var file = e.target.files[0];
+
+    //Create a Storage ref
+    firebase.storage().ref('usuarios/' + filename);
+
+
+    //Upload file
+    var task = storageRef.put(file);
+
+
+    //Update progress Bar
+    task.on('state_changed', 
+
+    function progress(snapshot)  {
+      var percentaje = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      uploader.value = percentaje;
+
+    },
+
+    function error(err)  { 
+
+    },
+
+    function complete()  {
+
+    },
+    
+    
+    
+    
+    );
+  });

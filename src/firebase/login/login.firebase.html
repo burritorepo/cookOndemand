@@ -11,19 +11,19 @@
         <input id="email" type="email" placeholder="Ingresa Email">
         <input id="password" type="password" placeholder="Ingresa Contraseña">
         <button onclick="registrar()">Enviar</button>
-        <input type="file" id="file">
+
+        <progress value="0" max="100" id="uploader">0%</progress>
+        <input type="file" value="upload" id="fileButton">
       
         <h4>Ingreso de Usuario</h4>
         <input id="email2" type="email" placeholder="Ingresa Email">
         <input id="contrasena2" type="password" placeholder="Ingresa Contraseña">
         <button onclick="ingreso()" id="login">Acceder</button>
         
-      
         <div id="contenido">
           <p>Bienvenido</p>
           <button onclick="cerrar()">Cerrar Sesion</button>
         </div>
-      
       
         <script src="./login.firebase.js"></script>
       
