@@ -1,0 +1,40 @@
+/*
+Global
+*/
+.ant-layout {
+  //background: transparent;
+}
+
+.ant-menu-vertical .ant-menu-item {
+  padding: 0;
+  a {
+    padding: 0 15px;
+
+    &.is-active {
+      color: #1890ff;
+    }
+  }
+}
+
+/*
+Layout
+*/
+.d-flex {
+  display: flex;
+}
+
+.jc-space-between {
+  justify-content: space-between;
+}
+
+.jc-center {
+  justify-content: center;
+}
+
+.ai-center {
+  align-items: center;
+}
+
+.fd-column {
+  flex-direction: column;
+}
