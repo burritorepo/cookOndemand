@@ -42,6 +42,7 @@ class Reservation extends Component {
     });
   };
 
+<<<<<<< HEAD
   handleSelectChange = (value, e) => {
     console.log("selected", value);
     console.log("selectedname", e.target.name);
@@ -49,6 +50,12 @@ class Reservation extends Component {
     // this.setState({
     //   [value]: e.target.value
     // })
+=======
+  handleSelectChange = (label, value) => {
+    this.setState({
+      [label]: value
+    })
+>>>>>>> 10d162159fa614e6e10622308b4f7c22226a7fa2
   };
 
   render() {
@@ -91,19 +98,25 @@ class Reservation extends Component {
             values={values}
             handleChange={this.handleChange}
             handleSelectChange={this.handleSelectChange}
+            next={this.next}
+            prev={this.prev}
           />
         )
       },
       {
         title: "Cocina",
         content: (
-          <KitchenForm values={values} handleChange={this.handleChange} />
+          <KitchenForm values={values} handleChange={this.handleChange}
+            next={this.next}
+            prev={this.prev} />
         )
       },
       {
         title: "Detalles",
         content: (
-          <DetailsForm values={values} handleChange={this.handleChange} />
+          <DetailsForm values={values} handleChange={this.handleChange}
+            next={this.next}
+            prev={this.prev} />
         )
       },
       {
@@ -133,13 +146,17 @@ class Reservation extends Component {
       width: "95%",
       margin: "auto"
     };
-    console.log("state", this.state.address);
-    console.log("state", this.state.pax);
 
+    console.log('this.state', this.state)
+    
     return (
       <div style={divStyle}>
+<<<<<<< HEAD
         {" "}
         <Steps style={{ marginTop: '20px' }} current={current}>
+=======
+        <Steps current={current}>
+>>>>>>> 10d162159fa614e6e10622308b4f7c22226a7fa2
           {steps.map(item => (
             <Step key={item.title} title={item.title} />
           ))}
@@ -147,7 +164,7 @@ class Reservation extends Component {
         <div style={stepsStyles} className="steps-content">
           {steps[current].content}
         </div>
-        <div style={stepsAction} className="steps-action">
+        {/* <div style={stepsAction} className="steps-action">
           {current > 0 && (
             <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
               Previous
@@ -169,7 +186,15 @@ class Reservation extends Component {
               Next
             </Button>
           )}
-        </div>
+        </div> */}
+        {current === 0 && (
+          <Button
+            type="primary"
+            onClick={() => this.next(steps[current].content)}
+          >
+            Next
+            </Button>
+        )}
       </div>
     );
   }

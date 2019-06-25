@@ -6,32 +6,29 @@ import {
   Switch
 } from "react-router-dom";
 
-import { 
+import {
   WrappedLogin,
   Landing,
   RoutingDashboard,
   RoutingDashboardCheff,
   WrappedRegister,
   Reservation
-} from '../features';
+} from "../features";
 
 function RoutingRoot() {
   return (
     <Router>
       <Switch>
-        <Route path="/user" component={RoutingDashboard}></Route>
-        <Route path="/cheff" component={RoutingDashboardCheff}></Route>
+        <Route path="/user" component={RoutingDashboard} />
+        <Route path="/cheff" component={RoutingDashboardCheff} />
         <Route path="/reservation" component={Reservation} />
-        <Route path="/landing" component={Landing}></Route>        
+        <Route path="/landing" component={Landing} />
         <Route path="/login" component={WrappedLogin} />
         <Route path="/register" component={WrappedRegister} />
-        <Redirect exact from="/" to="/cheff" />
+        <Redirect exact from="/" to="/landing" />
       </Switch>
     </Router>
-  )
+  );
 }
 
-export {
-  RoutingRoot
-}
-
+export { RoutingRoot };
