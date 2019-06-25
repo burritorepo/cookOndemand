@@ -229,7 +229,90 @@
       }
 
       .service--card-wrapper {
-        height: 45vh;
+        height: 50vh;
+      }
+    }
+  }
+
+  .service--card-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 6fr);
+    grid-template-rows: repeat(8, 2fr);
+    margin-bottom: 2.5rem;
+
+    .service--card {
+      &.home {
+        grid-column: 1/2;
+        grid-row: 1/6;
+      }
+
+      &.vacation {
+        grid-column: 1/2;
+        grid-row: 6/9;
+
+        img {
+          object-position: 0rem -5rem;
+        }
+      }
+
+      &.permanent {
+        grid-column: 2/3;
+        grid-row: 1/4;
+
+        img {
+          object-position: 0 -1rem;
+        }
+      }
+
+      &.show {
+        grid-column: 2/3;
+        grid-row: 4/7;
+      }
+
+      &.campaign {
+        grid-column: 2/3;
+        grid-row: 7/9;
+      }
+    }
+  }
+
+  .service--card {
+    .card-content {
+      h2 {
+        font-size: 0.75rem;
+        transform: translateY(1rem);
+      }
+
+      p {
+        font-size: 0.55rem;
+        margin-top: 0.35rem;
+        margin-bottom: 0.1rem;
+      }
+
+      &__link {
+        font-size: 0.55rem;
+        padding: 2px;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 425px) and (max-width: 767px) {
+  .service--section {
+    .service--section-content {
+      padding: 0 5rem;
+
+      .service--content-header {
+        margin-bottom: 1.5rem;
+
+        h2 {
+          font-size: 1.75rem;
+        }
+      }
+
+      .service--card-wrapper {
+        height: 50vh;
       }
     }
   }
@@ -271,70 +354,21 @@
   .service--card {
     .card-content {
       h2 {
-        font-size: 1rem;
-      }
-    }
-  }
-}
-
-@media (min-width: 425px) and (max-width: 767px) {
-  .service--section {
-    .service--section-content {
-      padding: 0 5rem;
-
-      .service--content-header {
-        margin-bottom: 1.5rem;
-
-        h2 {
-          font-size: 1.75rem;
-        }
+        font-size: 0.65rem;
+        transform: translateY(1rem);
       }
 
-      .service--card-wrapper {
-        height: 40vh;
-      }
-    }
-  }
-
-  .service--card-wrapper {
-    display: grid;
-    grid-template-columns: repeat(2, 6fr);
-    grid-template-rows: repeat(8, 2fr);
-    margin-bottom: 2.5rem;
-
-    .service--card {
-      &.home {
-        /* height: 40vh; */
-        grid-column: 1/2;
-        grid-row: 1/6;
+      p {
+        font-size: 0.55rem;
+        margin-top: 0.25rem;
+        margin-bottom: 0.1rem;
       }
 
-      &.vacation {
-        grid-column: 1/2;
-        grid-row: 6/9;
+      &__link {
+        font-size: 0.35rem;
+        padding: 2px;
+        margin-bottom: 1rem;
       }
-
-      &.permanent {
-        grid-column: 2/3;
-        grid-row: 1/4;
-      }
-
-      &.show {
-        grid-column: 2/3;
-        grid-row: 4/7;
-      }
-
-      &.campaign {
-        grid-column: 2/3;
-        grid-row: 7/9;
-      }
-    }
-  }
-
-  .service--card {
-    h2 {
-      font-size: 0.75rem;
-      padding: 15px;
     }
   }
 }
@@ -342,19 +376,23 @@
 @media (max-width: 424px) {
   .service--section {
     .service--section-content {
+      justify-content: center;
       padding: 0 3.5rem;
 
       .service--content-header {
         margin-bottom: 1.5rem;
 
         h2 {
-          font-size: 2rem;
+          font-size: 1rem;
+        }
+
+        p {
+          font-size: 0.45rem;
         }
       }
 
       .service--card-wrapper {
-        height: 40vh;
-        flex-wrap: wrap;
+        height: 60vh;
       }
     }
   }
@@ -366,20 +404,33 @@
     margin-bottom: 2.5rem;
 
     .service--card {
+      height: 12vh;
+
       &.home {
-        /* height: 40vh; */
         grid-column: 1/2;
         grid-row: 1/2;
+
+        img {
+          object-position: 1rem -6rem;
+        }
       }
 
       &.vacation {
         grid-column: 1/2;
         grid-row: 2/3;
+
+        img {
+          object-position: -1rem -5rem;
+        }
       }
 
       &.permanent {
         grid-column: 1/2;
         grid-row: 3/4;
+
+        img {
+          object-position: -1.25rem -0.75rem;
+        }
       }
 
       &.show {
@@ -395,8 +446,23 @@
   }
 
   .service--card {
-    h2 {
-      font-size: 0.45rem;
+    .card-content {
+      h2 {
+        font-size: 0.45rem;
+        transform: translateY(1rem);
+      }
+
+      p {
+        font-size: 0.35rem;
+        margin-top: 0.35rem;
+        margin-bottom: 0.1rem;
+      }
+
+      &__link {
+        font-size: 0.35rem;
+        padding: 2px;
+        margin-bottom: 1rem;
+      }
     }
   }
 }

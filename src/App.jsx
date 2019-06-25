@@ -1,10 +1,14 @@
 import React from "react";
-import { Provider } from 'react-redux';
+import { Provider } from "react-redux";
 
-import { RoutingRoot } from './routing';
-import { store } from './store';
-import 'antd/dist/antd.css';
-import './assets/styles/main.scss';
+import { RoutingRoot } from "./routing";
+import { store } from "./store";
+import "antd/dist/antd.css";
+import "@fortawesome/fontawesome-free/js/fontawesome";
+import "@fortawesome/fontawesome-free/js/solid";
+import "@fortawesome/fontawesome-free/js/regular";
+import "@fortawesome/fontawesome-free/js/brands";
+import "./assets/styles/main.scss";
 
 function App() {
   return (
@@ -13,10 +17,7 @@ function App() {
         <RoutingRoot />
       </Provider>
     </div>
-  )
+  );
 }
 
-export {
-  App
-}
-
+export { App };
