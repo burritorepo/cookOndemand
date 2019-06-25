@@ -1,22 +1,73 @@
 import React, { Component } from "react";
-import { Form, Icon, Input, Button } from 'antd';
 
-function hasErrors(fieldsError) {
-  return Object.keys(fieldsError).some(field => fieldsError[field]);
-}
 
-class Register extends React.Component {
-  componentDidMount() {
-    // To disabled submit button at the beginning.
-    this.props.form.validateFields();
-  }
+
+import {
+  Form,
+  Input,
+  Tooltip,
+  Icon,
+  Cascader,
+  Select,
+  Row,
+  Col,
+  Checkbox,
+  Button,
+  AutoComplete,
+  Typography,
+} from 'antd';
+import FormItem from "antd/lib/form/FormItem";
+
+const { Option } = Select;
+const AutoCompleteOption = AutoComplete.Option;
+
+
+const residences = [
+  {
+    value: 'zhejiang',
+    label: 'Zhejiang',
+    children: [
+      {
+        value: 'hangzhou',
+        label: 'Hangzhou',
+        children: [
+          {
+            value: 'xihu',
+            label: 'West Lake',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    value: 'jiangsu',
+    label: 'Jiangsu',
+    children: [
+      {
+        value: 'nanjing',
+        label: 'Nanjing',
+        children: [
+          {
+            value: 'zhonghuamen',
+            label: 'Zhong Hua Men',
+          },
+        ],
+      },
+    ],
+  },
+];
+
+class RegistrationForm extends React.Component {
+  state = {
+    confirmDirty: false,
+    autoCompleteResult: [],
+  };
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        location.replace('#/dashboard')
       }
     });
   };
@@ -130,6 +181,23 @@ class Register extends React.Component {
             rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
           })(<Input />)}
         </Form.Item>
+
+        <Form.Item
+          label={
+            <span>
+              Pais de Trabajo&nbsp;
+              <Tooltip title="What do you want others to call you?">
+                <Icon type="question-circle-o" />
+              </Tooltip>
+            </span>
+          }
+        >
+          {getFieldDecorator('nickname', {
+            rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
+          })(<Input />)}
+        </Form.Item>
+
+
         <Form.Item label="E-mail">
           {getFieldDecorator('email', {
             rules: [
@@ -190,6 +258,19 @@ class Register extends React.Component {
   }
 }
 
-const WrappedRegister = Form.create({ name: 'register' })(Register);
 
-export { WrappedRegister };
+
+
+
+
+
+
+
+
+
+
+
+
+const WrappedRegisterChef = Form.create({ name: 'register-chef' })(RegistrationForm);
+
+export { WrappedRegisterChef };
