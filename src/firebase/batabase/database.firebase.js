@@ -34,8 +34,6 @@ firebase.initializeApp({
         document.getElementById('apellido2').value = '';
         document.getElementById('direccion').value = '';
 
-
-
     })
     .catch(function(error) {
         console.error("Error adding document: ", error);

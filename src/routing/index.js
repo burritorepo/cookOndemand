@@ -12,7 +12,8 @@ import {
   RoutingDashboard,
   RoutingDashboardCheff,
   WrappedRegister,
-  Reservation
+  WrappedRegisterChef,
+  Reservation,
 } from '../features';
 
 function RoutingRoot() {
@@ -25,6 +26,8 @@ function RoutingRoot() {
         <Route path="/landing" component={Landing}></Route>        
         <Route path="/login" component={WrappedLogin} />
         <Route path="/register" component={WrappedRegister} />
+        <Route path="/register-chef" component={WrappedRegisterChef} />
+
         <Redirect exact from="/" to="/cheff" />
       </Switch>
     </Router>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 
+
 import {
   Form,
   Input,
@@ -180,6 +181,23 @@ class RegistrationForm extends React.Component {
             rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
           })(<Input />)}
         </Form.Item>
+
+        <Form.Item
+          label={
+            <span>
+              Pais de Trabajo&nbsp;
+              <Tooltip title="What do you want others to call you?">
+                <Icon type="question-circle-o" />
+              </Tooltip>
+            </span>
+          }
+        >
+          {getFieldDecorator('nickname', {
+            rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
+          })(<Input />)}
+        </Form.Item>
+
+
         <Form.Item label="E-mail">
           {getFieldDecorator('email', {
             rules: [
@@ -240,6 +258,19 @@ class RegistrationForm extends React.Component {
   }
 }
 
-const WrappedRegister = Form.create({ name: 'register' })(RegistrationForm);
 
-export { WrappedRegister };
+
+
+
+
+
+
+
+
+
+
+
+
+const WrappedRegisterChef = Form.create({ name: 'register-chef' })(RegistrationForm);
+
+export { WrappedRegisterChef };
