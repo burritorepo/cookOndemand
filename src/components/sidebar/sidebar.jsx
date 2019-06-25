@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import './sidebar.scss';
 
+<<<<<<< HEAD
 function ItemUser() {
   return (
     <React.Fragment>
@@ -69,6 +70,18 @@ function Sidebar(props) {
         </Menu.Item>
       </Menu>
       )}
+=======
+function Sidebar(props) {
+  const { children } = props;
+
+  return (
+    <Layout.Sider className="sidebar">
+      <Menu style={{ height: '100%', borderRight: 0 }}>
+        <Menu.Item>
+          <NavLink to="/user/request" activeClassName="is-active ant-menu-item-selected">Solicitudes</NavLink>
+        </Menu.Item>
+      </Menu>
+>>>>>>> e10897d3e82aa9f7b3aa32b8879b5bee1fa38b4d
     </Layout.Sider>
   )
 }

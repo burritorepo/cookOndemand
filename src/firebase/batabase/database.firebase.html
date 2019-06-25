@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Base de Datos</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Agregar Usuarios</h1>
+        
+        <input type="text" id="nombres" placeholder="nombres">
+        <input type="text" id="apellido1" placeholder="apellido1">
+        <input type="text" id="apellido2" placeholder="apellido2">
+        <input type="text" id="direccion" placeholder="direccion">
+        <button id="boton" onclick="guardar()">Guardar</button>
+
+        <table class="tabla">
+            <thead class="container">
+                <tr>
+                    <th>Nombres</th>
+                    <th>Primer Apellido</th>
+                    <th>Segundo Apellido</th>
+                    <th>Direccion</th>
+
+                </tr>
+
+            </thead>
+            <tbody id="table">
+                
+            </tbody>
+        </table>
+
+
+    </div>
+
+     <!-- Firestore-->
+     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+     <script src="./database.firebase.js"></script>
+    
+</body>
+</html>
