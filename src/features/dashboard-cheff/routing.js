@@ -9,7 +9,6 @@ import { Layout } from 'antd';
 import {
   DashboardRequests,
   Home,
-  RoutingDishes  
 } from './components';
 
 import {
@@ -28,7 +27,7 @@ function RoutingDashboardCheff(prop) {
         <Header />
         <Layout>
           <Sidebar></Sidebar>
-          <Main>            
+          <Main>
             <Switch>
               <Route exact path={`${path}/home`} component={Home}></Route>
               <Route exact path={`${path}/request`} component={DashboardRequests}></Route>
