@@ -52,11 +52,7 @@
   },
   "dependencies": {
     "antd": "^3.19.6",
-<<<<<<< HEAD
     "firebase": "^6.2.2",
-=======
-    "font-awesome": "^4.7.0",
->>>>>>> 3f83a172a4bbfc0851d70b12f6ea08da88bc756c
     "history": "^4.9.0",
     "prop-types": "^15.7.2",
     "react-redux": "^7.0.3",
