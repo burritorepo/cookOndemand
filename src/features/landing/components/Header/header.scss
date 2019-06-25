@@ -48,6 +48,7 @@ header {
 
   .header-nav__item {
     /* Display and Box Model */
+    position: relative;
     margin: 0 5px;
     padding: 10px;
     transition: all 0.5s ease-in-out;
@@ -85,7 +86,11 @@ header {
 
 .nav__action {
   /* Colors and Backgrounds */
+  color: #fff;
+  font-weight: bold;
   background: #ff6700;
+  width: 10vw;
+  height: 30px;
 }
 
 @media (min-width: 1024px) and (max-width: 1439px) {

@@ -30,7 +30,7 @@ export class Landing extends Component {
 
     return (
       <Fragment>
-        <Header />
+        <Header prevProps={this.props} />
         <LandingMain
           step={step}
           nextStep={this.nextStep}
