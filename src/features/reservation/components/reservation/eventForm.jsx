@@ -1,9 +1,24 @@
 import React, { Component, Fragment } from "react";
-import { Input, Select, Form } from "antd";
+import { Input, Select, Form, Button } from "antd";
 
 class EventForm extends Component {
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values);
+        this.props.next()
+      }
+    });
+  };
+
   render() {
-    const { values, handleChange, handleSelectChange } = this.props;
+    const {
+      values,
+      handleChange,
+      handleSelectChange
+    } = this.props;
+
     const { Option } = Select;
     const { getFieldDecorator } = this.props.form;
 
@@ -12,7 +27,7 @@ class EventForm extends Component {
         <h1 style={{ marginBottom: "20px", textAlign: "center" }}>
           Coméntanos un poco sobre tu evento
         </h1>
-        <Form labelCol={{ span: 5 }} wrapperCol={{ span: 12 }}>
+        <Form onSubmit={this.handleSubmit} labelCol={{ span: 5 }} wrapperCol={{ span: 12 }}>
           <Form.Item label="Dirección">
             {getFieldDecorator("address", {
               initialValue: values.address,
@@ -35,7 +50,7 @@ class EventForm extends Component {
             })(
               <Select
                 placeholder="Seleccione el número de invitados"
-                onChange={handleSelectChange}
+                onChange={handleSelectChange.bind(this, 'pax')}
               >
                 <Option value="2">2</Option>
                 <Option value="3 a 6">3 a 6</Option>
@@ -56,7 +71,7 @@ class EventForm extends Component {
               <Select
                 initialValue={values.preferences}
                 placeholder="Seleccione un tipo de cocina de su preferencia"
-                onChange={handleSelectChange}
+                onChange={handleSelectChange.bind(this, 'preferences')}
               >
                 <Option value="criolla">Criolla</Option>
                 <Option value="italiana">Italiana</Option>
@@ -68,6 +83,9 @@ class EventForm extends Component {
               </Select>
             )}
           </Form.Item>
+          <Button type="primary" htmlType="submit">
+            Siguiente
+          </Button>
         </Form>
       </Fragment>
     );
