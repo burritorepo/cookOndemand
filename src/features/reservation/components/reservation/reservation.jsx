@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Steps, Button, message } from "antd";
 import EventForm from "./eventForm";
 import Start from "./start";
-// import KitchenForm from '../kitchen/kitchenForm.reserva';
-// import DetailsForm from '../details/detailsForm.reserva';
+import KitchenForm from "./kitchenForm";
+import DetailsForm from './detailsForm';
 
 class Reservation extends Component {
   // componentDidMount() {}
@@ -95,20 +95,18 @@ class Reservation extends Component {
           />
         )
       },
-      // {
-      //   title: 'Cocina',
-      //   content: <KitchenForm
-      //     values={values}
-      //     handleChange={this.handleChange}
-      //   />,
-      // },
-      // {
-      //   title: 'Detalles',
-      //   content: <DetailsForm
-      //     values={values}
-      //     handleChange={this.handleChange}
-      //   />,
-      // },
+      {
+        title: "Cocina",
+        content: (
+          <KitchenForm values={values} handleChange={this.handleChange} />
+        )
+      },
+      {
+        title: "Detalles",
+        content: (
+          <DetailsForm values={values} handleChange={this.handleChange} />
+        )
+      },
       {
         title: "Confirmación",
         content: "Last-content"
