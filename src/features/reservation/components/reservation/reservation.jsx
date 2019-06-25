@@ -6,7 +6,6 @@ import KitchenForm from "./kitchenForm";
 import DetailsForm from './detailsForm';
 
 class Reservation extends Component {
-  // componentDidMount() {}
   constructor(props) {
     super(props);
     this.state = {

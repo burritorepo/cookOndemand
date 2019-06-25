@@ -8,7 +8,7 @@ class DashboardRequestCheffs extends Component {
       <div className="view view-request">
         <Breadcrumb separator=">">
           <Breadcrumb.Item>
-            <NavLink to="/user">Tablero</NavLink>
+            <NavLink to="/user">Home</NavLink>
           </Breadcrumb.Item>
           <Breadcrumb.Item>Solicitudes Cheffs</Breadcrumb.Item>
         </Breadcrumb>

@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import { NavLink } from 'react-router-dom';
 import { Breadcrumb, Card, Row, Col, Icon, Button } from 'antd';
 import './request.scss';
+
 class DashboardRequests extends Component {
   render() {
     return (
       <div className="view view-request">
         <Breadcrumb separator=">">
           <Breadcrumb.Item>
-            <NavLink to="/user">Tablero</NavLink>
+            <NavLink to="/user">Home</NavLink>
           </Breadcrumb.Item>
           <Breadcrumb.Item>Solicitudes</Breadcrumb.Item>
         </Breadcrumb>
