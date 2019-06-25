@@ -6,7 +6,6 @@ import KitchenForm from "./kitchenForm";
 import DetailsForm from './detailsForm';
 
 class Reservation extends Component {
-  // componentDidMount() {}
   constructor(props) {
     super(props);
     this.state = {
@@ -43,9 +42,9 @@ class Reservation extends Component {
     });
   };
 
-  handleSelectChange = (value, id) => {
+  handleSelectChange = (value, e) => {
     console.log("selected", value);
-    console.log("selectfield", id);
+    console.log("selectedname", e.target.name);
     // console.log('name', name)
     // this.setState({
     //   [value]: e.target.value
@@ -140,7 +139,7 @@ class Reservation extends Component {
     return (
       <div style={divStyle}>
         {" "}
-        <Steps current={current}>
+        <Steps style={{ marginTop: '20px' }} current={current}>
           {steps.map(item => (
             <Step key={item.title} title={item.title} />
           ))}

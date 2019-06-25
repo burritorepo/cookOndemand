@@ -34,6 +34,7 @@ class EventForm extends Component {
               ]
             })(
               <Select
+                name='pax'
                 placeholder="Seleccione el número de invitados"
                 onChange={handleSelectChange}
               >
