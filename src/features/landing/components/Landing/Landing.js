@@ -8,7 +8,7 @@ import "./landing.scss";
 
 export class Landing extends Component {
   state = {
-    step: 4
+    step: 1
   };
 
   nextStep = () => {
@@ -25,6 +25,13 @@ export class Landing extends Component {
     }
   };
 
+  handleStepIndex = id => {
+    const stepId = parseInt(id);
+    if (stepId) {
+      this.setState({ step: stepId });
+    }
+  };
+
   render() {
     const { step } = this.state;
 
@@ -36,7 +43,7 @@ export class Landing extends Component {
           nextStep={this.nextStep}
           prevStep={this.prevStep}
         />
-        <Index step={step} />
+        <Index step={step} handleStepIndex={this.handleStepIndex} />
         <Navigation nextStep={this.nextStep} prevStep={this.prevStep} />
         {/* <Footer /> */}
       </Fragment>
