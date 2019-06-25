@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-<<<<<<< HEAD
 import { Steps, Button, message } from "antd";
 import EventForm from "./eventForm";
 import Start from "./start";
@@ -181,26 +180,9 @@ class Reservation extends Component {
             Next
             </Button>
         )}
-=======
-
-class Reservation extends Component {
-  componentDidMount() {
-  }
-
-  render() {
-    return (
-      <div className="view view-reservation">
-        <h1>Reservation</h1>
->>>>>>> e10897d3e82aa9f7b3aa32b8879b5bee1fa38b4d
       </div>
     );
   }
 }
 
-<<<<<<< HEAD
 export { Reservation };
-=======
-export {
-  Reservation
-}
->>>>>>> e10897d3e82aa9f7b3aa32b8879b5bee1fa38b4d

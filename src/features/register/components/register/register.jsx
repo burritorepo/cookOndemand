@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-<<<<<<< HEAD
 import { Form, Icon, Input, Button } from 'antd';
 
 function hasErrors(fieldsError) {
@@ -18,117 +17,10 @@ class Register extends React.Component {
       if (!err) {
         console.log('Received values of form: ', values);
         location.replace('#/dashboard')
-=======
-
-
-import {
-  Form,
-  Input,
-  Tooltip,
-  Icon,
-  Cascader,
-  Select,
-  Row,
-  Col,
-  Checkbox,
-  Button,
-  AutoComplete,
-  Typography,
-} from 'antd';
-import FormItem from "antd/lib/form/FormItem";
-
-const { Option } = Select;
-const AutoCompleteOption = AutoComplete.Option;
-
-
-const residences = [
-  {
-    value: 'zhejiang',
-    label: 'Zhejiang',
-    children: [
-      {
-        value: 'hangzhou',
-        label: 'Hangzhou',
-        children: [
-          {
-            value: 'xihu',
-            label: 'West Lake',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    value: 'jiangsu',
-    label: 'Jiangsu',
-    children: [
-      {
-        value: 'nanjing',
-        label: 'Nanjing',
-        children: [
-          {
-            value: 'zhonghuamen',
-            label: 'Zhong Hua Men',
-          },
-        ],
-      },
-    ],
-  },
-];
-
-class RegistrationForm extends React.Component {
-  state = {
-    confirmDirty: false,
-    autoCompleteResult: [],
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
->>>>>>> e10897d3e82aa9f7b3aa32b8879b5bee1fa38b4d
       }
     });
   };
 
-<<<<<<< HEAD
-  render() {
-    const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
-
-    // Only show error after a field is touched.
-    const usernameError = isFieldTouched('username') && getFieldError('username');
-    const passwordError = isFieldTouched('password') && getFieldError('password');
-    return (
-      <Form style={{ height: '100vh' }} className="d-flex jc-center ai-center fd-column" layout="inline" onSubmit={this.handleSubmit}>
-        <Form.Item validateStatus={usernameError ? 'error' : ''} help={usernameError || ''}>
-          {getFieldDecorator('username', {
-            rules: [{ required: true, message: 'Please input your username!' }],
-          })(
-            <Input
-              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-              placeholder="Username"
-            />,
-          )}
-        </Form.Item>
-        <Form.Item validateStatus={passwordError ? 'error' : ''} help={passwordError || ''}>
-          {getFieldDecorator('password', {
-            rules: [{ required: true, message: 'Please input your Password!' }],
-          })(
-            <Input
-              prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-              type="password"
-              placeholder="Password"
-            />,
-          )}
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit" disabled={hasErrors(getFieldsError())}>
-            Log in
-          </Button>
-        </Form.Item>
-      </Form>
-=======
   handleConfirmBlur = e => {
     const { value } = e.target;
     this.setState({ confirmDirty: this.state.confirmDirty || !!value });
@@ -294,19 +186,10 @@ class RegistrationForm extends React.Component {
       </Col>
       <Col span={8}></Col>
       </Row>
->>>>>>> e10897d3e82aa9f7b3aa32b8879b5bee1fa38b4d
     );
   }
 }
 
-<<<<<<< HEAD
 const WrappedRegister = Form.create({ name: 'register' })(Register);
 
-export {
-  WrappedRegister
-}
-=======
-const WrappedRegister = Form.create({ name: 'register' })(RegistrationForm);
-
 export { WrappedRegister };
->>>>>>> e10897d3e82aa9f7b3aa32b8879b5bee1fa38b4d
