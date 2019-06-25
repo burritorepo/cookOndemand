@@ -14,7 +14,6 @@ class EventForm extends Component {
 
   render() {
     const {
-      values,
       handleChange,
       handleSelectChange
     } = this.props;
@@ -30,7 +29,6 @@ class EventForm extends Component {
         <Form onSubmit={this.handleSubmit} labelCol={{ span: 5 }} wrapperCol={{ span: 12 }}>
           <Form.Item label="Dirección">
             {getFieldDecorator("address", {
-              initialValue: values.address,
               rules: [
                 { required: true, message: "Ingrese dirección del evento" }
               ]
@@ -69,7 +67,6 @@ class EventForm extends Component {
               ]
             })(
               <Select
-                initialValue={values.preferences}
                 placeholder="Seleccione un tipo de cocina de su preferencia"
                 onChange={handleSelectChange.bind(this, 'preferences')}
               >

@@ -66,7 +66,7 @@ export class Header extends Component {
                   </Link>
                 </li>
                 <li className="header-nav__item">
-                  <Link to="#" className="header-nav__link">
+                  <Link to="/login" className="header-nav__link">
                     <i className="fas fa-sign-in-alt" />
                     Acceder
                   </Link>

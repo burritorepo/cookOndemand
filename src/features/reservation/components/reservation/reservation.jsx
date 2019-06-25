@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { Steps, Button, message } from "antd";
+import { Steps, Button } from "antd";
 import EventForm from "./eventForm";
 import Start from "./start";
 import KitchenForm from "./kitchenForm";
-import DetailsForm from './detailsForm';
+import DetailsForm from "./detailsForm";
+import { Confirmation } from "./confirmation";
 
 class Reservation extends Component {
-  // componentDidMount() {}
   constructor(props) {
     super(props);
     this.state = {
@@ -17,7 +17,7 @@ class Reservation extends Component {
       energy: "",
       burners: "",
       oven: "",
-      date: "",
+      dateTime: "",
       restrictions: "",
       obs: ""
     };
@@ -46,34 +46,18 @@ class Reservation extends Component {
   handleSelectChange = (label, value) => {
     this.setState({
       [label]: value
+    });
+  };
+
+  handleRatio = (label, value) => {
+    console.log("ratio", value.target.value);
+    this.setState({
+      [label]: value.target.value
     })
   };
 
   render() {
     const { current } = this.state;
-    const {
-      address,
-      pax,
-      preferences,
-      energy,
-      burners,
-      oven,
-      date,
-      restrictions,
-      obs
-    } = this.state;
-
-    const values = {
-      address,
-      pax,
-      preferences,
-      energy,
-      burners,
-      oven,
-      date,
-      restrictions,
-      obs
-    };
 
     const { Step } = Steps;
 
@@ -86,7 +70,6 @@ class Reservation extends Component {
         title: "Evento",
         content: (
           <EventForm
-            values={values}
             handleChange={this.handleChange}
             handleSelectChange={this.handleSelectChange}
             next={this.next}
@@ -97,22 +80,30 @@ class Reservation extends Component {
       {
         title: "Cocina",
         content: (
-          <KitchenForm values={values} handleChange={this.handleChange}
+          <KitchenForm
+            handleSelectChange={this.handleSelectChange}
+            handleRatio={this.handleRatio}
             next={this.next}
-            prev={this.prev} />
+            prev={this.prev}
+          />
         )
       },
       {
         title: "Detalles",
         content: (
-          <DetailsForm values={values} handleChange={this.handleChange}
+          <DetailsForm
+            handleChange={this.handleChange}
+            handleDate={this.handleDate}
             next={this.next}
-            prev={this.prev} />
+            prev={this.prev}
+          />
         )
       },
       {
         title: "Confirmación",
-        content: "Last-content"
+        content: (
+          <Confirmation next={this.next} prev={this.prev} {...this.state} />
+        )
       },
       {
         title: "Éxito",
@@ -129,17 +120,15 @@ class Reservation extends Component {
       margin: "auto"
     };
 
-    const stepsAction = {
-      marginTop: "24px"
-    };
-
     const divStyle = {
       width: "95%",
       margin: "auto"
     };
 
-    console.log('this.state', this.state)
-    
+    console.log("this.state", this.state);
+    console.log("this.state", this.state.oven);
+    console.log("this.state", this.state.dateTime);
+
     return (
       <div style={divStyle}>
         <Steps current={current}>
@@ -179,7 +168,7 @@ class Reservation extends Component {
             onClick={() => this.next(steps[current].content)}
           >
             Next
-            </Button>
+          </Button>
         )}
       </div>
     );
