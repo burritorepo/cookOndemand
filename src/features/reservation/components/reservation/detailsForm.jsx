@@ -1,14 +1,19 @@
 import React, { Component, Fragment } from "react";
-import { Input, Form, DatePicker } from "antd";
+import { Input, Form, DatePicker, Button } from "antd";
 
 class DetailsForm extends Component {
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        console.log("Received values of form: ", values);
+        this.props.next();
+      }
+    });
+  };
+
   render() {
-    const config = {
-      rules: [
-        { type: "object", required: true, message: "Please select time!" }
-      ]
-    };
-    const { values, handleChange } = this.props;
+    const { handleChange, handleDate } = this.props;
     const { getFieldDecorator } = this.props.form;
     const { TextArea } = Input;
 
@@ -17,9 +22,21 @@ class DetailsForm extends Component {
         <h1 style={{ marginBottom: "20px", textAlign: "center" }}>
           Ahora veamos algunos detalles
         </h1>
-        <Form labelCol={{ span: 5 }} wrapperCol={{ span: 12 }}>
-          <Form.Item label="DatePicker">
-            {getFieldDecorator("date-picker", config)(<DatePicker />)}
+        <Form
+          onSubmit={this.handleSubmit}
+          labelCol={{ span: 5 }}
+          wrapperCol={{ span: 12 }}
+        >
+          <Form.Item label="Fecha">
+            {getFieldDecorator("dateTime", {
+              rules: [
+                {
+                  type: "object",
+                  required: true,
+                  message: "Seleccione la fecha"
+                }
+              ]
+            })(<DatePicker onChange={handleDate.bind(this, "dateTime")} />)}
           </Form.Item>
           <Form.Item label="Alergias">
             {getFieldDecorator("restrictions", {
@@ -42,18 +59,20 @@ class DetailsForm extends Component {
               ]
             })(
               <TextArea
-                setfieldsvalue={values.address}
                 onChange={handleChange("obs")}
                 placeholder="Algún comentario u observación que desea agregar?"
                 style={{ marginBottom: "20px" }}
               />
             )}
           </Form.Item>
+          <Button type="primary" htmlType="submit">
+            Siguiente
+          </Button>
         </Form>
       </Fragment>
     );
   }
 }
-const WrappedApp = Form.create({ name: "coordinated" })(DetailsForm);
+const WrappedApp = Form.create({ name: "details_form" })(DetailsForm);
 
 export default WrappedApp;
