@@ -28,10 +28,10 @@ function RoutingRoot() {
         <Route path="/user" component={RoutingDashboard} />
         <Route path="/cheff" component={RoutingDashboardCheff} />
         <Route path="/reservation" component={Reservation} />
-        <Route path="/landing" component={Landing} />
+        <Route path="/home" component={Landing} />
         <Route path="/login" component={WrappedLogin} />
         <Route path="/register" component={WrappedRegister} />
-        <Redirect exact from="/" to="/landing" />
+        <Redirect exact from="/" to="/home" />
       </Switch>
     </Router>
   );

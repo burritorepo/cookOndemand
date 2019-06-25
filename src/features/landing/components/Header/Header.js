@@ -3,6 +3,11 @@ import { Link } from "react-router-dom";
 import "./header.scss";
 
 export class Header extends Component {
+  handleChange() {
+    const { prevProps } = this.props;
+    prevProps.history.push("/register");
+  }
+
   render() {
     return (
       <Fragment>
@@ -37,12 +42,13 @@ export class Header extends Component {
                     Acceder
                   </Link>
                 </li>
-                <li className="header-nav__item nav__action">
-                  <Link to="#" className="header-nav__link">
-                    <i className="fas fa-portrait" />
-                    Registro Chef
-                  </Link>
-                </li>
+                <button
+                  className="nav__action"
+                  onClick={() => this.handleChange()}
+                >
+                  <i className="fas fa-portrait" />
+                  Registro Chef
+                </button>
               </ul>
             </nav>
           </div>

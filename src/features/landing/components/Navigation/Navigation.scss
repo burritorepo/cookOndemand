@@ -14,7 +14,7 @@
     width: 40px;
     height: 40px;
     margin: 10px 0;
-    display: none;
+    /* display: none; */
 
     /* Colors and Backgrounds */
     color: #e6e6e6;
@@ -26,6 +26,14 @@
     opacity: 0.75;
     border: 1px solid #e6e6e6;
     border-radius: 50%;
+
+    &.nav-up {
+      margin-bottom: 2rem;
+    }
+
+    &.nav-down {
+      margin-top: 2rem;
+    }
 
     &.active {
       /* Colors and Backgrounds */
