@@ -30,7 +30,7 @@ class Confirmation extends Component {
           </Col>
           <Col span={8}>
             <h3>Fecha</h3>
-            {/* <p>{values.dateTime}</p> */}
+            <p>{values.dateTime}</p>
             <h3>Resticciones</h3>
             <p>{values.restrictions}</p>
             <h3>Observaciones</h3>

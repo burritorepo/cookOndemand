@@ -57,11 +57,11 @@ class Reservation extends Component {
     });
   };
 
-  handleDate = (label, date) => {
-    console.log("date", date);
-    // this.setState({
-    //   [label]: dateString
-    // });
+  handleDate = (label, date, value) => {
+    console.log("date", value);
+    this.setState({
+      [label]: value
+    });
   };
 
   render() {

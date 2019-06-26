@@ -65,7 +65,9 @@ class DetailsForm extends Component {
               />
             )}
           </Form.Item>
-          <Button type="secondary" onClick={prev}>Anterior</Button>
+          <Button type="secondary" onClick={prev}>
+            Anterior
+          </Button>
           <Button type="primary" htmlType="submit">
             Siguiente
           </Button>
