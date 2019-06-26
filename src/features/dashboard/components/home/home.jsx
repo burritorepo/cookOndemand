@@ -1,13 +1,17 @@
 import React, { Component } from "react";
+import { NavLink } from 'react-router-dom';
 import { Breadcrumb, Card, Row, Col, Icon, Button, Statistic } from "antd";
 
-class Home extends Component {
+class DashboardHome extends Component {
   render() {
     return (
       <div className="view view-home">
-        <Breadcrumb style={{ marginBottom: '20px' }} separator=">">
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
+        <Breadcrumb separator=">">
+          <Breadcrumb.Item>Inicio</Breadcrumb.Item>
         </Breadcrumb>
+        <br />
+        <h1 className="title c-primary">Inicio</h1>
+        <br />
         <div style={{ background: "#ECECEC", padding: "30px" }}>
           <Row gutter={16}>
             <Col span={8}>
@@ -47,4 +51,4 @@ class Home extends Component {
   }
 }
 
-export { Home };
+export { DashboardHome };

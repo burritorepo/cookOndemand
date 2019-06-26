@@ -8,12 +8,12 @@ class DashboardRequests extends Component {
       <div className="view view-request">
         <Breadcrumb separator=">">
           <Breadcrumb.Item>
-            <NavLink to="/user">Tablero</NavLink>
+            <NavLink to="/user">Inicio</NavLink>
           </Breadcrumb.Item>
           <Breadcrumb.Item>Solicitudes</Breadcrumb.Item>
         </Breadcrumb>
         <br />
-        <h1 className="title">Mis Solicitudes</h1>
+        <h1 className="title c-primary">Mis Solicitudes</h1>
         <br/>
         <Row gutter={16}>
           <Col span={24}>
@@ -21,29 +21,29 @@ class DashboardRequests extends Component {
               <Row gutter={16}>
                 <Col span={12}>
                   <div className="request__item">
-                    <Icon type="team" />
+                    <Icon type="team" className="c-primary" />
                     <span className="request__detail">13 - 20 personas</span>
                   </div>
                   <div className="request__item">
-                    <Icon type="hourglass" />
+                    <Icon type="hourglass" className="c-primary"  />
                     <span className="request__detail">Cena</span>
                   </div>
                   <div className="request__item">
-                    <Icon type="pushpin" />
+                    <Icon type="pushpin" className="c-primary"  />
                     <span className="request__detail">Avenida José Pardo 600, Miraflores</span>
                   </div>
                   <div className="request__item">
-                    <Icon type="check" />
+                    <Icon type="check" className="c-primary"  />
                     <span className="request__detail">Tienes 1 propuestas</span>
                   </div>
                 </Col>
                 <Col span={12}>
                   <div className="request__item">
-                    <Icon type="user" />
+                    <Icon type="user" className="c-primary"  />
                     <span className="request__detail">S/ 160.00 - S/ 180.00 / persona</span>
                   </div>
                   <div className="request__item">
-                    <Icon type="fire" />
+                    <Icon type="fire" className="c-primary"  />
                     <span className="request__detail">Comida Italiana</span>
                   </div>
                 </Col>
@@ -51,7 +51,7 @@ class DashboardRequests extends Component {
               <div className="request__card__footer d-flex jc-space-between ai-center">
                 <Icon type="delete" />
                 <Button type="primary">
-                  <NavLink to="/user/request-cheff">Ver propuestas</NavLink>
+                  <NavLink to="/user/request/1">Ver propuestas</NavLink>
                 </Button>
               </div>
             </Card>
@@ -64,37 +64,37 @@ class DashboardRequests extends Component {
               <Row gutter={16}>
                 <Col span={12}>
                   <div className="request__item">
-                    <Icon type="team" />
+                    <Icon type="team" className="c-primary" />
                     <span className="request__detail">13 - 20 personas</span>
                   </div>
                   <div className="request__item">
-                    <Icon type="hourglass" />
+                    <Icon type="hourglass" className="c-primary" />
                     <span className="request__detail">Cena</span>
                   </div>
                   <div className="request__item">
-                    <Icon type="pushpin" />
+                    <Icon type="pushpin" className="c-primary" />
                     <span className="request__detail">Avenida José Pardo 600, Miraflores</span>
                   </div>
                   <div className="request__item">
-                    <Icon type="check" />
+                    <Icon type="check" className="c-primary" />
                     <span className="request__detail">Tienes 1 propuestas</span>
                   </div>
                 </Col>
                 <Col span={12}>
                   <div className="request__item">
-                    <Icon type="user" />
+                    <Icon type="user" className="c-primary" />
                     <span className="request__detail">S/ 160.00 - S/ 180.00 / persona</span>
                   </div>
                   <div className="request__item">
-                    <Icon type="fire" />
+                    <Icon type="fire" className="c-primary" />
                     <span className="request__detail">Comida Italiana</span>
                   </div>
                 </Col>
               </Row>
               <div className="request__card__footer d-flex jc-space-between ai-center">
-                <Icon type="delete" />
+                <Icon type="delete"/>
                 <Button type="primary">
-                  <NavLink to="/user/request-cheff">Ver propuestas</NavLink>
+                  <NavLink to="/user/request/1">Ver propuestas</NavLink>
                 </Button>
               </div>
             </Card>

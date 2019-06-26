@@ -23,9 +23,9 @@ const menu = (
 function Header() {
   return (
     <Layout.Header className="header d-flex jc-space-between ai-center">
-      <NavLink className="header__logo" to="/">CookOnDemand</NavLink>
+      <NavLink className="header__logo logo" to="/">Cook <span>on</span> Demand</NavLink>
       <Dropdown overlay={menu} >
-        <Button>Hola Sebastian<Icon type="user" /></Button>
+        <Button>Hola Sebastian<Icon type="user" className="c-primary"/></Button>
       </Dropdown>
     </Layout.Header>
   )

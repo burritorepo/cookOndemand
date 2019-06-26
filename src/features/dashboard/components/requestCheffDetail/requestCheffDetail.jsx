@@ -8,7 +8,15 @@ function callback(key) {
 }
 
 class DashboardRequestCheffDetail extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
+    const {
+      match: { params: { id } },
+      match: { params: { user } } 
+    } = this.props;
     return (
       <div className="view view-request">
         <Breadcrumb separator=">">
@@ -16,12 +24,15 @@ class DashboardRequestCheffDetail extends Component {
             <NavLink to="/user">Home</NavLink>
           </Breadcrumb.Item>
           <Breadcrumb.Item>
-            <NavLink to="/user/request-cheff">Solicitudes Cheffs</NavLink>
+            <NavLink to="/user/request">Solicitudes</NavLink>
           </Breadcrumb.Item>
-          <Breadcrumb.Item>Jose Luis</Breadcrumb.Item>
+          <Breadcrumb.Item>
+            <NavLink to={`/user/request/${id}`}>Solicitudes Cheffs</NavLink>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item>{user}</Breadcrumb.Item>
         </Breadcrumb>
-        <br/>
-        <h1 className="title">Propuestas del Cheff Jose Luis</h1>
+        <br />
+        <h1 className="title c-primary">Propuestas del Cheff {user}</h1>
         <br />
         <Tabs defaultActiveKey="1" onChange={callback}>
           <Tabs.TabPane tab="La propuesta" key="1">

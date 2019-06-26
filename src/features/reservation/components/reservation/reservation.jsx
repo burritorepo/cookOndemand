@@ -56,6 +56,12 @@ class Reservation extends Component {
     })
   };
 
+  handleDate = (date, dateString) => {
+    console.log(date)
+  }
+
+  
+
   render() {
     const { current } = this.state;
 

@@ -5,6 +5,16 @@ Global
   //background: transparent;
 }
 
+body {
+  background: black;
+}
+
+.logo {
+  &--medium {
+    font-size: 1.5rem;
+  }
+}
+
 .ant-menu-vertical .ant-menu-item {
   padding: 0;
   a {
@@ -14,6 +24,35 @@ Global
       color: #1890ff;
     }
   }
+}
+
+/*
+Text
+*/
+.text-center {
+  text-align: center;
+}
+
+/*
+Margin
+*/
+.m-0 {
+  margin: 0!important;
+}
+
+.mb-20 {
+  margin-bottom: 20px!important;
+}
+
+/*
+Display
+*/
+.d-block {
+  display: block !important;
+}
+
+.h-100vh {
+  height: 100vh;
 }
 
 /*
@@ -37,4 +76,51 @@ Layout
 
 .fd-column {
   flex-direction: column;
+}
+
+/*
+Buttons
+*/
+.ant-btn-primary {
+  background: #ff6700;
+  border-color: #ff6700;
+
+  &:hover,
+  &:active,
+  &:link,
+  &:focus {
+    background: #ff6700;
+    border-color: #ff6700;
+  }
+}
+
+
+/*
+Form
+*/
+input {
+  &[type="text"] {
+    
+  }
+}
+
+
+/*
+Colors
+*/
+.c-primary {
+  color: #ff6700;
+}
+
+
+/*
+Tabs
+*/
+.ant-tabs-nav .ant-tabs-tab-active,
+.ant-tabs-nav .ant-tabs-tab:hover {
+  color: #ff6700;
+}
+
+.ant-tabs-ink-bar {
+  background-color: #ff6700;
 }
