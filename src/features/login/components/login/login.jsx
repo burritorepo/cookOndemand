@@ -14,7 +14,7 @@ class App extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         sessionStorage.clear();
-        if (values.gender === 'user') {
+        if (values.type === 'user') {
           sessionStorage.setItem('type', 'user');
           history.replace('/user/request')
         } else {
@@ -27,44 +27,50 @@ class App extends React.Component {
 
   handleSelectChange = value => {
     console.log(value);
-    // this.props.form.setFieldsValue({
-    //   note: `Hi, ${value === 'male' ? 'man' : 'lady'}!`,
-    // });
   };
 
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <Form style={{height:'100vh'}} className="d-flex fd-column jc-center"  wrapperCol={{ offset: 6, span: 12 }} onSubmit={this.handleSubmit}>
-        <Form.Item >
-          {getFieldDecorator('note', {
-            rules: [{ required: true, message: 'Please input your note!' }],
-          })(<Input />)}
-        </Form.Item>
-        <Form.Item >
-          {getFieldDecorator('password', {
-            rules: [{ required: true, message: 'Please input your note!' }],
-          })(<Input type="password" />)}
-        </Form.Item>
-        <Form.Item >
-          {getFieldDecorator('gender', {
-            rules: [{ required: true, message: 'Please select your type!' }],
-          })(
-            <Select
-              placeholder="Seleccione el tipo de usuario"
-              onChange={this.handleSelectChange}
-            >
-              <Option value="user">User</Option>
-              <Option value="cheff">Cheff</Option>
-            </Select>,
-          )}
-        </Form.Item>
-        <Form.Item wrapperCol={{ offset: 11 }}>
-          <Button type="primary" htmlType="submit">
-            Ingresar
+      <React.Fragment>
+        <div className="view view-login d-flex fd-column jc-center h-100vh">
+          <div className="text-center mb-20">
+            <a className="logo logo--medium">
+              Cook <span>and</span> Demand
+            </a>
+          </div>
+          <Form className="d-flex fd-column jc-center" wrapperCol={{ offset: 7, span: 10 }} onSubmit={this.handleSubmit}>
+            <Form.Item >
+              {getFieldDecorator('user', {
+                rules: [{ required: true, message: 'Por favor ingresa tu usuario!' }],
+              })(<Input />)}
+            </Form.Item>
+            <Form.Item >
+              {getFieldDecorator('password', {
+                rules: [{ required: true, message: 'Por favor ingresa tu password!' }],
+              })(<Input type="password" />)}
+            </Form.Item>
+            <Form.Item >
+              {getFieldDecorator('type', {
+                rules: [{ required: true, message: 'Please select your type!' }],
+              })(
+                <Select
+                  placeholder="Seleccione el tipo de usuario"
+                  onChange={this.handleSelectChange}
+                >
+                  <Option value="user">User</Option>
+                  <Option value="cheff">Cheff</Option>
+                </Select>
+              )}
+            </Form.Item>
+            <Form.Item >
+              <Button type="primary" htmlType="submit" block>
+                Ingresar
           </Button>
-        </Form.Item>
-      </Form>
+            </Form.Item>
+          </Form>
+        </div>
+      </React.Fragment>
     );
   }
 }

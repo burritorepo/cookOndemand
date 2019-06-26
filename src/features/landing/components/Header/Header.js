@@ -3,9 +3,38 @@ import { Link } from "react-router-dom";
 import "./header.scss";
 
 export class Header extends Component {
+  state = {
+    isMobile: null
+  };
+
   handleChange() {
     const { prevProps } = this.props;
     prevProps.history.push("/register");
+  }
+
+  getWindowWidth() {
+    return Math.max(
+      document.documentElement.clientWidth,
+      window.innerWidth || 0
+    );
+  }
+
+  componentWillMount() {
+    this.setState({
+      isMobile: window.innerWidth < 1024
+    });
+  }
+
+  componentDidMount() {
+    window.addEventListener(
+      "resize",
+      () => {
+        this.setState({
+          isMobile: window.innerWidth < 1024
+        });
+      },
+      false
+    );
   }
 
   render() {
@@ -37,7 +66,7 @@ export class Header extends Component {
                   </Link>
                 </li>
                 <li className="header-nav__item">
-                  <Link to="#" className="header-nav__link">
+                  <Link to="/login" className="header-nav__link">
                     <i className="fas fa-sign-in-alt" />
                     Acceder
                   </Link>

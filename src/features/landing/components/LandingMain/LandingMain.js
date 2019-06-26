@@ -13,9 +13,8 @@ export class LandingMain extends Component {
     const { wheelEnabled } = this.state;
     if (wheelEnabled) {
       this.props.prevStep();
-      console.log("enabled");
       this.setState({ wheelEnabled: false });
-      setTimeout(() => this.setState({ wheelEnabled: true }), 2500);
+      setTimeout(() => this.setState({ wheelEnabled: true }), 1500);
     }
   };
 
@@ -23,9 +22,8 @@ export class LandingMain extends Component {
     const { wheelEnabled } = this.state;
     if (wheelEnabled) {
       this.props.nextStep();
-      console.log("enabled");
       this.setState({ wheelEnabled: false });
-      setTimeout(() => this.setState({ wheelEnabled: true }), 2500);
+      setTimeout(() => this.setState({ wheelEnabled: true }), 1500);
     }
   };
 
@@ -37,6 +35,10 @@ export class LandingMain extends Component {
         this.moveDown();
       }
     });
+  }
+
+  componentWillUnmount(e) {
+    window.removeEventListener("wheel", e);
   }
 
   render() {

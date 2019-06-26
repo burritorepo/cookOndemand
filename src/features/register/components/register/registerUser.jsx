@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Form, Input, Button } from "antd";
 
 class RegisterUser extends Component {
@@ -65,7 +65,7 @@ class RegisterUser extends Component {
       },
       wrapperCol: {
         xs: { span: 24 },
-        sm: { span: 8 }
+        sm: { span: 12 }
       }
     };
     const tailFormItemLayout = {
@@ -81,133 +81,142 @@ class RegisterUser extends Component {
       }
     };
 
+    const regUser = {
+      border: '1px solid orange',
+      width: '50%',
+      margin: 'auto'
+    }
+
     console.log("state", this.state);
 
     return (
-      <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-        <Form.Item label="Nombre">
-          {getFieldDecorator("name", {
-            rules: [
-              {
-                required: true,
-                message: "Ingresa tu nombre!"
-              }
-            ]
-          })(
-            <Input
-              onChange={this.handleChange("name")}
-              placeholder="Ingresa tu nombre..."
-            />
-          )}
-        </Form.Item>
-        <Form.Item label="Apellido paterno">
-          {getFieldDecorator("lastName1", {
-            rules: [
-              {
-                required: true,
-                message: "Ingresa tu apellido paterno!"
-              }
-            ]
-          })(
-            <Input
-              onChange={this.handleChange("lastName1")}
-              placeholder="Ingresa tu apellido paterno..."
-            />
-          )}
-        </Form.Item>
-        <Form.Item label="Apellido materno">
-          {getFieldDecorator("lastName2", {
-            rules: [
-              {
-                required: true,
-                message: "Ingresa tu apellido materno!"
-              }
-            ]
-          })(
-            <Input
-              onChange={this.handleChange("lastName2")}
-              placeholder="Ingresa tu apellido materno..."
-            />
-          )}
-        </Form.Item>
-        <Form.Item label="Correo electrónico">
-          {getFieldDecorator("email", {
-            rules: [
-              {
-                type: "email",
-                message: "Ingresa un correo electrónico válido..."
-              },
-              {
-                required: true,
-                message: "Ingresa un correo electrónico válido!"
-              }
-            ]
-          })(
-            <Input
-              onChange={this.handleChange("email")}
-              placeholder="Ingresa un correo electrónico válido..."
-            />
-          )}
-        </Form.Item>
-        <Form.Item label="Contraseña" hasFeedback>
-          {getFieldDecorator("password", {
-            rules: [
-              {
-                required: true,
-                message: "Ingresa una contraseña!"
-              },
-              {
-                validator: this.validateToNextPassword
-              }
-            ]
-          })(<Input.Password placeholder="Ingresa una contraseña..." />)}
-        </Form.Item>
-        <Form.Item label="Confirma Contraseña" hasFeedback>
-          {getFieldDecorator("confirm", {
-            rules: [
-              {
-                required: true,
-                message: "Confirma contraseña!"
-              },
-              {
-                validator: this.compareToFirstPassword
-              }
-            ]
-          })(
-            <Input.Password
-              onChange={this.handleChange("password")}
-              placeholder="Confirma contraseña..."
-              onBlur={this.handleConfirmBlur}
-            />
-          )}
-        </Form.Item>
-        <Form.Item label="Número de celular">
-          {getFieldDecorator("phone", {
-            rules: [
-              {
-                required: true,
-                message: "Ingresa un número de celular!"
-              }
-              // {
-              //   type: "number",
-              //   message: "Debe ser un número!"
-              // }
-            ]
-          })(
-            <Input
-              onChange={this.handleChange("phone")}
-              placeholder="Ingresa un número de celular..."
-              addonBefore={"+51"}
-              style={{ width: "100%" }}
-            />
-          )}
-        </Form.Item>
-        <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit">
-            Registrar
-          </Button>
-        </Form.Item>
-      </Form>
+      <div className='view view-request' style={regUser}>
+        <h1 style={{ textAlign: 'center', marginBottom:'40px' }}>Registro de Usuario</h1>
+        <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+          <Form.Item label="Nombre">
+            {getFieldDecorator("name", {
+              rules: [
+                {
+                  required: true,
+                  message: "Ingresa tu nombre!"
+                }
+              ]
+            })(
+              <Input
+                onChange={this.handleChange("name")}
+                placeholder="Ingresa tu nombre..."
+              />
+            )}
+          </Form.Item>
+          <Form.Item label="Apellido paterno">
+            {getFieldDecorator("lastName1", {
+              rules: [
+                {
+                  required: true,
+                  message: "Ingresa tu apellido paterno!"
+                }
+              ]
+            })(
+              <Input
+                onChange={this.handleChange("lastName1")}
+                placeholder="Ingresa tu apellido paterno..."
+              />
+            )}
+          </Form.Item>
+          <Form.Item label="Apellido materno">
+            {getFieldDecorator("lastName2", {
+              rules: [
+                {
+                  required: true,
+                  message: "Ingresa tu apellido materno!"
+                }
+              ]
+            })(
+              <Input
+                onChange={this.handleChange("lastName2")}
+                placeholder="Ingresa tu apellido materno..."
+              />
+            )}
+          </Form.Item>
+          <Form.Item label="Correo electrónico">
+            {getFieldDecorator("email", {
+              rules: [
+                {
+                  type: "email",
+                  message: "Ingresa un correo electrónico válido..."
+                },
+                {
+                  required: true,
+                  message: "Ingresa un correo electrónico válido!"
+                }
+              ]
+            })(
+              <Input
+                onChange={this.handleChange("email")}
+                placeholder="Ingresa un correo electrónico válido..."
+              />
+            )}
+          </Form.Item>
+          <Form.Item label="Contraseña" hasFeedback>
+            {getFieldDecorator("password", {
+              rules: [
+                {
+                  required: true,
+                  message: "Ingresa una contraseña!"
+                },
+                {
+                  validator: this.validateToNextPassword
+                }
+              ]
+            })(<Input.Password placeholder="Ingresa una contraseña..." />)}
+          </Form.Item>
+          <Form.Item label="Confirma Contraseña" hasFeedback>
+            {getFieldDecorator("confirm", {
+              rules: [
+                {
+                  required: true,
+                  message: "Confirma contraseña!"
+                },
+                {
+                  validator: this.compareToFirstPassword
+                }
+              ]
+            })(
+              <Input.Password
+                onChange={this.handleChange("password")}
+                placeholder="Confirma contraseña..."
+                onBlur={this.handleConfirmBlur}
+              />
+            )}
+          </Form.Item>
+          <Form.Item label="Número de celular">
+            {getFieldDecorator("phone", {
+              rules: [
+                {
+                  required: true,
+                  message: "Ingresa un número de celular!"
+                }
+                // {
+                //   type: "number",
+                //   message: "Debe ser un número!"
+                // }
+              ]
+            })(
+              <Input
+                onChange={this.handleChange("phone")}
+                placeholder="Ingresa un número de celular..."
+                addonBefore={"+51"}
+                style={{ width: "100%" }}
+              />
+            )}
+          </Form.Item>
+          <Form.Item {...tailFormItemLayout}>
+            <Button type="primary" htmlType="submit">
+              Registrar
+            </Button>
+          </Form.Item>
+        </Form>
+      </div>
     );
   }
 }

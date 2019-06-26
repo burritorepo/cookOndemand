@@ -7,6 +7,7 @@ import {
 import { Layout } from 'antd';
 
 import {
+  DashboardHome,
   DashboardRequests,
   DashboardRequestCheffs,
   DashboardRequestCheffDetail
@@ -21,7 +22,7 @@ import {
 
 function RoutingDashboard(prop) {
   const { match: { path } } = prop;
-  console.log('prop', prop)
+
   return (
     <React.Fragment>
       <Layout style={{ height: '100vh', padding: '64px 0px 60px' }}>
@@ -30,10 +31,11 @@ function RoutingDashboard(prop) {
           <Sidebar></Sidebar>
           <Main>
             <Switch>
-              <Route exact path={`user/request`} component={DashboardRequests}></Route>
-              <Route exact path={`${path}/request-cheff`} component={DashboardRequestCheffs}></Route>
-              <Route exact path={`${path}/request-cheff/:id`} component={DashboardRequestCheffDetail}></Route>
-              {/* <Redirect exact from={`${path}`} to={`${path}/request`} /> */}
+              <Route exact path={`${path}/home`} component={DashboardHome}></Route>
+              <Route exact path={`${path}/request`} component={DashboardRequests}></Route>
+              <Route exact path={`${path}/request/:id`} component={DashboardRequestCheffs}></Route>
+              <Route exact path={`${path}/request/:id/:user`} component={DashboardRequestCheffDetail}></Route>
+              <Redirect exact from={`${path}`} to={`${path}/home`} />
             </Switch>
           </Main>
         </Layout>

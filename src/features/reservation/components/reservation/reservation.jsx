@@ -54,6 +54,7 @@ class Reservation extends Component {
     console.log("ratio", value.target.value);
     this.setState({
       [label]: value.target.value
+<<<<<<< HEAD
     });
   };
 
@@ -63,6 +64,16 @@ class Reservation extends Component {
       [label]: value
     });
   };
+=======
+    })
+  };
+
+  handleDate = (date, dateString) => {
+    console.log(date)
+  }
+
+  
+>>>>>>> 2adf85136b4cc0de99185a0a7bb6abe9acb15732
 
   render() {
     const { current } = this.state;
