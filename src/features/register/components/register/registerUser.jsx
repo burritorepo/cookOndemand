@@ -59,13 +59,13 @@ class RegisterUser extends Component {
     const { getFieldDecorator } = this.props.form;
 
     const formItemLayout = {
-      labelCol: {
-        xs: { span: 8 },
-        sm: { span: 8 }
-      },
+      // labelCol: {
+      //   xs: { span: 8 },
+      //   sm: { span: 8 }
+      // },
       wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 12 }
+        xs: { span: 20 },
+        sm: { span: 16 }
       }
     };
     const tailFormItemLayout = {
@@ -79,21 +79,15 @@ class RegisterUser extends Component {
           offset: 10
         }
       }
-    };
-
-    const regUser = {
-      border: '1px solid orange',
-      width: '50%',
-      margin: 'auto'
-    }
+    };  
 
     console.log("state", this.state);
 
     return (
-      <div className='view view-request' style={regUser}>
-        <h1 style={{ textAlign: 'center', marginBottom:'40px' }}>Registro de Usuario</h1>
+      <div className='view view-request' style={{ width: '50%', margin: 'auto' }}>
+        <h1 style={{ color: 'white', textAlign:'center', marginTop:'40px' }}>Registro de Usuario</h1>
         <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-          <Form.Item label="Nombre">
+          <Form.Item>
             {getFieldDecorator("name", {
               rules: [
                 {
@@ -108,7 +102,7 @@ class RegisterUser extends Component {
               />
             )}
           </Form.Item>
-          <Form.Item label="Apellido paterno">
+          <Form.Item>
             {getFieldDecorator("lastName1", {
               rules: [
                 {
@@ -123,7 +117,7 @@ class RegisterUser extends Component {
               />
             )}
           </Form.Item>
-          <Form.Item label="Apellido materno">
+          <Form.Item>
             {getFieldDecorator("lastName2", {
               rules: [
                 {
@@ -138,7 +132,7 @@ class RegisterUser extends Component {
               />
             )}
           </Form.Item>
-          <Form.Item label="Correo electrónico">
+          <Form.Item>
             {getFieldDecorator("email", {
               rules: [
                 {
@@ -157,7 +151,7 @@ class RegisterUser extends Component {
               />
             )}
           </Form.Item>
-          <Form.Item label="Contraseña" hasFeedback>
+          <Form.Item hasFeedback>
             {getFieldDecorator("password", {
               rules: [
                 {
@@ -170,7 +164,7 @@ class RegisterUser extends Component {
               ]
             })(<Input.Password placeholder="Ingresa una contraseña..." />)}
           </Form.Item>
-          <Form.Item label="Confirma Contraseña" hasFeedback>
+          <Form.Item hasFeedback>
             {getFieldDecorator("confirm", {
               rules: [
                 {
@@ -189,7 +183,7 @@ class RegisterUser extends Component {
               />
             )}
           </Form.Item>
-          <Form.Item label="Número de celular">
+          <Form.Item>
             {getFieldDecorator("phone", {
               rules: [
                 {
