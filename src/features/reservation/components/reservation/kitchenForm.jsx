@@ -13,7 +13,7 @@ class KitchenForm extends Component {
   };
 
   render() {
-    const { handleSelectChange, handleRatio } = this.props;
+    const { handleSelectChange, handleRatio, prev } = this.props;
     const { Option } = Select;
     const { getFieldDecorator } = this.props.form;
 
@@ -69,6 +69,7 @@ class KitchenForm extends Component {
               </Radio.Group>
             )}
           </Form.Item>
+          <Button type="secondary" onClick={prev}>Anterior</Button>
           <Button type="primary" htmlType="submit">
             Siguiente
           </Button>

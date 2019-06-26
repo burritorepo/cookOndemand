@@ -13,7 +13,7 @@ class DetailsForm extends Component {
   };
 
   render() {
-    const { handleChange, handleDate } = this.props;
+    const { handleChange, handleDate, prev } = this.props;
     const { getFieldDecorator } = this.props.form;
     const { TextArea } = Input;
 
@@ -65,6 +65,7 @@ class DetailsForm extends Component {
               />
             )}
           </Form.Item>
+          <Button type="secondary" onClick={prev}>Anterior</Button>
           <Button type="primary" htmlType="submit">
             Siguiente
           </Button>
