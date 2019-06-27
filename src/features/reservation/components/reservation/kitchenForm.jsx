@@ -19,11 +19,11 @@ class KitchenForm extends Component {
 
     return (
       <Fragment>
-        <h1 style={{ marginBottom: "20px", textAlign: "center" }}>
+        <h1 style={{ marginBottom: "20px", textAlign: "center", color: 'white' }}>
           Ahora queremos conocer un poco sobre tu cocina
         </h1>
         <Form onSubmit={this.handleSubmit} labelCol={{ span: 5 }} wrapperCol={{ span: 12 }}>
-          <Form.Item label="Tipo de cocina">
+          <Form.Item>
             {getFieldDecorator("energy", {
               rules: [
                 { required: true, message: "Selecciona tu tipo de cocina" }
@@ -38,7 +38,7 @@ class KitchenForm extends Component {
               </Select>
             )}
           </Form.Item>
-          <Form.Item label="Hornillas">
+          <Form.Item>
             {getFieldDecorator("burners", {
               rules: [
                 { required: true, message: "Selecciona el número de hornillas" }
@@ -55,7 +55,7 @@ class KitchenForm extends Component {
               </Select>
             )}
           </Form.Item>
-          <Form.Item label="¿Tienes horno?">
+          <Form.Item>
             {getFieldDecorator("oven", {
               rules: [
                 { required: true, message: "Completa el campo" }

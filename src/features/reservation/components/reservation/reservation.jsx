@@ -7,6 +7,8 @@ import DetailsForm from "./detailsForm";
 import { Confirmation } from "./confirmation";
 import { Success } from "./success";
 
+import './reservation.scss';
+
 class Reservation extends Component {
   constructor(props) {
     super(props);
@@ -149,6 +151,7 @@ class Reservation extends Component {
     ];
 
     const stepsStyles = {
+      color: 'white',
       marginTop: "16px",
       minHeight: "400px",
       textAlign: "center",
@@ -160,32 +163,43 @@ class Reservation extends Component {
     const divStyle = {
       width: "95%",
       margin: "auto",
-      marginTop: "20px",
-      color: 'white'
+      paddingTop: "20px",
+      color: "white"
     };
 
-    console.log("this.state", this.state);
-    console.log("this.state", this.state.oven);
-    console.log("this.state", this.state.dateTime);
+    const backGround = {
+      height: "100vh",
+      backgroundImage:
+        "url('http://www.fondosni.com/images/2013-06-09/cucharas%20con%20diferentes%20alimentos-710592.jpg')",
+      backgroundRepeat: "noRepeat",
+      backgroundSize: "cover"
+    };
 
     return (
-      <div className="view view-request" style={divStyle}>
-        <Steps current={current}>
-          {steps.map(item => (
-            <Step key={item.title} title={item.title} />
-          ))}
-        </Steps>
-        <div style={stepsStyles} className="steps-content">
-          {steps[current].content}
-        </div>        
-        {current === 0 && (
-          <Button
-            type="primary"
-            onClick={() => this.next(steps[current].content)}
-          >
-            Next
-          </Button>
-        )}
+      <div className="view view-request" style={backGround}>
+        <div
+          className="opacity"
+          style={{ height: "100vh", backgroundColor: "rgba(0,0,0,.5)" }}
+        >
+          <div className="container reservation" style={divStyle}>
+            <Steps current={current}>
+              {steps.map(item => (
+                <Step key={item.title} title={item.title} />
+              ))}
+            </Steps>
+            <div style={stepsStyles} className="steps-content">
+              {steps[current].content}
+            </div>
+            {current === 0 && (
+              <Button
+                type="primary"
+                onClick={() => this.next(steps[current].content)}
+              >
+                Next
+              </Button>
+            )}
+          </div>
+        </div>
       </div>
     );
   }
