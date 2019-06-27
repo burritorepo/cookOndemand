@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { Form, Select, Input, Button } from 'antd';
-import history from '../../../../api/history';
 const { Option } = Select;
-
-class App extends React.Component {
+import history from '../../../../api/history';
+import firebase from '../../../../firebase/firebase';
+class App extends Component {
   constructor(props) {
     super(props);
     sessionStorage.clear();
+    
+    // console.log('sebas', firebase.instance)
   }
 
   handleSubmit = e => {

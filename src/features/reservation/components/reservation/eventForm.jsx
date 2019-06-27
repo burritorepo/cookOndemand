@@ -15,7 +15,8 @@ class EventForm extends Component {
   render() {
     const {
       handleChange,
-      handleSelectChange
+      handleSelectChange,
+      prev
     } = this.props;
 
     const { Option } = Select;
@@ -80,6 +81,7 @@ class EventForm extends Component {
               </Select>
             )}
           </Form.Item>
+          <Button type="secondary" onClick={prev}>Anterior</Button>
           <Button type="primary" htmlType="submit">
             Siguiente
           </Button>

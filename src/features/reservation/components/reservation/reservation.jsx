@@ -5,6 +5,7 @@ import Start from "./start";
 import KitchenForm from "./kitchenForm";
 import DetailsForm from "./detailsForm";
 import { Confirmation } from "./confirmation";
+import { Success } from "./success";
 
 class Reservation extends Component {
   constructor(props) {
@@ -53,17 +54,42 @@ class Reservation extends Component {
     console.log("ratio", value.target.value);
     this.setState({
       [label]: value.target.value
-    })
+    });
   };
 
-  handleDate = (date, dateString) => {
-    console.log(date)
-  }
-
-  
+  handleDate = (label, date, value) => {
+    console.log("date", value);
+    this.setState({
+      [label]: value
+    });
+  };
 
   render() {
     const { current } = this.state;
+
+    const {
+      address,
+      pax,
+      preferences,
+      energy,
+      burners,
+      oven,
+      dateTime,
+      restrictions,
+      obs
+    } = this.state;
+
+    const values = {
+      address,
+      pax,
+      preferences,
+      energy,
+      burners,
+      oven,
+      dateTime,
+      restrictions,
+      obs
+    };
 
     const { Step } = Steps;
 
@@ -108,12 +134,17 @@ class Reservation extends Component {
       {
         title: "Confirmación",
         content: (
-          <Confirmation next={this.next} prev={this.prev} {...this.state} />
+          <Confirmation
+            next={this.next}
+            prev={this.prev}
+            {...this.state}
+            values={values}
+          />
         )
       },
       {
         title: "Éxito",
-        content: "Last-content"
+        content: <Success />
       }
     ];
 
