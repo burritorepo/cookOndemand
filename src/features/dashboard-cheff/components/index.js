@@ -1,3 +1,3 @@
-export * from './request/request';
+export * from './requests/requests';
 export * from './home/home';
 export * from './requestDetail/requestDetail';

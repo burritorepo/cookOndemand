@@ -87,7 +87,7 @@ class DashboardRequests extends Component {
                   <div className="request__item mb-5">
                     <Icon type="fire" className="c-primary"/>
                     <span className="fsize-12">Comida Italiana</span>
-                  </div>
+                  </div>                  
                 </Col>
               </Row>
               <div className="card__footer d-flex jc-space-between ai-center">
