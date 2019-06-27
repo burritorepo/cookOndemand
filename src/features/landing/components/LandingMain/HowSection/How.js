@@ -1,5 +1,10 @@
 import React, { Component, Fragment } from "react";
 import "./How.scss";
+import howBanner from "./img/how-banner.jpg";
+import howIngredient from "./img/how-ingredients-1.png";
+import howHome from "./img/how-home-2.png";
+import howMenu from "./img/how-menu-3.png";
+import howClean from "./img/how-clean-4.png";
 
 export class How extends Component {
   render() {
@@ -7,10 +12,7 @@ export class How extends Component {
       <Fragment>
         <div className="how--section d-flex f-center">
           <figure className="how--section-overlay">
-            <img
-              src="https://images.pexels.com/photos/54455/cook-food-kitchen-eat-54455.jpeg?cs=srgb&dl=dinner-egg-flatlay-54455.jpg&fm=jpg"
-              alt=""
-            />
+            <img src={howBanner} alt="" />
           </figure>
           <div className="how--section-content d-flex f-col">
             <div className="how--content-header">
@@ -21,37 +23,25 @@ export class How extends Component {
             <div className="how--card-wrapper d-flex">
               <div className="how--card d-flex f-center f-col">
                 <figure>
-                  <img
-                    src="https://image.flaticon.com/icons/png/512/291/291893.png"
-                    alt=""
-                  />
+                  <img src={howIngredient} alt="" />
                 </figure>
                 <p>Compramos los ingredientes</p>
               </div>
               <div className="how--card d-flex f-center f-col">
                 <figure>
-                  <img
-                    src="https://library.kissclipart.com/20180903/cqe/kissclipart-kitchen-restaurant-icon-clipart-food-restaurant-cl-d916a81df20bbca7.png"
-                    alt=""
-                  />
+                  <img src={howHome} alt="" />
                 </figure>
                 <p>Cocinamos en tu casa</p>
               </div>
               <div className="how--card d-flex f-center f-col">
                 <figure>
-                  <img
-                    src="https://cdn0.iconfinder.com/data/icons/kitchen-and-cooking/512/serving_food_tray_plate_restaurant_service_flat_design_icon-512.png"
-                    alt=""
-                  />
+                  <img src={howMenu} alt="" />
                 </figure>
                 <p>Servimos el menu</p>
               </div>
               <div className="how--card d-flex f-center f-col">
                 <figure>
-                  <img
-                    src="https://i.ya-webdesign.com/images/restaurant-icon-png-6.png"
-                    alt=""
-                  />
+                  <img src={howClean} alt="" />
                 </figure>
                 <p>¡Y dejamos todo impecable!</p>
               </div>
