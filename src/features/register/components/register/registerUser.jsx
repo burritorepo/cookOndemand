@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { Form, Input, Button } from "antd";
 
 class RegisterUser extends Component {
@@ -59,13 +59,9 @@ class RegisterUser extends Component {
     const { getFieldDecorator } = this.props.form;
 
     const formItemLayout = {
-      // labelCol: {
-      //   xs: { span: 8 },
-      //   sm: { span: 8 }
-      // },
       wrapperCol: {
-        xs: { span: 20 },
-        sm: { span: 16 }
+        xs: { span: 12 },
+        sm: { span: 24 }
       }
     };
     const tailFormItemLayout = {
@@ -79,14 +75,19 @@ class RegisterUser extends Component {
           offset: 10
         }
       }
-    };  
+    };
 
     console.log("state", this.state);
 
     return (
-      <div className='view view-request' style={{ width: '50%', margin: 'auto' }}>
-        <h1 style={{ color: 'white', textAlign:'center', marginTop:'40px' }}>Registro de Usuario</h1>
-        <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+      <div
+        className="view view-request"
+        style={{ width: "50%", margin: "auto" }}
+      >
+        <h1 style={{ color: "white", textAlign: "center", marginTop: "40px" }}>
+          Registro de Usuario
+        </h1>
+        <Form style={{ width: '70%', margin: 'auto' }} {...formItemLayout} onSubmit={this.handleSubmit}>
           <Form.Item>
             {getFieldDecorator("name", {
               rules: [
