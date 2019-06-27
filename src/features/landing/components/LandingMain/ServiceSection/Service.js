@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
+import { TimelineLite } from "gsap";
 import "./Service.scss";
 import serviceBanner from "./img/service-banner.jpg";
 import serviceHome from "./img/service-home-1.jpg";
@@ -9,10 +10,24 @@ import serviceShow from "./img/service-show-4.jpg";
 import serviceMarketing from "./img/service-marketing-5.jpg";
 
 export class Service extends Component {
+  constructor(props) {
+    super(props);
+    this.js_service = React.createRef();
+  }
+
+  componentDidMount() {
+    const tl = new TimelineLite();
+
+    tl.to(this.js_service.current, 2.5, { opacity: 1, delay: 0.5 });
+  }
+
   render() {
     return (
       <Fragment>
-        <div className="service--section d-flex f-center">
+        <div
+          className="service--section d-flex f-center js_service"
+          ref={this.js_service}
+        >
           <figure className="service--section-overlay">
             <img src={serviceBanner} alt="" />
           </figure>

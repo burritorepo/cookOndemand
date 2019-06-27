@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import { TimelineLite } from "gsap";
 import "./How.scss";
 import howBanner from "./img/how-banner.jpg";
 import howIngredient from "./img/how-ingredients-1.png";
@@ -7,10 +8,21 @@ import howMenu from "./img/how-menu-3.png";
 import howClean from "./img/how-clean-4.png";
 
 export class How extends Component {
+  constructor(props) {
+    super(props);
+    this.js_how = React.createRef();
+  }
+
+  componentDidMount() {
+    const tl = new TimelineLite();
+
+    tl.to(this.js_how.current, 2.5, { opacity: 1, delay: 0.5 });
+  }
+
   render() {
     return (
       <Fragment>
-        <div className="how--section d-flex f-center">
+        <div className="how--section d-flex f-center js_how" ref={this.js_how}>
           <figure className="how--section-overlay">
             <img src={howBanner} alt="" />
           </figure>
