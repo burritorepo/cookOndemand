@@ -9,8 +9,8 @@ import { Layout } from 'antd';
 import {
   DashboardHome,
   DashboardRequests,
-  DashboardRequestCheffs,
-  DashboardRequestCheffDetail
+  DashboardRequest,
+  DashboardRequestDetail
 } from './components';
 
 import {
@@ -33,8 +33,8 @@ function RoutingDashboard(prop) {
             <Switch>
               <Route exact path={`${path}/home`} component={DashboardHome}></Route>
               <Route exact path={`${path}/request`} component={DashboardRequests}></Route>
-              <Route exact path={`${path}/request/:id`} component={DashboardRequestCheffs}></Route>
-              <Route exact path={`${path}/request/:id/:user`} component={DashboardRequestCheffDetail}></Route>
+              <Route exact path={`${path}/request/:id`} component={DashboardRequest}></Route>
+              <Route exact path={`${path}/request/:id/:user`} component={DashboardRequestDetail}></Route>
               <Redirect exact from={`${path}`} to={`${path}/home`} />
             </Switch>
           </Main>

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Breadcrumb, Card, Row, Col, Icon, Button } from 'antd';
-import '../requests/request.scss';
-class DashboardRequestCheffs extends Component {
+
+class DashboardRequest extends Component {
   constructor(props) {
     super(props);
   }
@@ -17,29 +17,29 @@ class DashboardRequestCheffs extends Component {
           <Breadcrumb.Item>
             <NavLink to="/user/request">Solicitudes</NavLink>
           </Breadcrumb.Item>
-          <Breadcrumb.Item>Solicitudes Cheffs</Breadcrumb.Item>
+          <Breadcrumb.Item>Propuestas Cheffs</Breadcrumb.Item>
         </Breadcrumb>
         <br />
-        <h1 className="title c-primary">Solicitudes Cheffs</h1>
+        <h1 className="title c-primary">Propuestas Cheffs</h1>
         <br />
         <Row gutter={16}>
           <Col span={24}>
-            <Card className="request__card" title="Cheff Jonathan">
+            <Card className="card request__card" title="Cheff Jonathan">
               <Row gutter={16}>
                 <Col span={12}>
-                  <div className="request__item">
+                  <div className="request__item mb-5">
                     <Icon type="user" className="c-primary" />
-                    <span className="request__detail">S/ 160.00 - S/ 180.00 / persona</span>
+                    <span className="fsize-12">S/ 160.00 - S/ 180.00 / persona</span>
                   </div>
                 </Col>
                 <Col span={12}>
-                  <div className="request__item">
+                  <div className="request__item mb-5">
                     <Icon type="mail" className="c-primary" />
-                    <span className="request__detail">1 mensaje</span>
+                    <span className="fsize-12">1 mensaje</span>
                   </div>
                 </Col>
               </Row>
-              <div className="request__card__footer d-flex jc-space-between ai-center">
+              <div className="card__footer d-flex jc-space-between ai-center">
                 <Icon type="delete" />
                 <Button type="primary">
                   <NavLink to={`/user/request/${id}/jonathan`}>Ver</NavLink>
@@ -51,22 +51,22 @@ class DashboardRequestCheffs extends Component {
         <br />
         <Row gutter={16}>
           <Col span={24}>
-            <Card className="request__card" title="Cheff Luis">
+            <Card className="card request__card" title="Cheff Luis">
               <Row gutter={16}>
                 <Col span={12}>
-                  <div className="request__item">
+                  <div className="request__item mb-5">
                     <Icon type="user" className="c-primary" />
-                    <span className="request__detail">S/ 160.00 - S/ 180.00 / persona</span>
+                    <span className="fsize-12">S/ 160.00 - S/ 180.00 / persona</span>
                   </div>
                 </Col>
                 <Col span={12}>
-                  <div className="request__item">
+                  <div className="request__item mb-5">
                     <Icon type="mail" className="c-primary" />
-                    <span className="request__detail">1 mensaje</span>
+                    <span className="fsize-12">1 mensaje</span>
                   </div>
                 </Col>
               </Row>
-              <div className="request__card__footer d-flex jc-space-between ai-center">
+              <div className="card__footer d-flex jc-space-between ai-center">
                 <Icon type="delete" />
                 <Button type="primary">
                   <NavLink to={`/user/request/${id}/luis`}>Ver</NavLink>
@@ -81,5 +81,5 @@ class DashboardRequestCheffs extends Component {
 }
 
 export {
-  DashboardRequestCheffs
+  DashboardRequest
 }

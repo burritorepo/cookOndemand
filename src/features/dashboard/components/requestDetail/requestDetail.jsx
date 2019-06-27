@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Breadcrumb, Tabs } from 'antd';
-import '../requests/request.scss';
 
 function callback(key) {
   console.log(key);
 }
 
-class DashboardRequestCheffDetail extends Component {
+class DashboardRequestDetail extends Component {
   constructor(props) {
     super(props);
   }
@@ -18,7 +17,7 @@ class DashboardRequestCheffDetail extends Component {
       match: { params: { user } } 
     } = this.props;
     return (
-      <div className="view view-request">
+      <div className="view view-request-detail">
         <Breadcrumb separator=">">
           <Breadcrumb.Item>
             <NavLink to="/user">Home</NavLink>
@@ -54,5 +53,5 @@ class DashboardRequestCheffDetail extends Component {
 }
 
 export {
-  DashboardRequestCheffDetail
+  DashboardRequestDetail
 }
