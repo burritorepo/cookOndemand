@@ -159,7 +159,9 @@ class Reservation extends Component {
 
     const divStyle = {
       width: "95%",
-      margin: "auto"
+      margin: "auto",
+      marginTop: "20px",
+      color: 'white'
     };
 
     console.log("this.state", this.state);
@@ -167,7 +169,7 @@ class Reservation extends Component {
     console.log("this.state", this.state.dateTime);
 
     return (
-      <div style={divStyle}>
+      <div className="view view-request" style={divStyle}>
         <Steps current={current}>
           {steps.map(item => (
             <Step key={item.title} title={item.title} />
@@ -175,30 +177,7 @@ class Reservation extends Component {
         </Steps>
         <div style={stepsStyles} className="steps-content">
           {steps[current].content}
-        </div>
-        {/* <div style={stepsAction} className="steps-action">
-          {current > 0 && (
-            <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
-              Previous
-            </Button>
-          )}
-          {current === steps.length - 1 && (
-            <Button
-              type="primary"
-              onClick={() => message.success("Proceso completo!")}
-            >
-              Done
-            </Button>
-          )}
-          {current < steps.length - 1 && (
-            <Button
-              type="primary"
-              onClick={() => this.next(steps[current].content)}
-            >
-              Next
-            </Button>
-          )}
-        </div> */}
+        </div>        
         {current === 0 && (
           <Button
             type="primary"

@@ -11,8 +11,7 @@ import {
   Landing,
   RoutingDashboard,
   RoutingDashboardCheff,
-  WrappedRegisterUser,
-  WrappedRegisterChef,
+  WrappedRegister,
   Reservation
 } from "../features";
 import history from '../api/history';
@@ -31,8 +30,7 @@ function RoutingRoot() {
         <Route path="/reservation" component={Reservation} />
         <Route path="/home" component={Landing} />
         <Route path="/login" component={WrappedLogin} />
-        <Route path="/register-user" component={WrappedRegisterUser} />
-        <Route path="/register-chef" component={WrappedRegisterChef} />
+        <Route path="/register" component={WrappedRegister} />
         <Redirect exact from="/" to="/home" />
       </Switch>
     </Router>
