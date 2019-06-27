@@ -1,4 +1,17 @@
 import React, { Component } from "react";
+import Firebase from "firebase";
+
+firebase.initializeApp({
+  apiKey: "AIzaSyBiFP0LIx1LX2oyNkf3CHjWd4JBvVHX6_Q",
+    authDomain: "cookofdemand.firebaseapp.com",
+    databaseURL: "https://cookofdemand.firebaseio.com",
+    projectId: "cookofdemand",
+    storageBucket: "cookofdemand.appspot.com",
+    messagingSenderId: "769273392171",
+    appId: "1:769273392171:web:e5439b92157c2f83"
+});
+
+
 
 
 
@@ -57,10 +70,12 @@ const residences = [
   },
 ];
 
-class RegistrationForm extends React.Component {
+class RegistrationForm extends Component {
   state = {
     confirmDirty: false,
     autoCompleteResult: [],
+    nombre:'',
+    apellido: ''
   };
 
   handleSubmit = e => {
@@ -103,6 +118,10 @@ class RegistrationForm extends React.Component {
     }
     this.setState({ autoCompleteResult });
   };
+
+  handleChange = e => {
+    console.log('nombre', e.target.name)
+  }
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -162,9 +181,9 @@ class RegistrationForm extends React.Component {
             </span>
           }
         >
-          {getFieldDecorator('nickname', {
+          {getFieldDecorator('nombre', {
             rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
-          })(<Input />)}
+          })(<Input name='nombre' onChange={this.handleChange} />)}
         </Form.Item>
 
         <Form.Item
@@ -257,6 +276,8 @@ class RegistrationForm extends React.Component {
     );
   }
 }
+
+
 
 
 

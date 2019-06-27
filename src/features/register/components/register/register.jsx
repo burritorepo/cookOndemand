@@ -1,6 +1,21 @@
 import React, { Component } from "react";
 
 
+firebase.initializeApp({
+  apiKey: "AIzaSyBiFP0LIx1LX2oyNkf3CHjWd4JBvVHX6_Q",
+    authDomain: "cookofdemand.firebaseapp.com",
+    databaseURL: "https://cookofdemand.firebaseio.com",
+    projectId: "cookofdemand",
+    storageBucket: "cookofdemand.appspot.com",
+    messagingSenderId: "769273392171",
+    appId: "1:769273392171:web:e5439b92157c2f83"
+});
+
+
+
+
+
+
 import {
   Form,
   Input,
@@ -228,7 +243,7 @@ class RegistrationForm extends React.Component {
         </Form.Item>
         
         <Form.Item {...tailFormItemLayout}>
-         <Button type="primary" block>
+         <Button type="primary" onClick={this.handleAuth}block>
            Registro
          </Button>
         </Form.Item>
