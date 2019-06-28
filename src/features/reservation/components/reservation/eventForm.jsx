@@ -21,7 +21,7 @@ class EventForm extends Component {
     return (
       <Fragment>
         <h1
-          style={{ marginBottom: "20px", textAlign: "center", color: "white" }}
+          style={{ marginBottom: "40px", textAlign: "center", color: "white" }}
         >
           Coméntanos un poco sobre tu evento
         </h1>
@@ -56,7 +56,7 @@ class EventForm extends Component {
               </Select>
             )}
           </Form.Item>
-          <Form.Item>
+          <Form.Item style={{ marginBottom: '20px' }}>
             {getFieldDecorator("preferences", {
               rules: [
                 {
@@ -79,12 +79,17 @@ class EventForm extends Component {
               </Select>
             )}
           </Form.Item>
-          <Button type="secondary" onClick={prev}>
-            Anterior
-          </Button>
-          <Button type="primary" htmlType="submit">
-            Siguiente
-          </Button>
+          <div
+            style={{ display: "flex", justifyContent: "space-evenly" }}
+            className="buttons"
+          >
+            <Button type="secondary" onClick={prev}>
+              Anterior
+            </Button>
+            <Button type="primary" htmlType="submit">
+              Siguiente
+            </Button>
+          </div>
         </Form>
       </Fragment>
     );

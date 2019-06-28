@@ -19,8 +19,8 @@ class KitchenForm extends Component {
 
     return (
       <Fragment>
-        <h1 style={{ marginBottom: "20px", textAlign: "center", color: 'white' }}>
-          Ahora queremos conocer un poco sobre tu cocina
+        <h1 style={{ marginBottom: "40px", textAlign: "center", color: 'white' }}>
+          ¿Como es tu cocina?
         </h1>
         <Form onSubmit={this.handleSubmit} wrapperCol={{ span: 24 }}>
           <Form.Item>
@@ -55,7 +55,7 @@ class KitchenForm extends Component {
               </Select>
             )}
           </Form.Item>
-          <Form.Item>
+          <Form.Item style={{ marginBottom: '20px' }}>
             {getFieldDecorator("oven", {
               rules: [
                 { required: true, message: "Completa el campo" }
@@ -69,10 +69,17 @@ class KitchenForm extends Component {
               </Radio.Group>
             )}
           </Form.Item>
-          <Button type="secondary" onClick={prev}>Anterior</Button>
-          <Button type="primary" htmlType="submit">
-            Siguiente
-          </Button>
+          <div
+            style={{ display: "flex", justifyContent: "space-evenly" }}
+            className="buttons"
+          >
+            <Button type="secondary" onClick={prev}>
+              Anterior
+            </Button>
+            <Button type="primary" htmlType="submit">
+              Siguiente
+            </Button>
+          </div>
         </Form>
       </Fragment>
     );

@@ -22,9 +22,9 @@ class Reservation extends Component {
       dateTime: "",
       restrictions: "",
       obs: "",
-      name: '',
-      email: '',
-      phone: ''
+      name: "",
+      email: "",
+      phone: ""
     };
   }
 
@@ -69,6 +69,7 @@ class Reservation extends Component {
   };
 
   render() {
+    console.log("state", this.state);
     const { current } = this.state;
 
     const {
@@ -149,10 +150,7 @@ class Reservation extends Component {
       {
         title: "Datos Personales",
         content: (
-          <PersonalInfo
-            handleChange={this.handleChange}
-            next={this.next}            
-          />
+          <PersonalInfo handleChange={this.handleChange} next={this.next} />
         )
       },
       {
@@ -167,7 +165,7 @@ class Reservation extends Component {
       minHeight: "400px",
       textAlign: "center",
       paddingTop: "80px",
-      width: "60%",
+      width: "40%",
       margin: "auto"
     };
 
@@ -201,14 +199,16 @@ class Reservation extends Component {
             <div style={stepsStyles} className="steps-content">
               {steps[current].content}
             </div>
-            {current === 0 && (
-              <Button
-                type="primary"
-                onClick={() => this.next(steps[current].content)}
-              >
-                Next
-              </Button>
-            )}
+            <div style={{ textAlign: 'center' }} className="button">
+              {current === 0 && (
+                <Button
+                  type="primary"
+                  onClick={() => this.next(steps[current].content)}
+                >
+                  Next
+                </Button>
+              )}
+            </div>
           </div>
         </div>
       </div>

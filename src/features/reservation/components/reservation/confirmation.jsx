@@ -11,38 +11,43 @@ class Confirmation extends Component {
     return (
       <div className="confirmation">
         <h1 style={{ color: "white" }}>Confirma tu reserva</h1>
-        <Row>
+        <Row style={{ margin: '40px' }}>
           <Col span={8}>
-            <h3 style={{ color: "white" }}>Dirección</h3>
+            <h3 style={{ color: "#ff6700" }}>Dirección</h3>
             <p>{values.address}</p>
-            <h3 style={{ color: "white" }}>N° de invitados</h3>
+            <h3 style={{ color: "#ff6700" }}>N° de invitados</h3>
             <p>{values.pax}</p>
-            <h3 style={{ color: "white" }}>Preferencia</h3>
+            <h3 style={{ color: "#ff6700" }}>Preferencia</h3>
             <p>{values.preferences}</p>
           </Col>
           <Col span={8}>
-            <h3 style={{ color: "white" }}>Tipo de cocina</h3>
+            <h3 style={{ color: "#ff6700" }}>Tipo de cocina</h3>
             <p>{values.energy}</p>
-            <h3 style={{ color: "white" }}>N° de hornillas</h3>
+            <h3 style={{ color: "#ff6700" }}>N° de hornillas</h3>
             <p>{values.burners}</p>
-            <h3 style={{ color: "white" }}>Horno</h3>
+            <h3 style={{ color: "#ff6700" }}>Horno</h3>
             <p>{values.oven}</p>
           </Col>
           <Col span={8}>
-            <h3 style={{ color: "white" }}>Fecha</h3>
+            <h3 style={{ color: "#ff6700" }}>Fecha</h3>
             <p>{values.dateTime}</p>
-            <h3 style={{ color: "white" }}>Resticciones</h3>
+            <h3 style={{ color: "#ff6700" }}>Resticciones</h3>
             <p>{values.restrictions}</p>
-            <h3 style={{ color: "white" }}>Observaciones</h3>
+            <h3 style={{ color: "#ff6700" }}>Observaciones</h3>
             <p>{values.obs}</p>
           </Col>
         </Row>
-        <Button type="secondary" onClick={prev}>
-          Anterior
-        </Button>
-        <Button type="primary" onClick={this.onClick}>
-          Confirmar
-        </Button>
+        <div
+            style={{ display: "flex", justifyContent: "space-evenly" }}
+            className="buttons"
+          >
+            <Button type="secondary" onClick={prev}>
+              Anterior
+            </Button>
+            <Button type="primary" onClick={this.onClick}>
+              Siguiente
+            </Button>
+          </div>
       </div>
     );
   }
