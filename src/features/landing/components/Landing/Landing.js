@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from 'react';
-import LandingMain from '../LandingMain/LandingMain';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
-import Index from '../Index/Index';
-import Navigation from '../Navigation/Navigation';
-import './landing.scss';
+import React, { Component, Fragment } from "react";
+import LandingMain from "../LandingMain/LandingMain";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+import Index from "../Index/Index";
+import Navigation from "../Navigation/Navigation";
+import "./landing.scss";
 
 export class Landing extends Component {
   state = {
