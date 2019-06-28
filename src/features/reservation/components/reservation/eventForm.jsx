@@ -27,7 +27,7 @@ class EventForm extends Component {
         <h1 style={{ marginBottom: "20px", textAlign: "center", color: 'white' }}>
           Coméntanos un poco sobre tu evento
         </h1>
-        <Form onSubmit={this.handleSubmit} labelCol={{ span: 16 }} wrapperCol={{ span: 16 }}>
+        <Form onSubmit={this.handleSubmit} wrapperCol={{ span: 24 }}>
           <Form.Item>
             {getFieldDecorator("address", {
               rules: [
@@ -35,7 +35,7 @@ class EventForm extends Component {
               ]
             })(
               <Input
-                style={{ width:'100%'}}
+                style={{ width:'100%', margin:'auto'}}
                 onChange={handleChange("address")}
                 placeholder="Ingrese dirección del evento"
                 style={{ marginBottom: "20px" }}

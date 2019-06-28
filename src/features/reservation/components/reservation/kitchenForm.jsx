@@ -22,7 +22,7 @@ class KitchenForm extends Component {
         <h1 style={{ marginBottom: "20px", textAlign: "center", color: 'white' }}>
           Ahora queremos conocer un poco sobre tu cocina
         </h1>
-        <Form onSubmit={this.handleSubmit} labelCol={{ span: 5 }} wrapperCol={{ span: 16 }}>
+        <Form onSubmit={this.handleSubmit} wrapperCol={{ span: 24 }}>
           <Form.Item>
             {getFieldDecorator("energy", {
               rules: [

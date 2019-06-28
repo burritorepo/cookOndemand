@@ -7,8 +7,6 @@ import DetailsForm from "./detailsForm";
 import { Confirmation } from "./confirmation";
 import { Success } from "./success";
 
-import './reservation.scss';
-
 class Reservation extends Component {
   constructor(props) {
     super(props);
