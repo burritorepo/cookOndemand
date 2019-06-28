@@ -42,7 +42,7 @@ export class Header extends Component {
 
   handleChange() {
     const { prevProps } = this.props;
-    prevProps.history.push('/register-chef');
+    prevProps.history.push('/register');
   }
 
   getWindowWidth() {

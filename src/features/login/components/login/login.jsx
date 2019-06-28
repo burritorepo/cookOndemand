@@ -3,11 +3,12 @@ import { Form, Select, Input, Button } from 'antd';
 const { Option } = Select;
 import history from '../../../../api/history';
 import firebase from '../../../../firebase/firebase';
+import './login.scss';
 class App extends Component {
   constructor(props) {
     super(props);
     sessionStorage.clear();
-    
+
     // console.log('sebas', firebase.instance)
   }
 
@@ -33,15 +34,21 @@ class App extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
+    const backGround = {
+      height: "100vh",
+      backgroundImage:
+        "url('http://lavinyagrill.com/wp-content/uploads/2015/06/iStock_000046272610_Large.jpg')",
+      backgroundRepeat: "noRepeat",
+      backgroundSize: "cover"
+    };
     return (
       <React.Fragment>
-        <div className="view view-login d-flex fd-column jc-center h-100vh">
-          <div className="text-center mb-20">
-            <a className="logo logo--medium">
-              Cook <span>and</span> Demand
-            </a>
-          </div>
-          <Form className="d-flex fd-column jc-center" wrapperCol={{ offset: 7, span: 10 }} onSubmit={this.handleSubmit}>
+        <div style={backGround} className="view view-login d-flex fd-column jc-center h-100vh">
+          <div className="view__inner">
+            <div className="text-center">
+              <h1 className="c-white mb-20">Login</h1>
+            </div>
+            <Form className="d-flex fd-column jc-center" wrapperCol={{ offset: 7, span: 10 }} onSubmit={this.handleSubmit}>
             <Form.Item >
               {getFieldDecorator('user', {
                 rules: [{ required: true, message: 'Por favor ingresa tu usuario!' }],
@@ -71,6 +78,7 @@ class App extends Component {
           </Button>
             </Form.Item>
           </Form>
+          </div>
         </div>
       </React.Fragment>
     );
