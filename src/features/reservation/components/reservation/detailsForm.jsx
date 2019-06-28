@@ -44,7 +44,6 @@ class DetailsForm extends Component {
               <Input
                 onChange={handleChange("restrictions")}
                 placeholder="Ingrese alergias o intolerancia"
-                style={{ marginBottom: "20px" }}
               />
             )}
           </Form.Item>
@@ -60,7 +59,6 @@ class DetailsForm extends Component {
               <TextArea
                 onChange={handleChange("obs")}
                 placeholder="Algún comentario u observación que desea agregar?"
-                style={{ marginBottom: "20px" }}
               />
             )}
           </Form.Item>

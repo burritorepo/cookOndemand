@@ -6,6 +6,7 @@ import KitchenForm from "./kitchenForm";
 import DetailsForm from "./detailsForm";
 import { Confirmation } from "./confirmation";
 import { Success } from "./success";
+import PersonalInfo from "./personalInfo";
 
 class Reservation extends Component {
   constructor(props) {
@@ -20,7 +21,10 @@ class Reservation extends Component {
       oven: "",
       dateTime: "",
       restrictions: "",
-      obs: ""
+      obs: "",
+      name: '',
+      email: '',
+      phone: ''
     };
   }
 
@@ -143,13 +147,22 @@ class Reservation extends Component {
         )
       },
       {
+        title: "Datos Personales",
+        content: (
+          <PersonalInfo
+            handleChange={this.handleChange}
+            next={this.next}            
+          />
+        )
+      },
+      {
         title: "Éxito",
         content: <Success />
       }
     ];
 
     const stepsStyles = {
-      color: 'white',
+      color: "white",
       marginTop: "16px",
       minHeight: "400px",
       textAlign: "center",
@@ -182,7 +195,7 @@ class Reservation extends Component {
           <div className="container reservation" style={divStyle}>
             <Steps current={current}>
               {steps.map(item => (
-                <Step  key={item.title} title={item.title} />
+                <Step key={item.title} title={item.title} />
               ))}
             </Steps>
             <div style={stepsStyles} className="steps-content">
