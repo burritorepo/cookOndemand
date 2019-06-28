@@ -19,7 +19,7 @@ class DetailsForm extends Component {
 
     return (
       <Fragment>
-        <h1 style={{ marginBottom: "20px", textAlign: "center" }}>
+        <h1 style={{ marginBottom: "20px", textAlign: "center", color: 'white' }}>
           Ahora veamos algunos detalles
         </h1>
         <Form
@@ -27,7 +27,7 @@ class DetailsForm extends Component {
           labelCol={{ span: 5 }}
           wrapperCol={{ span: 12 }}
         >
-          <Form.Item label="Fecha">
+          <Form.Item>
             {getFieldDecorator("dateTime", {
               rules: [
                 {
@@ -38,7 +38,7 @@ class DetailsForm extends Component {
               ]
             })(<DatePicker onChange={handleDate.bind(this, "dateTime")} />)}
           </Form.Item>
-          <Form.Item label="Alergias">
+          <Form.Item>
             {getFieldDecorator("restrictions", {
               rules: [{ required: false, message: "" }]
             })(
@@ -49,7 +49,7 @@ class DetailsForm extends Component {
               />
             )}
           </Form.Item>
-          <Form.Item label="Observaciones">
+          <Form.Item>
             {getFieldDecorator("obs", {
               rules: [
                 {

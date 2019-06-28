@@ -24,24 +24,25 @@ class EventForm extends Component {
 
     return (
       <Fragment>
-        <h1 style={{ marginBottom: "20px", textAlign: "center" }}>
+        <h1 style={{ marginBottom: "20px", textAlign: "center", color: 'white' }}>
           Coméntanos un poco sobre tu evento
         </h1>
         <Form onSubmit={this.handleSubmit} labelCol={{ span: 5 }} wrapperCol={{ span: 12 }}>
-          <Form.Item label="Dirección">
+          <Form.Item>
             {getFieldDecorator("address", {
               rules: [
                 { required: true, message: "Ingrese dirección del evento" }
               ]
             })(
               <Input
+                style={{ width:'100%'}}
                 onChange={handleChange("address")}
                 placeholder="Ingrese dirección del evento"
                 style={{ marginBottom: "20px" }}
               />
             )}
           </Form.Item>
-          <Form.Item label="Invitados">
+          <Form.Item>
             {getFieldDecorator("pax", {
               rules: [
                 { required: true, message: "Seleccione número de invitados" }
@@ -58,7 +59,7 @@ class EventForm extends Component {
               </Select>
             )}
           </Form.Item>
-          <Form.Item label="Preferencias">
+          <Form.Item>
             {getFieldDecorator("preferences", {
               rules: [
                 {

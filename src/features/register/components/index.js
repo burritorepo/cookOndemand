@@ -1,3 +1,2 @@
-export * from './register/registerUser';
-export * from './register/registerChef';
+export * from './register/register';
 
