@@ -13,37 +13,55 @@ class DashboardRequests extends Component {
         </Breadcrumb>
         <br />
         <h1 className="title c-primary">Mis Solicitudes</h1>
-        <br/>
+        <br />
         <Row gutter={16}>
           <Col span={24}>
             <Card className="card request__card" title="Solicitud 22/06/19">
               <Row gutter={16}>
                 <Col span={12}>
                   <div className="request__item mb-5">
-                    <Icon type="team" className="c-primary" />
-                    <span className="fsize-12">13 - 20 personas</span>
+                    <Icon type="check" className="c-primary" />
+                    <span className="fsize-12">
+                      13 - 20 personas
+                    </span>
                   </div>
                   <div className="request__item mb-5">
-                    <Icon type="hourglass" className="c-primary" />
+                    <Icon type="check" className="c-primary" />
                     <span className="fsize-12">Cena</span>
                   </div>
                   <div className="request__item mb-5">
-                    <Icon type="pushpin" className="c-primary" />
+                    <Icon type="check" className="c-primary" />
                     <span className="fsize-12">Avenida José Pardo 600, Miraflores</span>
                   </div>
                   <div className="request__item mb-5">
                     <Icon type="check" className="c-primary" />
-                    <span className="fsize-12">Tienes 1 propuestas</span>
+                    <span className="fsize-12">S/ 160.00 - S/ 180.00 / persona</span>
+                  </div>
+                  <div className="request__item mb-5">
+                    <Icon type="check" className="c-primary" />
+                    <span className="fsize-12">Comida Italiana</span>
                   </div>
                 </Col>
                 <Col span={12}>
                   <div className="request__item mb-5">
-                    <Icon type="user" className="c-primary" />
-                    <span className="fsize-12">S/ 160.00 - S/ 180.00 / persona</span>
+                    <Icon type="check" className="c-primary" />
+                    <span className="fsize-12">Cocina a Gas</span>
                   </div>
                   <div className="request__item mb-5">
-                    <Icon type="fire" className="c-primary" />
-                    <span className="fsize-12">Comida Italiana</span>
+                    <Icon type="check" className="c-primary" />
+                    <span className="fsize-12">4 Hornillas / Sin Horno</span>
+                  </div>
+                  <div className="request__item mb-5">
+                    <Icon type="check" className="c-primary" />
+                    <span className="fsize-12">Fecha: 22/06/2019 </span>
+                  </div>
+                  <div className="request__item mb-5">
+                    <Icon type="check" className="c-primary" />
+                    <span className="fsize-12">Alergico a los Mariscos </span>
+                  </div>
+                  <div className="request__item mb-5">
+                    <Icon type="check" className="c-primary" />
+                    <span className="fsize-12">De preferencia llegar media hora antes </span>
                   </div>
                 </Col>
               </Row>
@@ -52,6 +70,7 @@ class DashboardRequests extends Component {
                 <Button type="primary">
                   <NavLink to="/cheff/request/1">Ver solicitud</NavLink>
                 </Button>
+
               </div>
             </Card>
           </Col>
@@ -63,31 +82,47 @@ class DashboardRequests extends Component {
               <Row gutter={16}>
                 <Col span={12}>
                   <div className="request__item mb-5">
-                    <Icon type="team" className="c-primary"/>
+                    <Icon type="check" className="c-primary" />
                     <span className="fsize-12">13 - 20 personas</span>
                   </div>
                   <div className="request__item mb-5">
-                    <Icon type="hourglass" className="c-primary"/>
+                    <Icon type="check" className="c-primary" />
                     <span className="fsize-12">Cena</span>
                   </div>
                   <div className="request__item mb-5">
-                    <Icon type="pushpin" className="c-primary"/>
+                    <Icon type="check" className="c-primary" />
                     <span className="fsize-12">Avenida José Pardo 600, Miraflores</span>
                   </div>
                   <div className="request__item mb-5">
-                    <Icon type="check" className="c-primary"/>
-                    <span className="fsize-12">Tienes 1 propuestas</span>
+                    <Icon type="check" className="c-primary" />
+                    <span className="fsize-12">S/ 160.00 - S/ 180.00 / persona</span>
+                  </div>
+                  <div className="request__item mb-5">
+                    <Icon type="check" className="c-primary" />
+                    <span className="fsize-12">Comida Italiana</span>
                   </div>
                 </Col>
                 <Col span={12}>
                   <div className="request__item mb-5">
-                    <Icon type="user" className="c-primary"/>
-                    <span className="fsize-12">S/ 160.00 - S/ 180.00 / persona</span>
+                    <Icon type="check" className="c-primary" />
+                    <span className="fsize-12">Cocina a Gas</span>
                   </div>
                   <div className="request__item mb-5">
-                    <Icon type="fire" className="c-primary"/>
-                    <span className="fsize-12">Comida Italiana</span>
-                  </div>                  
+                    <Icon type="check" className="c-primary" />
+                    <span className="fsize-12">4 Hornillas / Sin Horno</span>
+                  </div>
+                  <div className="request__item mb-5">
+                    <Icon type="check" className="c-primary" />
+                    <span className="fsize-12">Fecha: 22/06/2019 </span>
+                  </div>
+                  <div className="request__item mb-5">
+                    <Icon type="check" className="c-primary" />
+                    <span className="fsize-12">Alergico a los Mariscos </span>
+                  </div>
+                  <div className="request__item mb-5">
+                    <Icon type="check" className="c-primary" />
+                    <span className="fsize-12">De preferencia llegar media hora antes </span>
+                  </div>
                 </Col>
               </Row>
               <div className="card__footer d-flex jc-space-between ai-center">
