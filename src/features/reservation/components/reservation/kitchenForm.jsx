@@ -22,7 +22,7 @@ class KitchenForm extends Component {
         <h1 style={{ marginBottom: "20px", textAlign: "center", color: 'white' }}>
           Ahora queremos conocer un poco sobre tu cocina
         </h1>
-        <Form onSubmit={this.handleSubmit} labelCol={{ span: 5 }} wrapperCol={{ span: 12 }}>
+        <Form onSubmit={this.handleSubmit} labelCol={{ span: 5 }} wrapperCol={{ span: 16 }}>
           <Form.Item>
             {getFieldDecorator("energy", {
               rules: [
@@ -64,8 +64,8 @@ class KitchenForm extends Component {
               <Radio.Group
                 onChange={handleRatio.bind(this, 'oven')}
               >
-                <Radio value="si">Sí</Radio>
-                <Radio value="no">No</Radio>
+                <Radio style={{ color: 'white' }} value="si">Sí</Radio>
+                <Radio style={{ color: 'white' }} value="no">No</Radio>
               </Radio.Group>
             )}
           </Form.Item>

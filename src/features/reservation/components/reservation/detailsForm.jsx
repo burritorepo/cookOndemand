@@ -25,7 +25,7 @@ class DetailsForm extends Component {
         <Form
           onSubmit={this.handleSubmit}
           labelCol={{ span: 5 }}
-          wrapperCol={{ span: 12 }}
+          wrapperCol={{ span: 16 }}
         >
           <Form.Item>
             {getFieldDecorator("dateTime", {
