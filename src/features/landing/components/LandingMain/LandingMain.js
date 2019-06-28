@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from "react";
-import Hero from "./HeroSection/Hero";
-import How from "./HowSection/How";
-import Chef from "./ChefSection/Chef";
-import Service from "./ServiceSection/Service";
+import React, { Component, Fragment } from 'react';
+import Hero from './HeroSection/Hero';
+import How from './HowSection/How';
+import Chef from './ChefSection/Chef';
+import Service from './ServiceSection/Service';
 
 export class LandingMain extends Component {
   state = {
@@ -28,7 +28,7 @@ export class LandingMain extends Component {
   };
 
   componentDidMount() {
-    document.addEventListener("wheel", e => {
+    document.addEventListener('wheel', e => {
       if (e.deltaY < 0) {
         this.moveUp();
       } else if (e.deltaY > 0) {
@@ -38,7 +38,7 @@ export class LandingMain extends Component {
   }
 
   componentWillUnmount(e) {
-    window.removeEventListener("wheel", e);
+    window.removeEventListener('wheel', e);
   }
 
   render() {
