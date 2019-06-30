@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { Breadcrumb, Card } from "antd";
+import { Breadcrumb, Card, Button } from "antd";
 
 class DashboardRequestDetail extends Component {
   constructor(props) {
@@ -48,6 +48,11 @@ class DashboardRequestDetail extends Component {
               <h3>Postre</h3>              
               <h5 className='c-primary'>Panna Cotta</h5>
               <p>Mousse de crema de leche saborizada con mermelada de frutos rojos.</p>
+            </div>
+            <div className="button" style={{ textAlign: 'center' }}>
+              <Button type='primary'>
+                <NavLink to='/user/request/1'>Volver a propuestas</NavLink>
+              </Button>
             </div>
           </Card>
         </div>
