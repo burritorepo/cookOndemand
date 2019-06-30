@@ -1,13 +1,28 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { Breadcrumb, Card, Row, Col, Icon, Button } from 'antd';
+import { Breadcrumb, Card, Row, Col, Icon, Button, Modal } from 'antd';
 
 class DashboardRequest extends Component {
   constructor(props) {
     super(props);
   }
+
+  state = { visible: false }
+
+  handleDelete = () => {
+    this.setState({
+      visible: true,
+    });
+  }
+
+  handleCancel = () => {
+    this.setState({
+      visible: false,
+    });
+  }
+
   render() {
-    const { match: { params: {id} } } = this.props;
+    const { match: { params: { id } } } = this.props;
     return (
       <div className="view view-request">
         <Breadcrumb separator=">">
@@ -40,7 +55,7 @@ class DashboardRequest extends Component {
                 </Col>
               </Row>
               <div className="card__footer d-flex jc-space-between ai-center">
-                <Icon type="delete" />
+                <Icon type="delete" onClick={this.handleDelete} />
                 <Button type="primary">
                   <NavLink to={`/user/request/${id}/jonathan`}>Ver</NavLink>
                 </Button>
@@ -67,7 +82,7 @@ class DashboardRequest extends Component {
                 </Col>
               </Row>
               <div className="card__footer d-flex jc-space-between ai-center">
-                <Icon type="delete" />
+                <Icon type="delete" onClick={this.handleDelete}/>
                 <Button type="primary">
                   <NavLink to={`/user/request/${id}/luis`}>Ver</NavLink>
                 </Button>
@@ -75,6 +90,15 @@ class DashboardRequest extends Component {
             </Card>
           </Col>
         </Row>
+
+        <Modal
+          title="Eliminar propuesta"
+          visible={this.state.visible}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+        >
+          <p>Estas seguro que deseas eliminar esta propuesta?</p>
+        </Modal>
       </div>
     )
   }
