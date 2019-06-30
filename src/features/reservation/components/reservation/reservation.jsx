@@ -205,7 +205,7 @@ class Reservation extends Component {
                   type="primary"
                   onClick={() => this.next(steps[current].content)}
                 >
-                  Next
+                  Empecemos
                 </Button>
               )}
             </div>

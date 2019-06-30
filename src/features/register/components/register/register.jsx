@@ -84,7 +84,7 @@ class Register extends Component {
                 paddingTop: "40px"
               }}
             >
-              Registro de Chef
+              Registro <span style={{ color: '#ff6700' }}>de</span> Chef
             </h1>
             <Form
               style={{ width: "70%", margin: "auto" }}
@@ -211,9 +211,11 @@ class Register extends Component {
               <Form.Item
               // {...tailFormItemLayout}
               >
-                <Button type="primary" htmlType="submit">
-                  Registrar
-                </Button>
+                <div className="button" style={{ textAlign: 'center' }}>
+                  <Button type="primary" htmlType="submit">
+                    Registrar
+                  </Button>
+                </div>
               </Form.Item>
             </Form>
           </div>

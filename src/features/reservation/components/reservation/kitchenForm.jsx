@@ -64,8 +64,8 @@ class KitchenForm extends Component {
               <Radio.Group
                 onChange={handleRatio.bind(this, 'oven')}
               >
-                <Radio style={{ color: 'white' }} value="si">Sí</Radio>
-                <Radio style={{ color: 'white' }} value="no">No</Radio>
+                <Radio style={{ color: 'white' }} value="si">Tengo horno</Radio>
+                <Radio style={{ color: 'white' }} value="no">No tengo horno</Radio>
               </Radio.Group>
             )}
           </Form.Item>
