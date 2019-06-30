@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { Breadcrumb, Tabs } from 'antd';
-
-function callback(key) {
-  console.log(key);
-}
+import { Breadcrumb, Card } from "antd";
 
 class DashboardRequestDetail extends Component {
   constructor(props) {
@@ -13,8 +9,12 @@ class DashboardRequestDetail extends Component {
 
   render() {
     const {
-      match: { params: { id } },
-      match: { params: { user } } 
+      match: {
+        params: { id }
+      },
+      match: {
+        params: { user }
+      }
     } = this.props;
     return (
       <div className="view view-request-detail">
@@ -26,32 +26,34 @@ class DashboardRequestDetail extends Component {
             <NavLink to="/user/request">Solicitudes</NavLink>
           </Breadcrumb.Item>
           <Breadcrumb.Item>
-            <NavLink to={`/user/request/${id}`}>Solicitudes Cheffs</NavLink>
+            <NavLink to={`/user/request/${id}`}>Solicitudes Chefs</NavLink>
           </Breadcrumb.Item>
           <Breadcrumb.Item>{user}</Breadcrumb.Item>
         </Breadcrumb>
         <br />
-        <h1 className="title c-primary">Propuestas del Cheff {user}</h1>
+        <h1 className="title c-primary">Propuestas del Chef {user}</h1>
         <br />
-        <Tabs defaultActiveKey="1" onChange={callback}>
-          <Tabs.TabPane tab="La propuesta" key="1">
-            Content of Tab Pane 1
-          </Tabs.TabPane>
-          <Tabs.TabPane tab="Mensajes" key="2">
-            Content of Tab Pane 2
-          </Tabs.TabPane>
-          <Tabs.TabPane tab="El Chef" key="3">
-            Content of Tab Pane 3
-          </Tabs.TabPane>
-          <Tabs.TabPane tab="¿Cómo funciona?" key="4">
-            Content of Tab Pane 4
-          </Tabs.TabPane>
-        </Tabs>,
+        <div className='card'>
+          <Card bordered={false} style={{ width: "100%" }}>
+            <div className="content" style={{ textAlign: 'center' }}>
+              <h3>Abreboca</h3>
+              <h5 className='c-primary'>Bruschetta de espárragos a la parmesana</h5>
+              <p>Tostas de espárragos grillados gratinados con queso parmesano.</p>
+              <h3>Entrada</h3>
+              <h5 className='c-primary'>Vitello tonatto</h5>
+              <p>Láminas de asado de res cocido a baja temperatura con mayonesa de atún y alcaparras.</p>
+              <h3>Fondo</h3>
+              <h5 className='c-primary'>Spaghetti frutti di mare</h5>
+              <p>Spaghetti salteados con aceite de oilva, ajo, mejillones y langostinos.</p>
+              <h3>Postre</h3>              
+              <h5 className='c-primary'>Panna Cotta</h5>
+              <p>Mousse de crema de leche saborizada con mermelada de frutos rojos.</p>
+            </div>
+          </Card>
+        </div>
       </div>
-    )
+    );
   }
 }
 
-export {
-  DashboardRequestDetail
-}
+export { DashboardRequestDetail };
