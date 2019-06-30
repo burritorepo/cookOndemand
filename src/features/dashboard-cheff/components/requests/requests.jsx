@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from 'react-router-dom';
 import { Breadcrumb, Card, Row, Col, Icon, Button } from 'antd';
+
 class DashboardRequests extends Component {
   render() {
     return (
@@ -68,7 +69,7 @@ class DashboardRequests extends Component {
               <div className="card__footer d-flex jc-space-between ai-center">
                 <Icon type="delete" />
                 <Button type="primary">
-                  <NavLink to="/cheff/request/1">Ver solicitud</NavLink>
+                  <NavLink to="/cheff/request/1">Enviar propuesta</NavLink>
                 </Button>
 
               </div>
@@ -128,7 +129,7 @@ class DashboardRequests extends Component {
               <div className="card__footer d-flex jc-space-between ai-center">
                 <Icon type="delete" />
                 <Button type="primary">
-                  <NavLink to="/cheff/request/2">Ver solicitud</NavLink>
+                  <NavLink to="/cheff/request/2">Enviar propuesta</NavLink>
                 </Button>
               </div>
             </Card>
