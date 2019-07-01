@@ -6,28 +6,26 @@ class EventForm extends Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
-        this.props.next()
+        console.log("Received values of form: ", values);
+        this.props.next();
       }
     });
   };
 
   render() {
-    const {
-      handleChange,
-      handleSelectChange,
-      prev
-    } = this.props;
+    const { handleChange, handleSelectChange, prev } = this.props;
 
     const { Option } = Select;
     const { getFieldDecorator } = this.props.form;
 
     return (
       <Fragment>
-        <h1 style={{ marginBottom: "20px", textAlign: "center", color: 'white' }}>
+        <h1
+          style={{ marginBottom: "40px", textAlign: "center", color: "white" }}
+        >
           Coméntanos un poco sobre tu evento
         </h1>
-        <Form onSubmit={this.handleSubmit} labelCol={{ span: 5 }} wrapperCol={{ span: 12 }}>
+        <Form onSubmit={this.handleSubmit} wrapperCol={{ span: 24 }}>
           <Form.Item>
             {getFieldDecorator("address", {
               rules: [
@@ -35,10 +33,9 @@ class EventForm extends Component {
               ]
             })(
               <Input
-                style={{ width:'100%'}}
+                style={{ width: "100%", margin: "auto" }}
                 onChange={handleChange("address")}
                 placeholder="Ingrese dirección del evento"
-                style={{ marginBottom: "20px" }}
               />
             )}
           </Form.Item>
@@ -50,7 +47,7 @@ class EventForm extends Component {
             })(
               <Select
                 placeholder="Seleccione el número de invitados"
-                onChange={handleSelectChange.bind(this, 'pax')}
+                onChange={handleSelectChange.bind(this, "pax")}
               >
                 <Option value="2">2</Option>
                 <Option value="3 a 6">3 a 6</Option>
@@ -59,7 +56,7 @@ class EventForm extends Component {
               </Select>
             )}
           </Form.Item>
-          <Form.Item>
+          <Form.Item style={{ marginBottom: '20px' }}>
             {getFieldDecorator("preferences", {
               rules: [
                 {
@@ -70,7 +67,7 @@ class EventForm extends Component {
             })(
               <Select
                 placeholder="Seleccione un tipo de cocina de su preferencia"
-                onChange={handleSelectChange.bind(this, 'preferences')}
+                onChange={handleSelectChange.bind(this, "preferences")}
               >
                 <Option value="criolla">Criolla</Option>
                 <Option value="italiana">Italiana</Option>
@@ -82,10 +79,17 @@ class EventForm extends Component {
               </Select>
             )}
           </Form.Item>
-          <Button type="secondary" onClick={prev}>Anterior</Button>
-          <Button type="primary" htmlType="submit">
-            Siguiente
-          </Button>
+          <div
+            style={{ display: "flex", justifyContent: "space-evenly" }}
+            className="buttons"
+          >
+            <Button type="secondary" onClick={prev}>
+              Anterior
+            </Button>
+            <Button type="primary" htmlType="submit">
+              Siguiente
+            </Button>
+          </div>
         </Form>
       </Fragment>
     );

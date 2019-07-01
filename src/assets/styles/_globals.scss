@@ -1,9 +1,6 @@
 /*
 Global
 */
-.ant-layout {
-  //background: transparent;
-}
 
 body {
   background: black;
@@ -111,14 +108,6 @@ Buttons
 }
 
 /*
-Form
-*/
-input {
-  &[type="text"] {
-  }
-}
-
-/*
 Colors
 */
 .c-primary {
@@ -167,9 +156,34 @@ Font-size
 Ant
 */
 
+.ant-layout.ant-layout-has-sider > .ant-layout,
+.ant-layout.ant-layout-has-sider > .ant-layout-content {
+  overflow-x: hidden;
+  background-image: url(https://www.azamaraclubcruises.com/sites/default/files/heros/med-food-hero_1.jpg);
+  background-size: cover;
+}
+.ant-breadcrumb a {
+  color: white;
+}
+
+.ant-breadcrumb-separator {
+  color: white;
+}
+
+.ant-breadcrumb > span:last-child {
+  color: #ff6700;
+}
+
+.ant-card {
+  width: 95%;
+  margin: auto;
+}
+
 .ant-steps-item-finish .ant-steps-item-icon,
 .ant-steps-item-process .ant-steps-item-icon,
-.ant-steps-item-finish > .ant-steps-item-content > .ant-steps-item-title::after {
+.ant-steps-item-finish
+  > .ant-steps-item-content
+  > .ant-steps-item-title::after {
   background: #ff6700;
   border-color: #ff6700;
 }
@@ -177,7 +191,11 @@ Ant
 .ant-steps-item-process > .ant-steps-item-content > .ant-steps-item-title,
 .ant-steps-item-process .ant-steps-item-content .ant-steps-item-title,
 .ant-steps-item-wait > .ant-steps-item-content > .ant-steps-item-title {
-  color: white!important;
+  color: white !important;
+}
+
+.ant-steps-item-finish > .ant-steps-item-content > .ant-steps-item-title {
+  color: #ff6700;
 }
 
 .ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon {
@@ -186,4 +204,8 @@ Ant
   svg {
     margin: auto;
   }
+}
+
+.ant-input {
+  width: 100%;
 }

@@ -6,8 +6,12 @@ import KitchenForm from "./kitchenForm";
 import DetailsForm from "./detailsForm";
 import { Confirmation } from "./confirmation";
 import { Success } from "./success";
+<<<<<<< HEAD
 
 import "./reservation.scss";
+=======
+import PersonalInfo from "./personalInfo";
+>>>>>>> 0505c163a382ffffcdb38ff7275cf6380ce3a731
 
 class Reservation extends Component {
   constructor(props) {
@@ -22,7 +26,10 @@ class Reservation extends Component {
       oven: "",
       dateTime: "",
       restrictions: "",
-      obs: ""
+      obs: "",
+      name: "",
+      email: "",
+      phone: ""
     };
   }
 
@@ -81,6 +88,7 @@ class Reservation extends Component {
   };
 
   render() {
+    console.log("state", this.state);
     const { current } = this.state;
 
     const {
@@ -160,6 +168,12 @@ class Reservation extends Component {
         )
       },
       {
+        title: "Datos Personales",
+        content: (
+          <PersonalInfo handleChange={this.handleChange} next={this.next} />
+        )
+      },
+      {
         title: "Éxito",
         content: <Success />
       }
@@ -171,7 +185,7 @@ class Reservation extends Component {
       minHeight: "400px",
       textAlign: "center",
       paddingTop: "80px",
-      width: "60%",
+      width: "40%",
       margin: "auto"
     };
 
@@ -205,14 +219,16 @@ class Reservation extends Component {
             <div style={stepsStyles} className="steps-content">
               {steps[current].content}
             </div>
-            {current === 0 && (
-              <Button
-                type="primary"
-                onClick={() => this.next(steps[current].content)}
-              >
-                Next
-              </Button>
-            )}
+            <div style={{ textAlign: 'center' }} className="button">
+              {current === 0 && (
+                <Button
+                  type="primary"
+                  onClick={() => this.next(steps[current].content)}
+                >
+                  Empecemos
+                </Button>
+              )}
+            </div>
           </div>
         </div>
       </div>

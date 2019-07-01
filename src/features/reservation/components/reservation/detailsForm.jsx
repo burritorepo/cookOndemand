@@ -19,13 +19,12 @@ class DetailsForm extends Component {
 
     return (
       <Fragment>
-        <h1 style={{ marginBottom: "20px", textAlign: "center", color: 'white' }}>
+        <h1 style={{ marginBottom: "40px", textAlign: "center", color: 'white' }}>
           Ahora veamos algunos detalles
         </h1>
         <Form
           onSubmit={this.handleSubmit}
-          labelCol={{ span: 5 }}
-          wrapperCol={{ span: 12 }}
+          wrapperCol={{ span: 24 }}
         >
           <Form.Item>
             {getFieldDecorator("dateTime", {
@@ -36,20 +35,19 @@ class DetailsForm extends Component {
                   message: "Seleccione la fecha"
                 }
               ]
-            })(<DatePicker onChange={handleDate.bind(this, "dateTime")} />)}
+            })(<DatePicker style={{ width: '100%' }} onChange={handleDate.bind(this, "dateTime")} />)}
           </Form.Item>
           <Form.Item>
             {getFieldDecorator("restrictions", {
               rules: [{ required: false, message: "" }]
             })(
-              <Input
+              <TextArea
                 onChange={handleChange("restrictions")}
                 placeholder="Ingrese alergias o intolerancia"
-                style={{ marginBottom: "20px" }}
               />
             )}
           </Form.Item>
-          <Form.Item>
+          <Form.Item style={{ marginBottom: '20px' }}>
             {getFieldDecorator("obs", {
               rules: [
                 {
@@ -61,16 +59,20 @@ class DetailsForm extends Component {
               <TextArea
                 onChange={handleChange("obs")}
                 placeholder="Algún comentario u observación que desea agregar?"
-                style={{ marginBottom: "20px" }}
               />
             )}
           </Form.Item>
-          <Button type="secondary" onClick={prev}>
-            Anterior
-          </Button>
-          <Button type="primary" htmlType="submit">
-            Siguiente
-          </Button>
+          <div
+            style={{ display: "flex", justifyContent: "space-evenly" }}
+            className="buttons"
+          >
+            <Button type="secondary" onClick={prev}>
+              Anterior
+            </Button>
+            <Button type="primary" htmlType="submit">
+              Siguiente
+            </Button>
+          </div>
         </Form>
       </Fragment>
     );
