@@ -1,4 +1,4 @@
-import app from 'firebase/app';
+/* import app from 'firebase/app';
 const firebaseConfig = {
   apiKey: "AIzaSyCkPkmEdHjjjjTEKCZfjfWDwZZ1a3UqafY",
   authDomain: "cookondemand-41af9.firebaseapp.com",
@@ -22,3 +22,4 @@ class Firebase {
 }
 
 export default new Firebase();
+ */
