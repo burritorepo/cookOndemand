@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Form, Input, Button } from "antd";
 import PropTypes from "prop-types";
-import { compose } from "redux";
-import { connect } from "react-redux";
 import { firebaseConnect } from "react-redux-firebase";
 
 class Register extends Component {
@@ -22,11 +20,11 @@ class Register extends Component {
     e.preventDefault();
 
     const { firebase } = this.props;
-    const { name, email, password, phone, role } = this.state;
+    const { name, email, password, role } = this.state;
 
     /* Register with firebase */
     firebase
-      .createUser({ email, password }, { name, email, phone, role })
+      .createUser({ email, password }, { name, email, role })
       .catch(err => alert("That user already exists", "error"));
   };
 
@@ -66,7 +64,6 @@ class Register extends Component {
       backgroundRepeat: "noRepeat",
       backgroundSize: "cover"
     };
-    console.log("state", this.state);
 
     return (
       <div className="view view-request" style={backGround}>

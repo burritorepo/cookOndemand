@@ -6,7 +6,7 @@ class PersonalInfo extends Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log("Received values of form: ", values);
+        this.props.onSubmit();
         this.props.next();
       }
     });
@@ -33,10 +33,10 @@ class PersonalInfo extends Component {
               <Input
                 style={{ width: "100%", margin: "auto" }}
                 onChange={handleChange("name")}
-                placeholder="Ingrese tu nombre completo"               
+                placeholder="Ingrese tu nombre completo"
               />
             )}
-          </Form.Item>          
+          </Form.Item>
           <Form.Item>
             {getFieldDecorator("email", {
               rules: [
@@ -50,10 +50,43 @@ class PersonalInfo extends Component {
               <Input
                 style={{ width: "100%", margin: "auto" }}
                 onChange={handleChange("email")}
-                placeholder="Ingresa tu correo electrónico"               
+                placeholder="Ingresa tu correo electrónico"
               />
             )}
-          </Form.Item>          
+          </Form.Item>
+          <Form.Item hasFeedback>
+            {getFieldDecorator("password", {
+              rules: [
+                {
+                  required: true,
+                  message: "Ingresa una contraseña!"
+                },
+                {
+                  validator: this.validateToNextPassword
+                }
+              ]
+            })(<Input.Password placeholder="Ingresa una contraseña..." />)}
+          </Form.Item>
+          <Form.Item hasFeedback>
+            {getFieldDecorator("confirm", {
+              rules: [
+                {
+                  required: true,
+                  message: "Confirma contraseña!"
+                },
+                {
+                  validator: this.compareToFirstPassword
+                }
+              ]
+            })(
+              <Input.Password
+                name="password"
+                onChange={this.onChange}
+                placeholder="Confirma contraseña..."
+                onBlur={this.handleConfirmBlur}
+              />
+            )}
+          </Form.Item>
           <Form.Item>
             {getFieldDecorator("phone", {
               rules: [
@@ -64,10 +97,10 @@ class PersonalInfo extends Component {
                 style={{ width: "100%", margin: "auto" }}
                 onChange={handleChange("phone")}
                 addonBefore={"+51"}
-                placeholder="Ingresa tu número de télefono"               
+                placeholder="Ingresa tu número de télefono"
               />
             )}
-          </Form.Item>                    
+          </Form.Item>
           <Button type="primary" htmlType="submit">
             Siguiente
           </Button>

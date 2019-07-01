@@ -7,12 +7,8 @@ import {
 } from "react-router-dom";
 import { UserIsAuthenticated, UserIsNotAuthenticated } from "../helpers/auth";
 
-import {
-  Landing,
-  RoutingDashboard,
-  RoutingDashboardCheff,
-  Reservation
-} from "../features";
+import { Landing, RoutingDashboard, RoutingDashboardCheff } from "../features";
+import Reservation from "../features/reservation/components/reservation/reservation";
 import WrappedLogin from "../features/login/components/login/login";
 import WrappedRegister from "../features/register/components/register/register";
 import history from "../api/history";
@@ -33,7 +29,7 @@ function RoutingRoot() {
         />
         <Route
           path="/reservation"
-          component={UserIsAuthenticated(Reservation)}
+          component={UserIsNotAuthenticated(Reservation)}
         />
         <Route path="/home" component={Landing} />
         <Route path="/login" component={UserIsNotAuthenticated(WrappedLogin)} />

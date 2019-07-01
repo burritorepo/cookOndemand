@@ -4,8 +4,8 @@ class Success extends Component {
   render() {
     return (
       <div className="success">
-        <h1 style={{ color: 'white' }}>Reserva Confirmada</h1>
-        <p style={{ color: 'white' }}>
+        <h1 style={{ color: "white" }}>Reserva Confirmada</h1>
+        <p style={{ color: "white" }}>
           Tu chef se pondrá en contacto contigo lo antes posible para coordinar
           tu evento
         </p>

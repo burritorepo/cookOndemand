@@ -7,6 +7,8 @@ import DetailsForm from "./detailsForm";
 import PersonalInfo from "./personalInfo";
 import { Confirmation } from "./confirmation";
 import { Success } from "./success";
+import { firebaseConnect } from "react-redux-firebase";
+import PropTypes from "prop-types";
 
 class Reservation extends Component {
   constructor(props) {
@@ -24,21 +26,24 @@ class Reservation extends Component {
       obs: "",
       name: "",
       email: "",
-      phone: ""
+      phone: "",
+      role: "client"
     };
   }
 
-  handleSubmit = e => {
-    e.preventDefault();
+  static propTypes = {
+    firebase: PropTypes.object.isRequired
+  };
 
+  onSubmit = () => {
     const { firebase } = this.props;
-    const { name, email, password, phoneNumber, role } = this.state;
+    const { name, email, password, phone, role } = this.state;
 
     /* Create Reservation */
 
     /* Register with firebase */
     firebase
-      .createUser({ email, password }, { name, email, phoneNumber, role })
+      .createUser(email, password)
       .catch(err => alert("That user already exists", "error"));
   };
 
@@ -69,21 +74,18 @@ class Reservation extends Component {
   };
 
   handleRatio = (label, value) => {
-    console.log("ratio", value.target.value);
     this.setState({
       [label]: value.target.value
     });
   };
 
   handleDate = (label, date, value) => {
-    console.log("date", value);
     this.setState({
       [label]: value
     });
   };
 
   render() {
-    console.log("state", this.state);
     const { current } = this.state;
 
     const {
@@ -154,7 +156,6 @@ class Reservation extends Component {
         title: "Confirmación",
         content: (
           <Confirmation
-            onSubmit={this.handleSubmit}
             next={this.next}
             prev={this.prev}
             {...this.state}
@@ -165,7 +166,11 @@ class Reservation extends Component {
       {
         title: "Datos Personales",
         content: (
-          <PersonalInfo handleChange={this.handleChange} next={this.next} />
+          <PersonalInfo
+            handleChange={this.handleChange}
+            next={this.next}
+            onSubmit={this.onSubmit}
+          />
         )
       },
       {
@@ -231,4 +236,4 @@ class Reservation extends Component {
   }
 }
 
-export { Reservation };
+export default firebaseConnect()(Reservation);
