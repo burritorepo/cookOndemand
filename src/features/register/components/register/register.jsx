@@ -10,7 +10,7 @@ class Register extends Component {
     name: "",
     email: "",
     password: "",
-    phoneNumber: "",
+    phone: "",
     role: "chef"
   };
 
@@ -22,11 +22,11 @@ class Register extends Component {
     e.preventDefault();
 
     const { firebase } = this.props;
-    const { name, email, password, phoneNumber, role } = this.state;
+    const { name, email, password, phone, role } = this.state;
 
     /* Register with firebase */
     firebase
-      .createUser({ email, password }, { name, email, phoneNumber, role })
+      .createUser({ email, password }, { name, email, phone, role })
       .catch(err => alert("That user already exists", "error"));
   };
 
@@ -85,7 +85,7 @@ class Register extends Component {
                 paddingTop: "40px"
               }}
             >
-              Registro <span style={{ color: '#ff6700' }}>de</span> Chef
+              Registro <span style={{ color: "#ff6700" }}>de</span> Chef
             </h1>
             <Form
               style={{ width: "70%", margin: "auto" }}
@@ -169,13 +169,13 @@ class Register extends Component {
                       message: "Ingresa un número de celular!"
                     }
                     // {
-                    //   type: "number",
+                    //   type: "Number",
                     //   message: "Debe ser un número!"
                     // }
                   ]
                 })(
                   <Input
-                    name="phoneNumber"
+                    name="phone"
                     onChange={this.onChange}
                     placeholder="Ingresa un número de celular..."
                     addonBefore={"+51"}
@@ -186,7 +186,7 @@ class Register extends Component {
               <Form.Item
               // {...tailFormItemLayout}
               >
-                <div className="button" style={{ textAlign: 'center' }}>
+                <div className="button" style={{ textAlign: "center" }}>
                   <Button type="primary" htmlType="submit">
                     Registrar
                   </Button>

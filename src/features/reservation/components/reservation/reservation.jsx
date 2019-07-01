@@ -4,14 +4,9 @@ import EventForm from "./eventForm";
 import Start from "./start";
 import KitchenForm from "./kitchenForm";
 import DetailsForm from "./detailsForm";
+import PersonalInfo from "./personalInfo";
 import { Confirmation } from "./confirmation";
 import { Success } from "./success";
-<<<<<<< HEAD
-
-import "./reservation.scss";
-=======
-import PersonalInfo from "./personalInfo";
->>>>>>> 0505c163a382ffffcdb38ff7275cf6380ce3a731
 
 class Reservation extends Component {
   constructor(props) {
@@ -219,7 +214,7 @@ class Reservation extends Component {
             <div style={stepsStyles} className="steps-content">
               {steps[current].content}
             </div>
-            <div style={{ textAlign: 'center' }} className="button">
+            <div style={{ textAlign: "center" }} className="button">
               {current === 0 && (
                 <Button
                   type="primary"
