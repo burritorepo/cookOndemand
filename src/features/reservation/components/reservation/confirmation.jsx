@@ -3,7 +3,8 @@ import { Button, Row, Col } from "antd";
 
 class Confirmation extends Component {
   onClick = () => {
-    console.log("submit", this.props.state);
+    console.log("submit", this.props);
+    this.props.handleSubmit();
     this.props.next();
   };
   render() {
@@ -11,7 +12,7 @@ class Confirmation extends Component {
     return (
       <div className="confirmation">
         <h1 style={{ color: "white" }}>Confirma tu reserva</h1>
-        <Row style={{ margin: '40px' }}>
+        <Row style={{ margin: "40px" }}>
           <Col span={8}>
             <h3 style={{ color: "#ff6700" }}>Dirección</h3>
             <p>{values.address}</p>
@@ -38,16 +39,16 @@ class Confirmation extends Component {
           </Col>
         </Row>
         <div
-            style={{ display: "flex", justifyContent: "space-evenly" }}
-            className="buttons"
-          >
-            <Button type="secondary" onClick={prev}>
-              Anterior
-            </Button>
-            <Button type="primary" onClick={this.onClick}>
-              Siguiente
-            </Button>
-          </div>
+          style={{ display: "flex", justifyContent: "space-evenly" }}
+          className="buttons"
+        >
+          <Button type="secondary" onClick={prev}>
+            Anterior
+          </Button>
+          <Button type="primary" onClick={this.onClick}>
+            Siguiente
+          </Button>
+        </div>
       </div>
     );
   }

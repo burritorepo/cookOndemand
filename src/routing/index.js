@@ -5,16 +5,17 @@ import {
   Redirect,
   Switch
 } from "react-router-dom";
+import { UserIsAuthenticated, UserIsNotAuthenticated } from "../helpers/auth";
 
 import {
-  WrappedLogin,
   Landing,
   RoutingDashboard,
   RoutingDashboardCheff,
-  WrappedRegister,
   Reservation
 } from "../features";
-import history from '../api/history';
+import WrappedLogin from "../features/login/components/login/login";
+import WrappedRegister from "../features/register/components/register/register";
+import history from "../api/history";
 
 function RoutingRoot() {
   return (
@@ -25,12 +26,21 @@ function RoutingRoot() {
         ) : (
             <Route path="/cheff" component={RoutingDashboardCheff} />
           )} */}
-        <Route path="/user" component={RoutingDashboard} />
-        <Route path="/cheff" component={RoutingDashboardCheff} />
-        <Route path="/reservation" component={Reservation} />
+        <Route path="/user" component={UserIsAuthenticated(RoutingDashboard)} />
+        <Route
+          path="/cheff"
+          component={UserIsAuthenticated(RoutingDashboardCheff)}
+        />
+        <Route
+          path="/reservation"
+          component={UserIsAuthenticated(Reservation)}
+        />
         <Route path="/home" component={Landing} />
-        <Route path="/login" component={WrappedLogin} />
-        <Route path="/register" component={WrappedRegister} />
+        <Route path="/login" component={UserIsNotAuthenticated(WrappedLogin)} />
+        <Route
+          path="/register"
+          component={UserIsNotAuthenticated(WrappedRegister)}
+        />
         <Redirect exact from="/" to="/home" />
       </Switch>
     </Router>

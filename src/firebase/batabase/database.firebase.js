@@ -1,4 +1,4 @@
-
+/* 
 
 firebase.initializeApp({
     apiKey: "AIzaSyBiFP0LIx1LX2oyNkf3CHjWd4JBvVHX6_Q",
@@ -125,4 +125,4 @@ function editar(id,nombres,apellido1,apellido2,direccion) {
 
 
 
- 
+  */

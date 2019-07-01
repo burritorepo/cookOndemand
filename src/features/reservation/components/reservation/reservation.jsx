@@ -4,9 +4,9 @@ import EventForm from "./eventForm";
 import Start from "./start";
 import KitchenForm from "./kitchenForm";
 import DetailsForm from "./detailsForm";
+import PersonalInfo from "./personalInfo";
 import { Confirmation } from "./confirmation";
 import { Success } from "./success";
-import PersonalInfo from "./personalInfo";
 
 class Reservation extends Component {
   constructor(props) {
@@ -27,6 +27,20 @@ class Reservation extends Component {
       phone: ""
     };
   }
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    const { firebase } = this.props;
+    const { name, email, password, phoneNumber, role } = this.state;
+
+    /* Create Reservation */
+
+    /* Register with firebase */
+    firebase
+      .createUser({ email, password }, { name, email, phoneNumber, role })
+      .catch(err => alert("That user already exists", "error"));
+  };
 
   next = () => {
     const { current } = this.state;
@@ -140,6 +154,7 @@ class Reservation extends Component {
         title: "Confirmación",
         content: (
           <Confirmation
+            onSubmit={this.handleSubmit}
             next={this.next}
             prev={this.prev}
             {...this.state}
@@ -199,7 +214,7 @@ class Reservation extends Component {
             <div style={stepsStyles} className="steps-content">
               {steps[current].content}
             </div>
-            <div style={{ textAlign: 'center' }} className="button">
+            <div style={{ textAlign: "center" }} className="button">
               {current === 0 && (
                 <Button
                   type="primary"
