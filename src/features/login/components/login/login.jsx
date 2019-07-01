@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
-import { Form, Select, Input, Button } from 'antd';
+import React, { Component } from "react";
+import { Form, Select, Input, Button } from "antd";
 const { Option } = Select;
-import history from '../../../../api/history';
-import PropTypes from 'prop-types';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { firebaseConnect } from 'react-redux-firebase';
-import './login.scss';
-import { auth } from 'firebase';
+import history from "../../../../api/history";
+import PropTypes from "prop-types";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { firebaseConnect } from "react-redux-firebase";
+import "./login.scss";
 
 class Login extends Component {
   state = {
-    email: '',
-    password: ''
+    email: "",
+    password: ""
   };
 
   constructor(props) {
@@ -33,7 +32,7 @@ class Login extends Component {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .catch(err => alert('Invalid login credentials'));
+      .catch(err => alert("Invalid login credentials"));
   };
 
   onChange = e => {
@@ -44,67 +43,67 @@ class Login extends Component {
     const { email, password } = this.state;
     const { getFieldDecorator } = this.props.form;
     const backGround = {
-      height: '100vh',
+      height: "100vh",
       backgroundImage:
         "url('http://lavinyagrill.com/wp-content/uploads/2015/06/iStock_000046272610_Large.jpg')",
-      backgroundRepeat: 'noRepeat',
-      backgroundSize: 'cover'
+      backgroundRepeat: "noRepeat",
+      backgroundSize: "cover"
     };
     return (
       <React.Fragment>
         <div
           style={backGround}
-          className='view view-login d-flex fd-column jc-center h-100vh'
+          className="view view-login d-flex fd-column jc-center h-100vh"
         >
-          <div className='view__inner'>
-            <div className='text-center'>
-              <h1 className='c-white mb-20'>Login</h1>
+          <div className="view__inner">
+            <div className="text-center">
+              <h1 className="c-white mb-20">Login</h1>
             </div>
             <Form
-              className='d-flex fd-column jc-center'
+              className="d-flex fd-column jc-center"
               wrapperCol={{ offset: 7, span: 10 }}
               onSubmit={this.handleSubmit}
             >
               <Form.Item>
-                {getFieldDecorator('user', {
+                {getFieldDecorator("user", {
                   rules: [
-                    { required: true, message: 'Por favor ingresa tu usuario!' }
+                    { required: true, message: "Por favor ingresa tu usuario!" }
                   ]
-                })(<Input name='email' onChange={this.onChange} />)}
+                })(<Input name="email" onChange={this.onChange} />)}
               </Form.Item>
               <Form.Item>
-                {getFieldDecorator('password', {
+                {getFieldDecorator("password", {
                   rules: [
                     {
                       required: true,
-                      message: 'Por favor ingresa tu password!'
+                      message: "Por favor ingresa tu password!"
                     }
                   ]
                 })(
                   <Input
-                    name='password'
-                    type='password'
+                    name="password"
+                    type="password"
                     onChange={this.onChange}
                   />
                 )}
               </Form.Item>
               <Form.Item>
-                {getFieldDecorator('type', {
+                {getFieldDecorator("type", {
                   rules: [
-                    { required: true, message: 'Please select your type!' }
+                    { required: true, message: "Please select your type!" }
                   ]
                 })(
                   <Select
-                    placeholder='Seleccione el tipo de usuario'
+                    placeholder="Seleccione el tipo de usuario"
                     onChange={this.handleSelectChange}
                   >
-                    <Option value='user'>User</Option>
-                    <Option value='cheff'>Cheff</Option>
+                    <Option value="user">User</Option>
+                    <Option value="cheff">Cheff</Option>
                   </Select>
                 )}
               </Form.Item>
               <Form.Item>
-                <Button type='primary' htmlType='submit' block>
+                <Button type="primary" htmlType="submit" block>
                   Ingresar
                 </Button>
               </Form.Item>
@@ -116,6 +115,6 @@ class Login extends Component {
   }
 }
 
-const WrappedLogin = Form.create({ name: 'coordinated' })(Login);
+const WrappedLogin = Form.create({ name: "coordinated" })(Login);
 
 export default firebaseConnect()(WrappedLogin);

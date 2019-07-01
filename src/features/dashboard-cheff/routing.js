@@ -12,8 +12,9 @@ import {
   Proposal
 } from './components';
 
+import Header from '../../components/header/header';
+
 import {
-  Header,
   Main,
   Footer,
   Sidebar

@@ -13,8 +13,8 @@ import {
   DashboardRequestDetail
 } from './components';
 
+import Header from '../../components/header/header';1
 import {
-  Header,
   Main,
   Footer,
   Sidebar
