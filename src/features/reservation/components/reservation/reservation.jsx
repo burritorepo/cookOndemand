@@ -7,7 +7,7 @@ import DetailsForm from "./detailsForm";
 import { Confirmation } from "./confirmation";
 import { Success } from "./success";
 
-import './reservation.scss';
+import "./reservation.scss";
 
 class Reservation extends Component {
   constructor(props) {
@@ -25,6 +25,20 @@ class Reservation extends Component {
       obs: ""
     };
   }
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    const { firebase } = this.props;
+    const { name, email, password, phoneNumber, role } = this.state;
+
+    /* Create Reservation */
+
+    /* Register with firebase */
+    firebase
+      .createUser({ email, password }, { name, email, phoneNumber, role })
+      .catch(err => alert("That user already exists", "error"));
+  };
 
   next = () => {
     const { current } = this.state;
@@ -137,6 +151,7 @@ class Reservation extends Component {
         title: "Confirmación",
         content: (
           <Confirmation
+            onSubmit={this.handleSubmit}
             next={this.next}
             prev={this.prev}
             {...this.state}
@@ -151,7 +166,7 @@ class Reservation extends Component {
     ];
 
     const stepsStyles = {
-      color: 'white',
+      color: "white",
       marginTop: "16px",
       minHeight: "400px",
       textAlign: "center",

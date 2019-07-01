@@ -1,36 +1,37 @@
 import React, { Component } from "react";
 import { Form, Input, Button } from "antd";
+import PropTypes from "prop-types";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { firebaseConnect } from "react-redux-firebase";
 
 class Register extends Component {
-  constructor(props) {
-    super(props),
-      (this.state = {
-        name: "",
-        lastName1: "",
-        lastName2: "",
-        email: "",
-        password: "",
-        phone: "",
-        confirmDirty: false
-      });
-  }
+  state = {
+    name: "",
+    email: "",
+    password: "",
+    phoneNumber: "",
+    role: "chef"
+  };
+
+  static propTypes = {
+    firebase: PropTypes.object.isRequired
+  };
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        console.log("Received values of form: ", values);
-      }
-    });
-    const { name, lastName1, lastName2, email, password, phone } = this.state;
-    const values = { name, lastName1, lastName2, email, password, phone };
-    console.log("submit", values);
+
+    const { firebase } = this.props;
+    const { name, email, password, phoneNumber, role } = this.state;
+
+    /* Register with firebase */
+    firebase
+      .createUser({ email, password }, { name, email, phoneNumber, role })
+      .catch(err => alert("That user already exists", "error"));
   };
 
-  handleChange = input => e => {
-    this.setState({
-      [input]: e.target.value
-    });
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   handleConfirmBlur = e => {
@@ -101,38 +102,9 @@ class Register extends Component {
                   ]
                 })(
                   <Input
-                    onChange={this.handleChange("name")}
+                    name="name"
+                    onChange={this.onChange}
                     placeholder="Ingresa tu nombre..."
-                  />
-                )}
-              </Form.Item>
-              <Form.Item>
-                {getFieldDecorator("lastName1", {
-                  rules: [
-                    {
-                      required: true,
-                      message: "Ingresa tu apellido paterno!"
-                    }
-                  ]
-                })(
-                  <Input
-                    onChange={this.handleChange("lastName1")}
-                    placeholder="Ingresa tu apellido paterno..."
-                  />
-                )}
-              </Form.Item>
-              <Form.Item>
-                {getFieldDecorator("lastName2", {
-                  rules: [
-                    {
-                      required: true,
-                      message: "Ingresa tu apellido materno!"
-                    }
-                  ]
-                })(
-                  <Input
-                    onChange={this.handleChange("lastName2")}
-                    placeholder="Ingresa tu apellido materno..."
                   />
                 )}
               </Form.Item>
@@ -150,7 +122,8 @@ class Register extends Component {
                   ]
                 })(
                   <Input
-                    onChange={this.handleChange("email")}
+                    name="email"
+                    onChange={this.onChange}
                     placeholder="Ingresa un correo electrónico válido..."
                   />
                 )}
@@ -181,7 +154,8 @@ class Register extends Component {
                   ]
                 })(
                   <Input.Password
-                    onChange={this.handleChange("password")}
+                    name="password"
+                    onChange={this.onChange}
                     placeholder="Confirma contraseña..."
                     onBlur={this.handleConfirmBlur}
                   />
@@ -201,7 +175,8 @@ class Register extends Component {
                   ]
                 })(
                   <Input
-                    onChange={this.handleChange("phone")}
+                    name="phoneNumber"
+                    onChange={this.onChange}
                     placeholder="Ingresa un número de celular..."
                     addonBefore={"+51"}
                     style={{ width: "100%" }}
@@ -225,4 +200,4 @@ class Register extends Component {
 
 const WrappedRegister = Form.create({ name: "register" })(Register);
 
-export { WrappedRegister };
+export default firebaseConnect()(WrappedRegister);

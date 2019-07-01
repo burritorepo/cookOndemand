@@ -4,6 +4,7 @@ import { Button, Row, Col } from "antd";
 class Confirmation extends Component {
   onClick = () => {
     console.log("submit", this.props);
+    this.props.handleSubmit();
     this.props.next();
   };
   render() {

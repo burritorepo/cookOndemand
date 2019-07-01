@@ -1,23 +1,23 @@
-import { createStore, combineReducers, compose } from 'redux';
-import firebase from 'firebase';
-import 'firebase/firestore';
-import { reactReduxFirebase, firebaseReducer } from 'react-redux-firebase';
-import { reduxFirestore, firestoreReducer } from 'redux-firestore';
+import { createStore, combineReducers, compose } from "redux";
+import firebase from "firebase";
+import "firebase/firestore";
+import { reactReduxFirebase, firebaseReducer } from "react-redux-firebase";
+import { reduxFirestore, firestoreReducer } from "redux-firestore";
 
 /* Firebase config */
 const firebaseConfig = {
-  apiKey: 'AIzaSyDTZzXTxYStVdSw9AesLZyebZE_iqBQ9SM',
-  authDomain: 'reactclientpanel-2ce68.firebaseapp.com',
-  databaseURL: 'https://reactclientpanel-2ce68.firebaseio.com',
-  projectId: 'reactclientpanel-2ce68',
-  storageBucket: 'reactclientpanel-2ce68.appspot.com',
-  messagingSenderId: '147260590335',
-  appId: '1:147260590335:web:fe9b92891f11773d'
+  apiKey: "AIzaSyBTI-rQGu3PvECS3I6Uflb0tIT5rXcpZ5E",
+  authDomain: "cookondemand-95c24.firebaseapp.com",
+  databaseURL: "https://cookondemand-95c24.firebaseio.com",
+  projectId: "cookondemand-95c24",
+  storageBucket: "cookondemand-95c24.appspot.com",
+  messagingSenderId: "351355206454",
+  appId: "1:351355206454:web:2ac399d69ca380b4"
 };
 
 /* react-redux-firebase config */
 const rrfConfig = {
-  userProfile: 'users',
+  userProfile: "users",
   userFirestoreForProfile: true
 };
 
