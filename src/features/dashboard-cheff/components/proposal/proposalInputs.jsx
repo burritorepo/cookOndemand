@@ -57,8 +57,8 @@ class ProposalInputs extends Component {
             placeholder="Añade una descripción del postre..."
           />
         </div>
-        <br />
         <hr />
+        <br />
         <div className="text-center">
           <Button type="primary" onClick={this.onClick}>
             Siguiente

@@ -162,8 +162,16 @@ Ant
   background-image: url(https://www.azamaraclubcruises.com/sites/default/files/heros/med-food-hero_1.jpg);
   background-size: cover;
 }
-.ant-breadcrumb {
+.ant-breadcrumb a {
   color: white;
+}
+
+.ant-breadcrumb-separator {
+  color: white;
+}
+
+.ant-breadcrumb > span:last-child {
+  color: #ff6700;
 }
 
 .ant-card {

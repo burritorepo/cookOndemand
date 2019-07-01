@@ -33,25 +33,43 @@ class DashboardRequestDetail extends Component {
         <br />
         <h1 className="title c-primary">Propuestas del Chef {user}</h1>
         <br />
-        <div className='card'>
-          <Card bordered={false} style={{ width: "100%" }}>
-            <div className="content" style={{ textAlign: 'center' }}>
+        <div className="card">
+          <Card bordered={false}>
+            <h2>Solicitud 22/06/19</h2>
+            <hr />
+            <br />
+            <div className="content" style={{ textAlign: "center" }}>
               <h3>Abreboca</h3>
-              <h5 className='c-primary'>Bruschetta de espárragos a la parmesana</h5>
-              <p>Tostas de espárragos grillados gratinados con queso parmesano.</p>
+              <h5 className="c-primary">
+                Bruschetta de espárragos a la parmesana
+              </h5>
+              <p>
+                Tostas de espárragos grillados gratinados con queso parmesano.
+              </p>
               <h3>Entrada</h3>
-              <h5 className='c-primary'>Vitello tonatto</h5>
-              <p>Láminas de asado de res cocido a baja temperatura con mayonesa de atún y alcaparras.</p>
+              <h5 className="c-primary">Vitello tonatto</h5>
+              <p>
+                Láminas de asado de res cocido a baja temperatura con mayonesa
+                de atún y alcaparras.
+              </p>
               <h3>Fondo</h3>
-              <h5 className='c-primary'>Spaghetti frutti di mare</h5>
-              <p>Spaghetti salteados con aceite de oilva, ajo, mejillones y langostinos.</p>
-              <h3>Postre</h3>              
-              <h5 className='c-primary'>Panna Cotta</h5>
-              <p>Mousse de crema de leche saborizada con mermelada de frutos rojos.</p>
+              <h5 className="c-primary">Spaghetti frutti di mare</h5>
+              <p>
+                Spaghetti salteados con aceite de oilva, ajo, mejillones y
+                langostinos.
+              </p>
+              <h3>Postre</h3>
+              <h5 className="c-primary">Panna Cotta</h5>
+              <p>
+                Mousse de crema de leche saborizada con mermelada de frutos
+                rojos.
+              </p>
             </div>
-            <div className="button" style={{ textAlign: 'center' }}>
-              <Button type='primary'>
-                <NavLink to='/user/request/1'>Volver a propuestas</NavLink>
+            <hr />
+            <br />
+            <div className="button" style={{ textAlign: "center" }}>
+              <Button type="primary">
+                <NavLink to="/user/request/1">Volver a propuestas</NavLink>
               </Button>
             </div>
           </Card>

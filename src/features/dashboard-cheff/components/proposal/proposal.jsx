@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { Breadcrumb } from "antd";
+import { Breadcrumb, Card } from "antd";
 import { ProposalInputs } from "./proposalInputs";
 import { Confirmation } from "./confirmation";
 import { Success } from './success';
@@ -89,7 +89,7 @@ class Proposal extends Component {
             <br />
             <h1 className="title c-primary">Solicitud de {id}</h1>
             <br />
-            <div className="content">
+            <Card className="content">
               <h2>Solicitud 22/06/19</h2>
               <hr />
               <br />
@@ -98,7 +98,7 @@ class Proposal extends Component {
                 handleChange={this.handleChange}
                 values={values}
               />
-            </div>
+            </Card>
           </div>
         );
 
@@ -117,7 +117,7 @@ class Proposal extends Component {
             <br />
             <h1 className="title c-primary">Solicitud de {id}</h1>
             <br />
-            <div className="content">
+            <Card className="content">
               <h2>Solicitud 22/06/19</h2>
               <hr />
               <Confirmation
@@ -125,12 +125,12 @@ class Proposal extends Component {
                 prev={this.prev}
                 values={values}
               />
-            </div>
+            </Card>
           </div>
         );
       case 3:
         return (
-          <div className="view view-request-detail">
+          <div className="view view-request-detail" style={{ height: '79.6vh' }}>
             <Breadcrumb separator=">">
               <Breadcrumb.Item>
                 <NavLink to="/cheff">Home</NavLink>
@@ -143,13 +143,13 @@ class Proposal extends Component {
             <br />
             <h1 className="title c-primary">Solicitud de {id}</h1>
             <br />
-            <div className="content">
+            <Card className="content">
               <h2>Solicitud 22/06/19</h2>
               <hr />
               <br />
               <Success
               />
-            </div>
+            </Card>
           </div>
         );
     }

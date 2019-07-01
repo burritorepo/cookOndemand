@@ -27,6 +27,8 @@ class Confirmation extends Component {
           <h5>{values.dessert}</h5>
           <p>{values.dessert_desc}</p>
         </div>
+        <hr/>
+        <br/>
         <div
           style={{ display: "flex", justifyContent: "space-evenly" }}
           className="buttons"
