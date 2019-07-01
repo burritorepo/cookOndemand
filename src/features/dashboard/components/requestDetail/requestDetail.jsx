@@ -15,7 +15,10 @@ class DashboardRequestDetail extends Component {
       title: "Confirmar",
       content: "Deseas aceptar esta propuesta?",
       okText: "Aceptar",
-      cancelText: "Cancelar"
+      cancelText: "Cancelar",
+      onOk() {
+        console.log('submitted')
+      }
     });
   };
 
