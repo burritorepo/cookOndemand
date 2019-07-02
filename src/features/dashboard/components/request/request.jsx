@@ -1,28 +1,31 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { Breadcrumb, Card, Row, Col, Icon, Button, Modal } from 'antd';
+import { Breadcrumb, Card, Row, Col, Icon, Button, Modal } from "antd";
 
 class DashboardRequest extends Component {
   constructor(props) {
     super(props);
+    this.state = { visible: false };
   }
-
-  state = { visible: false }
 
   handleDelete = () => {
     this.setState({
-      visible: true,
+      visible: true
     });
-  }
+  };
 
   handleCancel = () => {
     this.setState({
-      visible: false,
+      visible: false
     });
-  }
+  };
 
   render() {
-    const { match: { params: { id } } } = this.props;
+    const {
+      match: {
+        params: { id }
+      }
+    } = this.props;
     return (
       <div className="view view-request">
         <Breadcrumb separator=">">
@@ -44,7 +47,9 @@ class DashboardRequest extends Component {
                 <Col span={12}>
                   <div className="request__item mb-5">
                     <Icon type="user" className="c-primary" />
-                    <span className="fsize-12">S/ 160.00 - S/ 180.00 / persona</span>
+                    <span className="fsize-12">
+                      S/ 160.00 - S/ 180.00 / persona
+                    </span>
                   </div>
                 </Col>
                 <Col span={12}>
@@ -71,7 +76,9 @@ class DashboardRequest extends Component {
                 <Col span={12}>
                   <div className="request__item mb-5">
                     <Icon type="user" className="c-primary" />
-                    <span className="fsize-12">S/ 160.00 - S/ 180.00 / persona</span>
+                    <span className="fsize-12">
+                      S/ 160.00 - S/ 180.00 / persona
+                    </span>
                   </div>
                 </Col>
                 <Col span={12}>
@@ -82,7 +89,7 @@ class DashboardRequest extends Component {
                 </Col>
               </Row>
               <div className="card__footer d-flex jc-space-between ai-center">
-                <Icon type="delete" onClick={this.handleDelete}/>
+                <Icon type="delete" onClick={this.handleDelete} />
                 <Button type="primary">
                   <NavLink to={`/user/request/${id}/luis`}>Ver</NavLink>
                 </Button>
@@ -90,7 +97,6 @@ class DashboardRequest extends Component {
             </Card>
           </Col>
         </Row>
-
         <Modal
           title="Eliminar propuesta"
           visible={this.state.visible}
@@ -100,10 +106,8 @@ class DashboardRequest extends Component {
           <p>Estas seguro que deseas eliminar esta propuesta?</p>
         </Modal>
       </div>
-    )
+    );
   }
 }
 
-export {
-  DashboardRequest
-}
+export { DashboardRequest };

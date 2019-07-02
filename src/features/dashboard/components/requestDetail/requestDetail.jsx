@@ -1,11 +1,26 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { Breadcrumb, Card, Button } from "antd";
+import { Breadcrumb, Card, Button, Modal } from "antd";
 
 class DashboardRequestDetail extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      visible: false
+    };
   }
+
+  confirm = () => {
+    Modal.confirm({
+      title: "Confirmar",
+      content: "Deseas aceptar esta propuesta?",
+      okText: "Aceptar",
+      cancelText: "Cancelar",
+      onOk() {
+        console.log('submitted')
+      }
+    });
+  };
 
   render() {
     const {
@@ -67,9 +82,19 @@ class DashboardRequestDetail extends Component {
             </div>
             <hr />
             <br />
-            <div className="button" style={{ textAlign: "center" }}>
-              <Button type="primary">
+            <div
+              className="button"
+              style={{
+                textAlign: "center",
+                display: "flex",
+                justifyContent: "space-evenly"
+              }}
+            >
+              <Button type="secondary">
                 <NavLink to="/user/request/1">Volver a propuestas</NavLink>
+              </Button>
+              <Button type="primary" onClick={this.confirm}>
+                Aceptar propuesta
               </Button>
             </div>
           </Card>
