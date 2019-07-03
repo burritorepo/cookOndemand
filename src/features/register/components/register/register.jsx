@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Form, Input, Button } from "antd";
 import PropTypes from "prop-types";
 import { compose } from "redux";
+import { connect } from "react-redux";
 import { firebaseConnect } from "react-redux-firebase";
 
 class Register extends Component {
@@ -14,18 +15,22 @@ class Register extends Component {
   };
 
   static propTypes = {
-    firebase: PropTypes.object.isRequired
+    user: PropTypes.object.isRequired
   };
 
   handleSubmit = e => {
     e.preventDefault();
 
     const { firebase } = this.props;
-    const { name, email, password, role } = this.state;
+    const { name, email, password, phone, role } = this.state;
 
     /* Register with firebase */
     firebase
-      .createUser({ email, password }, { name, email, role })
+      .createUser({ email, password }, { name, email, phone, role })
+      .then(userData => {
+        console.log("User: ", userData);
+        console.log(this.props.user);
+      })
       .catch(err => alert("That user already exists", "error"));
 
     // fetch("http://localhost:3000/users", {
@@ -34,7 +39,7 @@ class Register extends Component {
     //   headers: {
     //     "Content-type": "application/json; charset=UTF-8"
     //   }
-    // })    
+    // })
     //   .then(res => res.json())
     //   .then(this.props.history.push('/home'))
   };
@@ -210,4 +215,11 @@ class Register extends Component {
 
 const WrappedRegister = Form.create({ name: "register" })(Register);
 
-export default firebaseConnect()(WrappedRegister);
+const mapStateToProps = (state, props) => ({
+  user: state.firebase.auth.uid
+});
+
+export default compose(
+  firebaseConnect(),
+  connect(mapStateToProps)
+)(WrappedRegister);

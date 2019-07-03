@@ -40,7 +40,6 @@ class Login extends Component {
   };
 
   render() {
-    const { email, password } = this.state;
     const { getFieldDecorator } = this.props.form;
     const backGround = {
       height: "100vh",

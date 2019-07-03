@@ -1,4 +1,9 @@
 import React, { Component } from "react";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { firebaseConnect } from "react-redux-firebase";
+import PropTypes from "prop-types";
+
 import { Steps, Button } from "antd";
 import EventForm from "./eventForm";
 import Start from "./start";
@@ -7,8 +12,6 @@ import DetailsForm from "./detailsForm";
 import PersonalInfo from "./personalInfo";
 import { Confirmation } from "./confirmation";
 import { Success } from "./success";
-import { firebaseConnect } from "react-redux-firebase";
-import PropTypes from "prop-types";
 
 class Reservation extends Component {
   constructor(props) {
@@ -25,6 +28,7 @@ class Reservation extends Component {
       restrictions: "",
       obs: "",
       name: "",
+      password: "",
       email: "",
       phone: "",
       role: "client"
@@ -43,7 +47,11 @@ class Reservation extends Component {
 
     /* Register with firebase */
     firebase
-      .createUser({ email, password }, { name, phone, role })
+      .createUser({ email, password }, { name, email, phone, role })
+      .then(userData => {
+        console.log("User: ", userData);
+        console.log(this.props.user);
+      })
       .catch(err => alert("That user already exists", "error"));
 
     fetch("https://apichef.herokuapp.com/api/solicitud", {
@@ -79,6 +87,10 @@ class Reservation extends Component {
     this.setState({
       current: current - 1
     });
+  };
+
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   handleChange = input => e => {
@@ -189,6 +201,7 @@ class Reservation extends Component {
           <PersonalInfo
             handleChange={this.handleChange}
             next={this.next}
+            onChange={this.onChange}
             onSubmit={this.onSubmit}
           />
         )
@@ -256,4 +269,11 @@ class Reservation extends Component {
   }
 }
 
-export default firebaseConnect()(Reservation);
+const mapStateToProps = (state, props) => ({
+  user: state.firebase.auth.uid
+});
+
+export default compose(
+  firebaseConnect(),
+  connect(mapStateToProps)
+)(Reservation);

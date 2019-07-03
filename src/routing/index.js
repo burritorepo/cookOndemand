@@ -27,10 +27,7 @@ function RoutingRoot() {
           path="/cheff"
           component={UserIsAuthenticated(RoutingDashboardCheff)}
         />
-        <Route
-          path="/reservation"
-          component={UserIsNotAuthenticated(Reservation)}
-        />
+        <Route path="/reservation" component={Reservation} />
         <Route path="/home" component={Landing} />
         <Route path="/login" component={UserIsNotAuthenticated(WrappedLogin)} />
         <Route

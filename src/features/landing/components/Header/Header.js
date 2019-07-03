@@ -1,30 +1,49 @@
-import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import { TimelineLite, Power2, Back } from 'gsap';
-import { connect } from 'react-redux';
+import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { firebaseConnect } from "react-redux-firebase";
+import PropTypes from "prop-types";
 
-import './header.scss';
+import { TimelineLite, Power2, Back } from "gsap";
+import Spinner from "../../../../components/spinner/Spinner";
+import "./header.scss";
 
 export class Header extends Component {
   state = {
-    isMobile: null
+    isMobile: null,
+    isAuthenticated: true
   };
+
+  static propTypes = {
+    firebase: PropTypes.object.isRequired
+  };
+
+  static getDerivedStateFromProps(props, state) {
+    const { auth } = props;
+
+    if (auth.uid) {
+      return { isAuthenticated: true };
+    } else {
+      return { isAuthenticated: false };
+    }
+  }
 
   constructor(props) {
     super(props);
-    console.log('this.firebase', this.props)
+    console.log("this.firebase", this.props);
     this.js_header = React.createRef();
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    const { isAuthenticated } = this.state;
+
     this.setState({
       isMobile: window.innerWidth < 1024
     });
-  }
 
-  componentDidMount() {
     window.addEventListener(
-      'resize',
+      "resize",
       () => {
         this.setState({
           isMobile: window.innerWidth < 1024
@@ -33,19 +52,28 @@ export class Header extends Component {
       false
     );
 
-    const tl = new TimelineLite();
+    if (isAuthenticated) {
+      const tl = new TimelineLite();
 
-    tl.from(this.js_header.current, 1.5, {
-      opacity: 0,
-      y: -40,
-      delay: 1.25,
-      ease: Power2.easeInOut
-    });
+      tl.from(this.js_header.current, 1.5, {
+        opacity: 0,
+        y: -40,
+        delay: 1.25,
+        ease: Power2.easeInOut
+      });
+    }
   }
+
+  handleLogout = e => {
+    const { firebase } = this.props;
+
+    console.log(firebase);
+    firebase.logout();
+  };
 
   handleChange() {
     const { prevProps } = this.props;
-    prevProps.history.push('/register');
+    prevProps.history.push("/register");
   }
 
   getWindowWidth() {
@@ -56,59 +84,90 @@ export class Header extends Component {
   }
 
   render() {
-    return (
-      <Fragment>
-        <header>
-          <div
-            className='inner-header d-flex f-justify js_header'
-            ref={this.js_header}
-          >
-            <div className='logo'>
-              Cook <span>On</span> Demand
+    const { isAuthenticated } = this.state;
+    const { user } = this.props;
+
+    if (isAuthenticated) {
+      return (
+        <Fragment>
+          <header>
+            <div
+              className="inner-header d-flex f-justify js_header"
+              ref={this.js_header}
+            >
+              <div className="logo">
+                Cook <span>On</span> Demand
+              </div>
+              <nav className="header-nav">
+                <ul className="header-nav__list d-flex f-justify">
+                  <li className="header-nav__item">
+                    <Link to="#" className="header-nav__link">
+                      <i className="fas fa-gift" />
+                      Regala
+                    </Link>
+                  </li>
+                  <li className="header-nav__item">
+                    <Link to="#" className="header-nav__link">
+                      <i className="fas fa-info-circle" />
+                      ¿Cómo funciona?
+                    </Link>
+                  </li>
+                  <li className="header-nav__item">
+                    <Link to="#" className="header-nav__link">
+                      <i className="fas fa-phone" />
+                      +51 941 952 261
+                    </Link>
+                  </li>
+                  {isAuthenticated ? (
+                    <li className="header-nav__item">
+                      <Link to="/login" className="header-nav__link">
+                        <i className="fas fa-user-tie" />
+                        {user ? `Bienvenido ${user.name}` : ""}
+                      </Link>
+                    </li>
+                  ) : (
+                    <li className="header-nav__item">
+                      <Link to="/login" className="header-nav__link">
+                        <i className="fas fa-sign-in-alt" />
+                        Acceder
+                      </Link>
+                    </li>
+                  )}
+                  {isAuthenticated ? (
+                    <button
+                      className="nav__action"
+                      onClick={() => this.handleLogout()}
+                    >
+                      <i className="fas fa-portrait" />
+                      Salir
+                    </button>
+                  ) : (
+                    <button
+                      className="nav__action"
+                      onClick={() => this.handleChange()}
+                    >
+                      <i className="fas fa-portrait" />
+                      Registro Chef
+                    </button>
+                  )}
+                </ul>
+              </nav>
             </div>
-            <nav className='header-nav'>
-              <ul className='header-nav__list d-flex f-justify'>
-                <li className='header-nav__item'>
-                  <Link to='#' className='header-nav__link'>
-                    <i className='fas fa-gift' />
-                    Regala
-                  </Link>
-                </li>
-                <li className='header-nav__item'>
-                  <Link to='#' className='header-nav__link'>
-                    <i className='fas fa-info-circle' />
-                    ¿Cómo funciona?
-                  </Link>
-                </li>
-                <li className='header-nav__item'>
-                  <Link to='#' className='header-nav__link'>
-                    <i className='fas fa-phone' />
-                    +51 941 952 261
-                  </Link>
-                </li>
-                <li className='header-nav__item'>
-                  <Link to='/login' className='header-nav__link'>
-                    <i className='fas fa-sign-in-alt' />
-                    Acceder
-                  </Link>
-                </li>
-                <button
-                  className='nav__action'
-                  onClick={() => this.handleChange()}
-                >
-                  <i className='fas fa-portrait' />
-                  Registro Chef
-                </button>
-              </ul>
-            </nav>
-          </div>
-        </header>
-      </Fragment>
-    );
+          </header>
+        </Fragment>
+      );
+    } else {
+      return <Spinner />;
+    }
   }
 }
 
-const mapStateToProps = (state) => ({
-  firebase: state.firebase
-})
-export default connect(mapStateToProps)(Header);
+const mapStateToProps = (state, props) => ({
+  auth: state.firebase.auth,
+  user: state.firebase.profile
+});
+
+export default compose(
+  firebaseConnect(),
+  connect(mapStateToProps)
+)(Header);

@@ -1,33 +1,40 @@
 import React, { Component } from "react";
 import { Layout, Menu, Icon, Dropdown, Button } from "antd";
 import { NavLink } from "react-router-dom";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { firebaseConnect } from "react-redux-firebase";
 import PropTypes from "prop-types";
-import { connect } from 'react-redux';
+
 import "./header.scss";
 
 class Header extends Component {
   constructor(props) {
     super(props);
-    console.log('woww!!')
+    console.log("woww!!");
   }
 
   static propTypes = {
     firebase: PropTypes.object.isRequired
   };
 
-  logout = () => {
-    location.replace("#/login");
+  handleLogout = () => {
+    const { firebase } = this.props;
+    firebase.logout();
   };
 
   render() {
+    const { name } = this.props.profile;
+
     const { firebase } = this.props;
+
     const menu = (
       <Menu>
         <Menu.Item key="1">
           <Icon type="user" />
           Mi cuenta
         </Menu.Item>
-        <Menu.Item key="2" onClick={this.logout}>
+        <Menu.Item key="2" onClick={this.handleLogout}>
           <Icon type="logout" />
           Salir
         </Menu.Item>
@@ -41,7 +48,7 @@ class Header extends Component {
         </NavLink>
         <Dropdown overlay={menu}>
           <Button>
-            Hola Sebastian
+            Hola {name}
             <Icon type="user" className="c-primary" />
           </Button>
         </Dropdown>
@@ -50,10 +57,12 @@ class Header extends Component {
   }
 }
 
-// const mapStateToProps = state => ({
-//   user: state.firebase.profil
-// });
-const mapStateToProps = (state) => ({
-  todo: state
-})
-export default connect(mapStateToProps)(Header);
+const mapStateToProps = (state, props) => ({
+  user: state.firebase.auth,
+  profile: state.firebase.profile
+});
+
+export default compose(
+  firebaseConnect(),
+  connect(mapStateToProps)
+)(Header);
