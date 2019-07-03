@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Form, Input, Button } from "antd";
 import PropTypes from "prop-types";
 import { compose } from "redux";
-import { connect } from "react-redux";
 import { firebaseConnect } from "react-redux-firebase";
 
 class Register extends Component {
@@ -28,6 +27,16 @@ class Register extends Component {
     firebase
       .createUser({ email, password }, { name, email, phone, role })
       .catch(err => alert("That user already exists", "error"));
+
+    // fetch("http://localhost:3000/users", {
+    //   method: "POST",
+    //   body: JSON.stringify(this.state),
+    //   headers: {
+    //     "Content-type": "application/json; charset=UTF-8"
+    //   }
+    // })    
+    //   .then(res => res.json())
+    //   .then(this.props.history.push('/home'))
   };
 
   onChange = e => {

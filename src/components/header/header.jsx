@@ -15,6 +15,7 @@ class Header extends Component {
   };
 
   render() {
+    const { firebase } = this.props;
     const menu = (
       <Menu>
         <Menu.Item key="1">
@@ -28,7 +29,6 @@ class Header extends Component {
       </Menu>
     );
 
-    console.log('props', this.props)
     return (
       <Layout.Header className="header d-flex jc-space-between ai-center">
         <NavLink className="header__logo logo" to="/">
@@ -44,9 +44,5 @@ class Header extends Component {
     );
   }
 }
-
-// const mapStateToProps = state => ({
-//   user: state.firebase.profil
-// });
 
 export default firebaseConnect()(Header);
