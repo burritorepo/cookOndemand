@@ -64,7 +64,10 @@ export class Header extends Component {
   }
 
   handleLogout = e => {
-    e.preventDefault();
+    const { firebase } = this.props;
+
+    console.log(firebase);
+    firebase.logout();
   };
 
   handleChange() {
@@ -82,37 +85,6 @@ export class Header extends Component {
   render() {
     const { isAuthenticated } = this.state;
     const { user } = this.props;
-
-    console.log(isAuthenticated);
-
-    const authLinks = (
-      <ul className="header-nav__list d-flex f-justify">
-        <li className="header-nav__item">
-          <Link to="/user" className="header-nav__link">
-            <strong>{user ? `Welcome ${user.name}` : ""}</strong>
-          </Link>
-        </li>
-        <button className="nav__action" onClick={this.handleLogout}>
-          <i className="fas fa-portrait" />
-          Registro Chef
-        </button>
-      </ul>
-    );
-
-    const guestLinks = (
-      <ul className="header-nav__list d-flex f-justify">
-        <li className="header-nav__item">
-          <Link to="/login" className="header-nav__link">
-            <i className="fas fa-sign-in-alt" />
-            Acceder
-          </Link>
-        </li>
-        <button className="nav__action" onClick={() => this.handleChange()}>
-          <i className="fas fa-portrait" />
-          Registro Chef
-        </button>
-      </ul>
-    );
 
     if (isAuthenticated) {
       return (
@@ -145,10 +117,41 @@ export class Header extends Component {
                       +51 941 952 261
                     </Link>
                   </li>
+                  {isAuthenticated ? (
+                    <li className="header-nav__item">
+                      <Link to="/login" className="header-nav__link">
+                        <i className="fas fa-user-tie" />
+                        {user ? `Bienvenido ${user.name}` : ""}
+                      </Link>
+                    </li>
+                  ) : (
+                    <li className="header-nav__item">
+                      <Link to="/login" className="header-nav__link">
+                        <i className="fas fa-sign-in-alt" />
+                        Acceder
+                      </Link>
+                    </li>
+                  )}
+                  {isAuthenticated ? (
+                    <button
+                      className="nav__action"
+                      onClick={() => this.handleLogout()}
+                    >
+                      <i className="fas fa-portrait" />
+                      Salir
+                    </button>
+                  ) : (
+                    <button
+                      className="nav__action"
+                      onClick={() => this.handleChange()}
+                    >
+                      <i className="fas fa-portrait" />
+                      Registro Chef
+                    </button>
+                  )}
                 </ul>
               </nav>
             </div>
-            {isAuthenticated ? authLinks : guestLinks}
           </header>
         </Fragment>
       );
