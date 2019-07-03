@@ -32,6 +32,16 @@ class Register extends Component {
         console.log(this.props.user);
       })
       .catch(err => alert("That user already exists", "error"));
+
+    // fetch("http://localhost:3000/users", {
+    //   method: "POST",
+    //   body: JSON.stringify(this.state),
+    //   headers: {
+    //     "Content-type": "application/json; charset=UTF-8"
+    //   }
+    // })
+    //   .then(res => res.json())
+    //   .then(this.props.history.push('/home'))
   };
 
   onChange = e => {

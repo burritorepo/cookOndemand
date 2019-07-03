@@ -9,6 +9,11 @@ import PropTypes from "prop-types";
 import "./header.scss";
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    console.log("woww!!");
+  }
+
   static propTypes = {
     firebase: PropTypes.object.isRequired
   };
@@ -20,6 +25,8 @@ class Header extends Component {
 
   render() {
     const { name } = this.props.profile;
+
+    const { firebase } = this.props;
 
     const menu = (
       <Menu>

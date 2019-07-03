@@ -21,7 +21,7 @@ class Reservation extends Component {
       address: "",
       pax: "",
       preferences: "",
-      energy: "",
+      energy: "", 
       burners: "",
       oven: "",
       dateTime: "",

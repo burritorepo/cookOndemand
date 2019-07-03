@@ -31,6 +31,7 @@ export class Header extends Component {
 
   constructor(props) {
     super(props);
+    console.log("this.firebase", this.props);
     this.js_header = React.createRef();
   }
 
