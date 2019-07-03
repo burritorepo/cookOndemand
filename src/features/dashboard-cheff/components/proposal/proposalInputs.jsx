@@ -1,72 +1,122 @@
-import React, { Component, Fragment } from "react";
-import { Button, Input } from "antd";
+import React, { Component } from "react";
+import { Button, Input, Form } from "antd";
 
 class ProposalInputs extends Component {
   onClick = () => {
-    this.props.next();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        console.log("Received values of form: ", values);
+        this.props.next();
+      }
+    });
   };
   render() {
     const { TextArea } = Input;
     const { handleChange } = this.props;
+    const { getFieldDecorator } = this.props.form;
 
     return (
-      <Fragment>
-        <div onSubmit={this.onSubmit} style={{ width: "50%", margin: "auto" }}>
-          <h3 style={{ textAlign: "center", color: "#ff6700" }}>Abreboca</h3>
-          <Input
-            onChange={handleChange("starter")}
-            style={{ marginBottom: "20px" }}
-            placeholder="Ingresa un abreboca..."
-          />
-          <TextArea
-            onChange={handleChange("starter_desc")}
-            style={{ marginBottom: "20px" }}
-            placeholder="Añade una descripción del abreboca..."
-          />
-          <h3 style={{ textAlign: "center", color: "#ff6700" }}>Entrada</h3>
-          <Input
-            onChange={handleChange("entry")}
-            style={{ marginBottom: "20px" }}
-            placeholder="Ingresa una entrada..."
-          />
-          <TextArea
-            onChange={handleChange("entry_desc")}
-            style={{ marginBottom: "20px" }}
-            placeholder="Añade una descripción de la entrada..."
-          />
-          <h3 style={{ textAlign: "center", color: "#ff6700" }}>Fondo</h3>
-          <Input
-            onChange={handleChange("main")}
-            style={{ marginBottom: "20px" }}
-            placeholder="Ingresa un plato de fondo..."
-          />
-          <TextArea
-            onChange={handleChange("main_desc")}
-            style={{ marginBottom: "20px" }}
-            placeholder="Añade una descripción del plato de fondo..."
-          />
-          <h3 style={{ textAlign: "center", color: "#ff6700" }}>Postre</h3>
-          <Input
-            onChange={handleChange("dessert")}
-            style={{ marginBottom: "20px" }}
-            placeholder="Ingresa un postre..."
-          />
-          <TextArea
-            onChange={handleChange("dessert_desc")}
-            style={{ marginBottom: "20px" }}
-            placeholder="Añade una descripción del postre..."
-          />
-        </div>
-        <hr />
-        <br />
-        <div className="text-center">
-          <Button type="primary" onClick={this.onClick}>
-            Siguiente
-          </Button>
-        </div>
-      </Fragment>
+        <Form style={{ width: "70%", margin: "auto" }}>
+          <Form.Item>
+            <h3 style={{ textAlign: "center", color: "#ff6700" }}>Abreboca</h3>
+            {getFieldDecorator("starter", {
+              rules: [{ required: true, message: "Ingresa un abreboca!" }]
+            })(
+              <Input
+                onChange={handleChange("starter")}
+                placeholder="Ingresa un abreboca..."
+              />
+            )}
+          </Form.Item>
+          <Form.Item>
+            {getFieldDecorator("starter_desc", {
+              rules: [{ required: true, message: "Describe tu abreboca!" }]
+            })(
+              <TextArea
+                onChange={handleChange("starter_desc")}
+                placeholder="Añade una descripción del abreboca..."
+              />
+            )}
+          </Form.Item>
+          <Form.Item>
+            <h3 style={{ textAlign: "center", color: "#ff6700" }}>Entrada</h3>
+            {getFieldDecorator("entry", {
+              rules: [{ required: true, message: "Ingresa una entrada!" }]
+            })(
+              <Input
+                onChange={handleChange("entry")}
+                placeholder="Ingresa una entrada..."
+              />
+            )}
+          </Form.Item>
+          <Form.Item>
+            {getFieldDecorator("entry_desc", {
+              rules: [{ required: true, message: "Describe tu entrada!" }]
+            })(
+              <TextArea
+                onChange={handleChange("entry_desc")}
+                placeholder="Añade una descripción de la entrada..."
+              />
+            )}
+          </Form.Item>
+          <Form.Item>
+            <h3 style={{ textAlign: "center", color: "#ff6700" }}>Fondo</h3>
+            {getFieldDecorator("main", {
+              rules: [{ required: true, message: "Ingresa un plato de fondo!" }]
+            })(
+              <Input
+                onChange={handleChange("main")}
+                placeholder="Ingresa un plato de fondo..."
+              />
+            )}
+          </Form.Item>
+          <Form.Item>
+            {getFieldDecorator("main_desc", {
+              rules: [
+                { required: true, message: "Describe tu plato de fondo!" }
+              ]
+            })(
+              <TextArea
+                onChange={handleChange("main_desc")}
+                placeholder="Añade una descripción del plato de fondo..."
+              />
+            )}
+          </Form.Item>
+          <Form.Item>
+            <h3 style={{ textAlign: "center", color: "#ff6700" }}>Postre</h3>
+            {getFieldDecorator("dessert", {
+              rules: [{ required: true, message: "Ingresa un postre!" }]
+            })(
+              <Input
+                onChange={handleChange("dessert")}
+                placeholder="Ingresa un postre..."
+              />
+            )}
+          </Form.Item>
+          <Form.Item>
+            {getFieldDecorator("dessert_desc", {
+              rules: [{ required: true, message: "Describe tu postre!" }]
+            })(
+              <TextArea
+                onChange={handleChange("dessert_desc")}
+                placeholder="Añade una descripción del postre..."
+              />
+            )}
+          </Form.Item>
+          <hr />
+          <br />
+          <Form.Item wrapperCol={{ span: 12, offset: 10 }}>
+            <Button type="primary" onClick={this.onClick}>
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
     );
   }
 }
 
-export { ProposalInputs };
+const WrappedProposal = Form.create({ name: "proposal_inputs" })(
+  ProposalInputs
+);
+
+export { WrappedProposal };

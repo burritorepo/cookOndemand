@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Breadcrumb, Card } from "antd";
-import { ProposalInputs } from "./proposalInputs";
+import { WrappedProposal } from "./proposalInputs";
 import { Confirmation } from "./confirmation";
-import { Success } from './success';
+import { Success } from "./success";
 
 class Proposal extends Component {
   constructor(props) {
@@ -93,7 +93,7 @@ class Proposal extends Component {
               <h2>Solicitud 22/06/19</h2>
               <hr />
               <br />
-              <ProposalInputs
+              <WrappedProposal
                 next={this.next}
                 handleChange={this.handleChange}
                 values={values}
@@ -120,17 +120,16 @@ class Proposal extends Component {
             <Card className="content">
               <h2>Solicitud 22/06/19</h2>
               <hr />
-              <Confirmation
-                next={this.next}
-                prev={this.prev}
-                values={values}
-              />
+              <Confirmation next={this.next} prev={this.prev} values={values} />
             </Card>
           </div>
         );
       case 3:
         return (
-          <div className="view view-request-detail" style={{ height: '79.6vh' }}>
+          <div
+            className="view view-request-detail"
+            style={{ height: "79.6vh" }}
+          >
             <Breadcrumb separator=">">
               <Breadcrumb.Item>
                 <NavLink to="/cheff">Home</NavLink>
@@ -147,8 +146,7 @@ class Proposal extends Component {
               <h2>Solicitud 22/06/19</h2>
               <hr />
               <br />
-              <Success
-              />
+              <Success />
             </Card>
           </div>
         );
