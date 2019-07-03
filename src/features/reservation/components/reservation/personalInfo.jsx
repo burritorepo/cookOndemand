@@ -13,7 +13,7 @@ class PersonalInfo extends Component {
   };
 
   render() {
-    const { handleChange } = this.props;
+    const { handleChange, onChange } = this.props;
     const { getFieldDecorator } = this.props.form;
 
     return (
@@ -65,7 +65,13 @@ class PersonalInfo extends Component {
                   validator: this.validateToNextPassword
                 }
               ]
-            })(<Input.Password placeholder="Ingresa una contraseña..." />)}
+            })(
+              <Input.Password
+                name="password"
+                onChange={onChange}
+                placeholder="Ingresa una contraseña..."
+              />
+            )}
           </Form.Item>
           <Form.Item hasFeedback>
             {getFieldDecorator("confirm", {
@@ -81,7 +87,7 @@ class PersonalInfo extends Component {
             })(
               <Input.Password
                 name="password"
-                onChange={this.onChange}
+                onChange={onChange}
                 placeholder="Confirma contraseña..."
                 onBlur={this.handleConfirmBlur}
               />

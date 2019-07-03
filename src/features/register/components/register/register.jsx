@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Form, Input, Button } from "antd";
 import PropTypes from "prop-types";
+import { compose } from "redux";
+import { connect } from "react-redux";
 import { firebaseConnect } from "react-redux-firebase";
 
 class Register extends Component {
@@ -20,11 +22,15 @@ class Register extends Component {
     e.preventDefault();
 
     const { firebase } = this.props;
-    const { name, email, password, role } = this.state;
+    const { name, email, password, phone, role } = this.state;
 
     /* Register with firebase */
     firebase
-      .createUser({ email, password }, { name, email, role })
+      .createUser({ email, password }, { name, email, phone, role })
+      .then(userData => {
+        console.log("User: ", userData);
+        console.log(this.props.user);
+      })
       .catch(err => alert("That user already exists", "error"));
   };
 
@@ -199,4 +205,11 @@ class Register extends Component {
 
 const WrappedRegister = Form.create({ name: "register" })(Register);
 
-export default firebaseConnect()(WrappedRegister);
+const mapStateToProps = (state, props) => ({
+  user: state.firebase.auth.uid
+});
+
+export default compose(
+  firebaseConnect(),
+  connect(mapStateToProps)
+)(WrappedRegister);
