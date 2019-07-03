@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { firebaseConnect } from "react-redux-firebase";
+import { firebaseConnect, firestoreConnect } from "react-redux-firebase";
 import PropTypes from "prop-types";
 
 import { Steps, Button } from "antd";
@@ -18,10 +18,11 @@ class Reservation extends Component {
     super(props);
     this.state = {
       current: 0,
+      client_id: null,
       address: "",
       pax: "",
       preferences: "",
-      energy: "", 
+      energy: "",
       burners: "",
       oven: "",
       dateTime: "",
@@ -36,11 +37,13 @@ class Reservation extends Component {
   }
 
   static propTypes = {
-    firebase: PropTypes.object.isRequired
+    firebase: PropTypes.object.isRequired,
+    firestore: PropTypes.object.isRequired
   };
 
   onSubmit = () => {
-    const { firebase } = this.props;
+    const { firebase, firestore, history } = this.props;
+    const newReservation = { ...this.state };
     const { name, email, password, phone, role } = this.state;
 
     /* Create Reservation */
@@ -51,6 +54,13 @@ class Reservation extends Component {
       .then(userData => {
         console.log("User: ", userData);
         console.log(this.props.user);
+
+        const userId = this.props.user;
+        this.setState({ client_id: userId });
+
+        firestore
+          .add({ collection: "reservations" }, newReservation)
+          .then(() => history.push("/user"));
       })
       .catch(err => alert("That user already exists", "error"));
   };
@@ -255,5 +265,6 @@ const mapStateToProps = (state, props) => ({
 
 export default compose(
   firebaseConnect(),
+  firestoreConnect(),
   connect(mapStateToProps)
 )(Reservation);

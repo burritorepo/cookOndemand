@@ -4,12 +4,19 @@ import { Breadcrumb, Card } from "antd";
 import { WrappedProposal } from "./proposalInputs";
 import { Confirmation } from "./confirmation";
 import { Success } from "./success";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { firebaseConnect } from "react-redux-firebase";
+import { firestoreConnect } from "react-redux-firebase";
+import PropTypes from "prop-types";
 
 class Proposal extends Component {
   constructor(props) {
     super(props);
     this.state = {
       step: 1,
+      reservation_id: null,
+      chef_id: null,
       starter: "",
       starter_desc: "",
       entry: "",
@@ -20,6 +27,27 @@ class Proposal extends Component {
       dessert_desc: ""
     };
   }
+
+  static propTypes = {
+    firebase: PropTypes.object.isRequired
+  };
+
+  componentDidMount() {
+    const userId = { ...this.props.user };
+    const owner = userId.uid;
+    const reserveId = this.props.match.params.id;
+
+    this.setState({ reservation_id: reserveId, chef_id: owner });
+  }
+
+  onSubmit = () => {
+    const newProposal = { ...this.state };
+    const { firestore, history } = this.props;
+
+    firestore
+      .add({ collection: "proposals" }, newProposal)
+      .then(() => history.push("/cheff"));
+  };
 
   handleChange = input => e => {
     this.setState({
@@ -71,8 +99,6 @@ class Proposal extends Component {
       dessert_desc
     };
 
-    console.log("state", this.state);
-
     switch (step) {
       case 1:
         return (
@@ -120,7 +146,12 @@ class Proposal extends Component {
             <Card className="content">
               <h2>Solicitud 22/06/19</h2>
               <hr />
-              <Confirmation next={this.next} prev={this.prev} values={values} />
+              <Confirmation
+                next={this.next}
+                prev={this.prev}
+                onSubmit={this.onSubmit}
+                values={values}
+              />
             </Card>
           </div>
         );
@@ -154,4 +185,13 @@ class Proposal extends Component {
   }
 }
 
-export { Proposal };
+const mapStateToProps = (state, props) => ({
+  user: state.firebase.auth,
+  profile: state.firebase.profile
+});
+
+export default compose(
+  firestoreConnect(),
+  firebaseConnect(),
+  connect(mapStateToProps)
+)(Proposal);
