@@ -18,7 +18,7 @@ class Reservation extends Component {
       address: "",
       pax: "",
       preferences: "",
-      energy: "", 
+      energy: "",
       burners: "",
       oven: "",
       dateTime: "",
@@ -43,8 +43,28 @@ class Reservation extends Component {
 
     /* Register with firebase */
     firebase
-      .createUser(email, password)
+      .createUser({ email, password }, { name, phone, role })
       .catch(err => alert("That user already exists", "error"));
+
+    fetch("https://apichef.herokuapp.com/api/solicitud", {
+      method: "POST",
+      body: JSON.stringify({
+        address: "",
+        pax: "",
+        preferences: "",
+        energy: "",
+        burners: "",
+        oven: "",
+        dateTime: "",
+        restrictions: "",
+        obs: ""
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    })
+      .then(res => res.json())
+      .then(this.props.history.push("/home"));
   };
 
   next = () => {
