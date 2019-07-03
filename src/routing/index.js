@@ -5,7 +5,7 @@ import {
   Redirect,
   Switch
 } from "react-router-dom";
-/* import { UserIsAuthenticated, UserIsNotAuthenticated } from "../helpers/auth"; */
+import { UserIsAuthenticated, UserIsNotAuthenticated } from "../helpers/auth";
 
 import { Landing, RoutingDashboard, RoutingDashboardCheff } from "../features";
 import Reservation from "../features/reservation/components/reservation/reservation";
@@ -22,12 +22,18 @@ function RoutingRoot() {
         ) : (
             <Route path="/cheff" component={RoutingDashboardCheff} />
           )} */}
-        <Route path="/user" component={RoutingDashboard} />
-        <Route path="/cheff" component={RoutingDashboardCheff} />
+        <Route path="/user" component={UserIsAuthenticated(RoutingDashboard)} />
+        <Route
+          path="/cheff"
+          component={UserIsAuthenticated(RoutingDashboardCheff)}
+        />
         <Route path="/reservation" component={Reservation} />
         <Route path="/home" component={Landing} />
-        <Route path="/login" component={WrappedLogin} />
-        <Route path="/register" component={WrappedRegister} />
+        <Route path="/login" component={UserIsNotAuthenticated(WrappedLogin)} />
+        <Route
+          path="/register"
+          component={UserIsNotAuthenticated(WrappedRegister)}
+        />
         <Redirect exact from="/" to="/home" />
       </Switch>
     </Router>

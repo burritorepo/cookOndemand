@@ -15,7 +15,7 @@ class Register extends Component {
   };
 
   static propTypes = {
-    firebase: PropTypes.object.isRequired
+    user: PropTypes.object.isRequired
   };
 
   handleSubmit = e => {
