@@ -2,10 +2,15 @@ import React, { Component } from "react";
 import { Layout, Menu, Icon, Dropdown, Button } from "antd";
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
-import { firebaseConnect } from "react-redux-firebase";
+import { connect } from 'react-redux';
 import "./header.scss";
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    console.log('woww!!')
+  }
+
   static propTypes = {
     firebase: PropTypes.object.isRequired
   };
@@ -48,5 +53,7 @@ class Header extends Component {
 // const mapStateToProps = state => ({
 //   user: state.firebase.profil
 // });
-
-export default firebaseConnect()(Header);
+const mapStateToProps = (state) => ({
+  todo: state
+})
+export default connect(mapStateToProps)(Header);

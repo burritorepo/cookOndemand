@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { TimelineLite, Power2, Back } from 'gsap';
+import { connect } from 'react-redux';
+
 import './header.scss';
 
 export class Header extends Component {
@@ -10,6 +12,7 @@ export class Header extends Component {
 
   constructor(props) {
     super(props);
+    console.log('this.firebase', this.props)
     this.js_header = React.createRef();
   }
 
@@ -105,4 +108,7 @@ export class Header extends Component {
   }
 }
 
-export default Header;
+const mapStateToProps = (state) => ({
+  firebase: state.firebase
+})
+export default connect(mapStateToProps)(Header);
