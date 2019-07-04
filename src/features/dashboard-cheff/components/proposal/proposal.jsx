@@ -44,9 +44,54 @@ class Proposal extends Component {
     const newProposal = { ...this.state };
     const { firestore, history } = this.props;
 
-    firestore
+    /* firestore
       .add({ collection: "proposals" }, newProposal)
-      .then(() => history.push("/cheff"));
+      .then(() => history.push("/cheff")); */
+
+    // fetch('https://apichef.herokuapp.com/api/propuesta', {
+    //   method: 'POST',
+
+    // })
+
+    // const body = {
+    //   idproposal: 1,
+    //   idship: 1,
+    //   idchef: 1,
+    //   starter: 1,
+    //   starter_desc: 1,
+    //   entry: 1,
+    //   entry_desc: 1,
+    //   main: 1,
+    //   main_desc: 1,
+    //   dessert: 1,
+    //   dessert_desc: 1,
+    //   state: 2
+    // };
+
+    // const body = {
+    //   dessert: "flan",
+    //   dessert_desc: "rico flan limeño",
+    //   entry: "caldo de gallina",
+    //   entry_desc: "caldo de gallina",
+    //   main: "arroz con pollo",
+    //   main_desc: "arroz con pollo ",
+    //   starter: "choritos",
+    //   starter_desc: "choritos de callao"
+    // };
+
+    const body = {
+      ...newProposal
+    };
+
+    fetch("https://apichef.herokuapp.com/api/propuesta", {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      }
+    }).then(value => {
+      console.log("value", value);
+    });
   };
 
   handleChange = input => e => {

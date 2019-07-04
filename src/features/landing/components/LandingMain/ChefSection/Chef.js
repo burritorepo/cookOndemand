@@ -1,8 +1,9 @@
-import React, { Component, Fragment } from 'react';
-import { TimelineLite, Power2 } from 'gsap';
-import './Chef.scss';
-import chefBanner from './img/chef-banner.jpg';
-import chefProfile from './img/chef-profile.jpg';
+import React, { Component, Fragment } from "react";
+import { TimelineLite, Power2 } from "gsap";
+import classnames from "classnames";
+import "./Chef.scss";
+import chefBanner from "./img/chef-banner.jpg";
+import chefProfile from "./img/chef-profile.jpg";
 
 export class Chef extends Component {
   constructor(props) {
@@ -11,32 +12,41 @@ export class Chef extends Component {
   }
 
   componentDidMount() {
-    const tl = new TimelineLite();
+    const { step } = this.props;
 
-    tl.from(this.js_chef.current, 2.5, {
-      opacity: 0,
-      delay: 0.5,
-      ease: Power2.easeInOut
-    });
+    if (step == 3) {
+      const tl = new TimelineLite();
+
+      tl.from(this.js_chef.current, 2.5, {
+        opacity: 0,
+        delay: 0.5,
+        ease: Power2.easeInOut
+      });
+    }
   }
 
   render() {
+    const { step } = this.props;
+
     return (
       <Fragment>
         <div
-          className='chef--section d-flex f-center js_chef'
+          className={classnames({
+            "chef--section d-flex f-center js_chef": step != 3,
+            "chef--section active d-flex f-center js_chef": step == 3
+          })}
           ref={this.js_chef}
         >
-          <figure className='chef--section-overlay'>
-            <img src={chefBanner} alt='' />
+          <figure className="chef--section-overlay">
+            <img src={chefBanner} alt="" />
           </figure>
-          <div className='chef--section-content d-flex'>
-            <div className='chef--section-content__title'>
+          <div className="chef--section-content d-flex">
+            <div className="chef--section-content__title">
               <h2>Nuestros Chefs</h2>
             </div>
-            <div className='chef--section-content__text d-flex f-col'>
+            <div className="chef--section-content__text d-flex f-col">
               <figure>
-                <img src={chefProfile} alt='' />
+                <img src={chefProfile} alt="" />
               </figure>
               <p>
                 Disfruta de una experiencia gastronomica inolvidable en la

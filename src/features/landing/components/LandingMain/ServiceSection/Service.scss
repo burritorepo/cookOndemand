@@ -5,6 +5,8 @@
   height: 100vh;
   overflow: hidden;
   z-index: 100;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
 
   .service--section-overlay {
     /* Positioning */
@@ -70,6 +72,10 @@
       height: 55vh;
     }
   }
+}
+
+.service--section.active {
+  opacity: 1;
 }
 
 .service--card-wrapper {

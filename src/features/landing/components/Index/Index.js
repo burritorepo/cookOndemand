@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import { TimelineLite, Power2, Back } from 'gsap';
-import './Index.scss';
+import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
+import { TimelineLite, Power2, Back } from "gsap";
+import "./Index.scss";
 
 export class Index extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ export class Index extends Component {
   componentDidMount() {
     const tl = new TimelineLite();
 
-    tl.from(this.js_index.current, 1.5, {
+    tl.from(this.js_index.current, 0.5, {
       opacity: 0,
       y: 40,
       delay: 1.25,
@@ -25,40 +25,38 @@ export class Index extends Component {
   };
 
   render() {
-    console.log('step', this.props.step);
-
     return (
       <Fragment>
-        <div className='index'>
+        <div className="index">
           <nav
-            className='index-nav d-flex f-justify js_index'
+            className="index-nav d-flex f-justify js_index"
             ref={this.js_index}
           >
             <Link
-              to='#'
-              onClick={() => this.handleClick('1')}
-              className='index-nav__link'
+              to="#"
+              onClick={() => this.handleClick("1")}
+              className="index-nav__link"
             >
               01. Inicio
             </Link>
             <Link
-              to='#'
-              onClick={() => this.handleClick('2')}
-              className='index-nav__link'
+              to="#"
+              onClick={() => this.handleClick("2")}
+              className="index-nav__link"
             >
               02. ¿Como Funciona?
             </Link>
             <Link
-              to='#'
-              onClick={() => this.handleClick('3')}
-              className='index-nav__link'
+              to="#"
+              onClick={() => this.handleClick("3")}
+              className="index-nav__link"
             >
               03. Nuestros Chefs!
             </Link>
             <Link
-              to='#'
-              onClick={() => this.handleClick('4')}
-              className='index-nav__link'
+              to="#"
+              onClick={() => this.handleClick("4")}
+              className="index-nav__link"
             >
               04. Servicios
             </Link>
