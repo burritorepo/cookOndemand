@@ -66,9 +66,9 @@ class Login extends Component {
               <Form.Item>
                 {getFieldDecorator("user", {
                   rules: [
-                    { required: true, message: "Por favor ingresa tu usuario!" }
+                    { required: true, message: "Por favor ingresa tu correo!" }
                   ]
-                })(<Input name="email" onChange={this.onChange} />)}
+                })(<Input name="email" onChange={this.onChange} placeholder="Ingresar Correo"/>)}
               </Form.Item>
               <Form.Item>
                 {getFieldDecorator("password", {
@@ -83,10 +83,11 @@ class Login extends Component {
                     name="password"
                     type="password"
                     onChange={this.onChange}
+                    placeholder="Ingresar Password"
                   />
                 )}
               </Form.Item>
-              <Form.Item>
+              {/* <Form.Item>
                 {getFieldDecorator("type", {
                   rules: [
                     { required: true, message: "Please select your type!" }
@@ -100,7 +101,7 @@ class Login extends Component {
                     <Option value="cheff">Cheff</Option>
                   </Select>
                 )}
-              </Form.Item>
+              </Form.Item> */}
               <Form.Item>
                 <Button type="primary" htmlType="submit" block>
                   Ingresar

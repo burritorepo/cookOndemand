@@ -1,9 +1,83 @@
 import React, { Component } from "react";
 import { NavLink } from 'react-router-dom';
 import { Breadcrumb, Card, Row, Col, Icon, Button } from 'antd';
+import { connect } from 'react-redux'
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
+
+function WrapCard(props) {
+  console.log('props', props)
+  return (
+    <Card className="card request__card mb-20" title="Solicitud 22/06/19">
+      <Row gutter={16}>
+        <Col span={12}>
+          <div className="request__item mb-5">
+            <Icon type="check" className="c-primary" />
+            <span className="fsize-12">
+             {props.pax}
+                    </span>
+          </div>
+          <div className="request__item mb-5">
+            <Icon type="check" className="c-primary" />
+            <span className="fsize-12">Cena</span>
+          </div>
+          <div className="request__item mb-5">
+            <Icon type="check" className="c-primary" />
+            <span className="fsize-12">Avenida José Pardo 600, Miraflores</span>
+          </div>
+          <div className="request__item mb-5">
+            <Icon type="check" className="c-primary" />
+            <span className="fsize-12">S/ 160.00 - S/ 180.00 / persona</span>
+          </div>
+          <div className="request__item mb-5">
+            <Icon type="check" className="c-primary" />
+            <span className="fsize-12">Comida Italiana</span>
+          </div>
+        </Col>
+        <Col span={12}>
+          <div className="request__item mb-5">
+            <Icon type="check" className="c-primary" />
+            <span className="fsize-12">Cocina a Gas</span>
+          </div>
+          <div className="request__item mb-5">
+            <Icon type="check" className="c-primary" />
+            <span className="fsize-12">4 Hornillas / Sin Horno</span>
+          </div>
+          <div className="request__item mb-5">
+            <Icon type="check" className="c-primary" />
+            <span className="fsize-12">Fecha: 22/06/2019 </span>
+          </div>
+          <div className="request__item mb-5">
+            <Icon type="check" className="c-primary" />
+            <span className="fsize-12">Alergico a los Mariscos </span>
+          </div>
+          <div className="request__item mb-5">
+            <Icon type="check" className="c-primary" />
+            <span className="fsize-12">De preferencia llegar media hora antes </span>
+          </div>
+        </Col>
+      </Row>
+      <div className="card__footer d-flex jc-space-between ai-center">
+        <Icon type="delete" />
+        <Button type="primary">
+          <NavLink to="/cheff/request/1">Enviar propuesta</NavLink>
+        </Button>
+      </div>
+    </Card>
+  )
+}
 
 class DashboardRequests extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
+    const { reservations = [] } = this.props;
+    const listCards = reservations.map((reservation, id) => {
+      return <WrapCard {...reservation} key={id}/>
+    });
+
     return (
       <div className="view view-request">
         <Breadcrumb separator=">">
@@ -15,68 +89,13 @@ class DashboardRequests extends Component {
         <br />
         <h1 className="title c-primary">Mis Solicitudes</h1>
         <br />
-        <Row gutter={16}>
+        {listCards}
+        {/* <Row gutter={16}>
           <Col span={24}>
-            <Card className="card request__card" title="Solicitud 22/06/19">
-              <Row gutter={16}>
-                <Col span={12}>
-                  <div className="request__item mb-5">
-                    <Icon type="check" className="c-primary" />
-                    <span className="fsize-12">
-                      13 - 20 personas
-                    </span>
-                  </div>
-                  <div className="request__item mb-5">
-                    <Icon type="check" className="c-primary" />
-                    <span className="fsize-12">Cena</span>
-                  </div>
-                  <div className="request__item mb-5">
-                    <Icon type="check" className="c-primary" />
-                    <span className="fsize-12">Avenida José Pardo 600, Miraflores</span>
-                  </div>
-                  <div className="request__item mb-5">
-                    <Icon type="check" className="c-primary" />
-                    <span className="fsize-12">S/ 160.00 - S/ 180.00 / persona</span>
-                  </div>
-                  <div className="request__item mb-5">
-                    <Icon type="check" className="c-primary" />
-                    <span className="fsize-12">Comida Italiana</span>
-                  </div>
-                </Col>
-                <Col span={12}>
-                  <div className="request__item mb-5">
-                    <Icon type="check" className="c-primary" />
-                    <span className="fsize-12">Cocina a Gas</span>
-                  </div>
-                  <div className="request__item mb-5">
-                    <Icon type="check" className="c-primary" />
-                    <span className="fsize-12">4 Hornillas / Sin Horno</span>
-                  </div>
-                  <div className="request__item mb-5">
-                    <Icon type="check" className="c-primary" />
-                    <span className="fsize-12">Fecha: 22/06/2019 </span>
-                  </div>
-                  <div className="request__item mb-5">
-                    <Icon type="check" className="c-primary" />
-                    <span className="fsize-12">Alergico a los Mariscos </span>
-                  </div>
-                  <div className="request__item mb-5">
-                    <Icon type="check" className="c-primary" />
-                    <span className="fsize-12">De preferencia llegar media hora antes </span>
-                  </div>
-                </Col>
-              </Row>
-              <div className="card__footer d-flex jc-space-between ai-center">
-                <Icon type="delete" />
-                <Button type="primary">
-                  <NavLink to="/cheff/request/1">Enviar propuesta</NavLink>
-                </Button>
-
-              </div>
-            </Card>
+            
           </Col>
-        </Row>
-        <br />
+        </Row> */}
+        {/* <br />
         <Row gutter={16}>
           <Col span={24}>
             <Card className="card request__card" title="Solicitud 22/06/19">
@@ -134,12 +153,17 @@ class DashboardRequests extends Component {
               </div>
             </Card>
           </Col>
-        </Row>
+        </Row> */}
       </div>
     )
   }
 }
 
-export {
-  DashboardRequests
-}
+const mapStateToProps = (state) => ({
+  reservations: state.firestore.ordered.reservations
+});
+
+export default compose(
+  firestoreConnect([{ collection: 'reservations' }]),
+  connect(mapStateToProps)
+)(DashboardRequests)

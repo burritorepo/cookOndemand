@@ -2,12 +2,10 @@ import React from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 import { Layout } from "antd";
 
-import { DashboardRequests, Home } from "./components";
-
+import { Home } from "./components";
+import DashboardRequests from './components/requests/requests';
 import Proposal from "./components/proposal/proposal";
-
 import Header from "../../components/header/header";
-
 import { Main, Footer, Sidebar } from "../../components";
 
 function RoutingDashboardCheff(prop) {
