@@ -13,37 +13,7 @@ export class Hero extends Component {
     this.js_text = React.createRef();
   }
 
-  componentDidMount() {
-    const tl = new TimelineLite();
-
-    tl.from(this.js_hero.current, 0.5, {
-      opacity: 0,
-      delay: 0.5,
-      ease: Power2.easeInOut
-    });
-
-    tl.from(
-      this.js_title.current,
-      0.5,
-      {
-        opacity: 0,
-        x: -40,
-        ease: Power2.easeOut
-      },
-      "-=1"
-    );
-
-    tl.from(
-      this.js_text.current,
-      0.5,
-      {
-        opacity: 0,
-        x: 40,
-        ease: Power2.easeOut
-      },
-      "-=1"
-    );
-  }
+  componentDidMount() {}
 
   render() {
     const { step } = this.props;

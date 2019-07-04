@@ -11,19 +11,7 @@ export class Chef extends Component {
     this.js_chef = React.createRef();
   }
 
-  componentDidMount() {
-    const { step } = this.props;
-
-    if (step == 3) {
-      const tl = new TimelineLite();
-
-      tl.from(this.js_chef.current, 2.5, {
-        opacity: 0,
-        delay: 0.5,
-        ease: Power2.easeInOut
-      });
-    }
-  }
+  componentDidMount() {}
 
   render() {
     const { step } = this.props;

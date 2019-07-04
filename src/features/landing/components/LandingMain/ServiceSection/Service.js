@@ -21,70 +21,7 @@ export class Service extends Component {
     this.js_card_5 = React.createRef();
   }
 
-  componentDidMount() {
-    /* const tl = new TimelineLite();
-
-    tl.from(this.js_service.current, 2.5, {
-      opacity: 0,
-      delay: 0.5,
-      ease: Power2.easeInOut
-    });
-
-    tl.from(
-      this.js_card_1.current,
-      0.5,
-      {
-        opacity: 0,
-        x: 100,
-        ease: Power2.easeInOut
-      },
-      '-=1.5'
-    );
-
-    tl.from(
-      this.js_card_2.current,
-      0.5,
-      {
-        opacity: 0,
-        y: 33,
-        ease: Power2.easeInOut
-      },
-      '-=1.5'
-    );
-
-    tl.from(
-      this.js_card_3.current,
-      0.5,
-      {
-        opacity: 0,
-        y: -66,
-        ease: Power2.easeInOut
-      },
-      '-=1.5'
-    );
-
-    tl.from(
-      this.js_card_4.current,
-      0.5,
-      {
-        opacity: 0,
-        x: -100,
-        ease: Power2.easeInOut
-      },
-      '-=1.5'
-    );
-
-    tl.from(
-      this.js_card_5.current,
-      0.5,
-      {
-        opacity: 0,
-        x: -100,
-        ease: Power2.easeInOut
-      },
-      '-=1.5'
-    ); */
-  }
+  componentDidMount() {}
 
   render() {
     const { step } = this.props;

@@ -56,7 +56,7 @@ export class Header extends Component {
     tl.from(this.js_header.current, 0.5, {
       opacity: 0,
       y: -40,
-      delay: 1.25,
+      delay: 0.5,
       ease: Power2.easeInOut
     });
   }

@@ -15,7 +15,7 @@ export class Index extends Component {
     tl.from(this.js_index.current, 0.5, {
       opacity: 0,
       y: 40,
-      delay: 1.25,
+      delay: 0.5,
       ease: Back.easeInOut
     });
   }

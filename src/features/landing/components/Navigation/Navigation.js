@@ -13,7 +13,7 @@ export class Navigation extends Component {
     tl.from(this.js_nav.current, 0.5, {
       opacity: 0,
       x: 40,
-      delay: 1.25,
+      delay: 0.5,
       ease: Power2.easeInOut
     });
   }

@@ -18,63 +18,7 @@ export class How extends Component {
     this.js_card_4 = React.createRef();
   }
 
-  componentDidMount() {
-    const { step } = this.props;
-
-    if (step == 2) {
-      const tl = new TimelineLite();
-
-      tl.from(this.js_how.current, 2.5, {
-        opacity: 0,
-        delay: 0.5,
-        ease: Power2.easeInOut
-      });
-
-      tl.from(
-        this.js_card_1.current,
-        0.5,
-        {
-          opacity: 0,
-          y: -40,
-          ease: Power2.easeOut
-        },
-        "-=1.5"
-      );
-
-      tl.from(
-        this.js_card_2.current,
-        0.5,
-        {
-          opacity: 0,
-          y: -40,
-          ease: Power2.easeOut
-        },
-        "-=1.4"
-      );
-
-      tl.from(
-        this.js_card_3.current,
-        0.5,
-        {
-          opacity: 0,
-          y: -40,
-          ease: Power2.easeOut
-        },
-        "-=1.3"
-      );
-
-      tl.from(
-        this.js_card_4.current,
-        0.5,
-        {
-          opacity: 0,
-          y: -40,
-          ease: Power2.easeOut
-        },
-        "-=1.2"
-      );
-    }
-  }
+  componentDidMount() {}
 
   render() {
     const { step } = this.props;
