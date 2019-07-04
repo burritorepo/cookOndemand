@@ -6,24 +6,41 @@ import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 
 function WrapCard(props) {
+  // address: "recavarren 111 miraflores"
+  // burners: "2"
+  // client_id: null
+  // current: 5
+  // dateTime: "2019-07-12"
+  // email: "jaim@delmar.com"
+  // energy: "gas"
+  // id: "AUfU5b4MRdxM0rCIPYpY"
+  // name: "jaim "
+  // obs: "cena romantica"
+  // oven: "si"
+  // password: "234566"
+  // pax: "2"
+  // phone: "1234567899"
+  // preferences: "criolla"
+  // restrictions: "Intolerancia a la lactosa"
+  // role: "client"
   console.log('props', props)
   return (
-    <Card className="card request__card mb-20" title="Solicitud 22/06/19">
+    <Card className="card request__card mb-20" title={`Solicitud ${props.datetime}`}>
       <Row gutter={16}>
         <Col span={12}>
           <div className="request__item mb-5">
             <Icon type="check" className="c-primary" />
             <span className="fsize-12">
-             {props.pax}
-                    </span>
+              {props.pax}
+            </span>
           </div>
           <div className="request__item mb-5">
             <Icon type="check" className="c-primary" />
-            <span className="fsize-12">Cena</span>
+            <span className="fsize-12">{props.obs}</span>
           </div>
           <div className="request__item mb-5">
             <Icon type="check" className="c-primary" />
-            <span className="fsize-12">Avenida José Pardo 600, Miraflores</span>
+            <span className="fsize-12">{props.address}</span>
           </div>
           <div className="request__item mb-5">
             <Icon type="check" className="c-primary" />
@@ -31,7 +48,7 @@ function WrapCard(props) {
           </div>
           <div className="request__item mb-5">
             <Icon type="check" className="c-primary" />
-            <span className="fsize-12">Comida Italiana</span>
+            <span className="fsize-12">{props.preferences}</span>
           </div>
         </Col>
         <Col span={12}>
@@ -45,11 +62,11 @@ function WrapCard(props) {
           </div>
           <div className="request__item mb-5">
             <Icon type="check" className="c-primary" />
-            <span className="fsize-12">Fecha: 22/06/2019 </span>
+            <span className="fsize-12">Fecha: {props.datetime} </span>
           </div>
           <div className="request__item mb-5">
             <Icon type="check" className="c-primary" />
-            <span className="fsize-12">Alergico a los Mariscos </span>
+            <span className="fsize-12">{props.restrictions}</span>
           </div>
           <div className="request__item mb-5">
             <Icon type="check" className="c-primary" />
@@ -75,7 +92,7 @@ class DashboardRequests extends Component {
   render() {
     const { reservations = [] } = this.props;
     const listCards = reservations.map((reservation, id) => {
-      return <WrapCard {...reservation} key={id}/>
+      return <WrapCard {...reservation} key={id} />
     });
 
     return (
