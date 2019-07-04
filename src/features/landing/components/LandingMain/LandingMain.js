@@ -14,7 +14,7 @@ export class LandingMain extends Component {
     if (wheelEnabled) {
       this.props.prevStep();
       this.setState({ wheelEnabled: false });
-      setTimeout(() => this.setState({ wheelEnabled: true }), 1500);
+      setTimeout(() => this.setState({ wheelEnabled: true }), 1000);
     }
   };
 
@@ -23,7 +23,7 @@ export class LandingMain extends Component {
     if (wheelEnabled) {
       this.props.nextStep();
       this.setState({ wheelEnabled: false });
-      setTimeout(() => this.setState({ wheelEnabled: true }), 1500);
+      setTimeout(() => this.setState({ wheelEnabled: true }), 1000);
     }
   };
 
@@ -42,7 +42,18 @@ export class LandingMain extends Component {
   } */
 
   render() {
-    const { step } = this.props;
+    console.log(this.props.step);
+
+    return (
+      <Fragment>
+        <Hero step={this.props.step} />
+        <How step={this.props.step} />
+        <Chef step={this.props.step} />
+        <Service step={this.props.step} />
+      </Fragment>
+    );
+
+    /* const { step } = this.props;
 
     switch (step) {
       case 1:
@@ -56,7 +67,7 @@ export class LandingMain extends Component {
 
       case 4:
         return <Service />;
-    }
+    } */
   }
 }
 

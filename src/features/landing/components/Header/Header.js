@@ -31,7 +31,6 @@ export class Header extends Component {
 
   constructor(props) {
     super(props);
-    console.log("this.firebase", this.props);
     this.js_header = React.createRef();
   }
 
@@ -52,16 +51,14 @@ export class Header extends Component {
       false
     );
 
-    if (isAuthenticated) {
-      const tl = new TimelineLite();
+    const tl = new TimelineLite();
 
-      tl.from(this.js_header.current, 1.5, {
-        opacity: 0,
-        y: -40,
-        delay: 1.25,
-        ease: Power2.easeInOut
-      });
-    }
+    tl.from(this.js_header.current, 0.5, {
+      opacity: 0,
+      y: -40,
+      delay: 1.25,
+      ease: Power2.easeInOut
+    });
   }
 
   handleLogout = e => {
@@ -87,78 +84,74 @@ export class Header extends Component {
     const { isAuthenticated } = this.state;
     const { user } = this.props;
 
-    if (isAuthenticated) {
-      return (
-        <Fragment>
-          <header>
-            <div
-              className="inner-header d-flex f-justify js_header"
-              ref={this.js_header}
-            >
-              <div className="logo">
-                Cook <span>On</span> Demand
-              </div>
-              <nav className="header-nav">
-                <ul className="header-nav__list d-flex f-justify">
-                  <li className="header-nav__item">
-                    <Link to="#" className="header-nav__link">
-                      <i className="fas fa-gift" />
-                      Regala
-                    </Link>
-                  </li>
-                  <li className="header-nav__item">
-                    <Link to="#" className="header-nav__link">
-                      <i className="fas fa-info-circle" />
-                      ¿Cómo funciona?
-                    </Link>
-                  </li>
-                  <li className="header-nav__item">
-                    <Link to="#" className="header-nav__link">
-                      <i className="fas fa-phone" />
-                      +51 941 952 261
-                    </Link>
-                  </li>
-                  {isAuthenticated ? (
-                    <li className="header-nav__item">
-                      <Link to="/login" className="header-nav__link">
-                        <i className="fas fa-user-tie" />
-                        {user ? `Bienvenido ${user.name}` : ""}
-                      </Link>
-                    </li>
-                  ) : (
-                    <li className="header-nav__item">
-                      <Link to="/login" className="header-nav__link">
-                        <i className="fas fa-sign-in-alt" />
-                        Acceder
-                      </Link>
-                    </li>
-                  )}
-                  {isAuthenticated ? (
-                    <button
-                      className="nav__action"
-                      onClick={() => this.handleLogout()}
-                    >
-                      <i className="fas fa-portrait" />
-                      Salir
-                    </button>
-                  ) : (
-                    <button
-                      className="nav__action"
-                      onClick={() => this.handleChange()}
-                    >
-                      <i className="fas fa-portrait" />
-                      Registro Chef
-                    </button>
-                  )}
-                </ul>
-              </nav>
+    return (
+      <Fragment>
+        <header>
+          <div
+            className="inner-header d-flex f-justify js_header"
+            ref={this.js_header}
+          >
+            <div className="logo">
+              Cook <span>On</span> Demand
             </div>
-          </header>
-        </Fragment>
-      );
-    } else {
-      return <Spinner />;
-    }
+            <nav className="header-nav">
+              <ul className="header-nav__list d-flex f-justify">
+                <li className="header-nav__item">
+                  <Link to="#" className="header-nav__link">
+                    <i className="fas fa-gift" />
+                    Regala
+                  </Link>
+                </li>
+                <li className="header-nav__item">
+                  <Link to="#" className="header-nav__link">
+                    <i className="fas fa-info-circle" />
+                    ¿Cómo funciona?
+                  </Link>
+                </li>
+                <li className="header-nav__item">
+                  <Link to="#" className="header-nav__link">
+                    <i className="fas fa-phone" />
+                    +51 941 952 261
+                  </Link>
+                </li>
+                {isAuthenticated ? (
+                  <li className="header-nav__item">
+                    <Link to="/login" className="header-nav__link">
+                      <i className="fas fa-user-tie" />
+                      {user ? `Bienvenido ${user.name}` : ""}
+                    </Link>
+                  </li>
+                ) : (
+                  <li className="header-nav__item">
+                    <Link to="/login" className="header-nav__link">
+                      <i className="fas fa-sign-in-alt" />
+                      Acceder
+                    </Link>
+                  </li>
+                )}
+                {isAuthenticated ? (
+                  <button
+                    className="nav__action"
+                    onClick={() => this.handleLogout()}
+                  >
+                    <i className="fas fa-portrait" />
+                    Salir
+                  </button>
+                ) : (
+                  <button
+                    className="nav__action"
+                    onClick={() => this.handleChange()}
+                  >
+                    <i className="fas fa-portrait" />
+                    Registro Chef
+                  </button>
+                )}
+              </ul>
+            </nav>
+          </div>
+        </header>
+      </Fragment>
+    );
   }
 }
 

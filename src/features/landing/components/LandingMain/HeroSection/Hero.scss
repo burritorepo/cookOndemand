@@ -5,6 +5,8 @@
   height: 100vh;
   overflow: hidden;
   z-index: 100;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
 
   .hero-overlay {
     /* Positioning */
@@ -93,6 +95,10 @@
       height: 40px;
     }
   }
+}
+
+.hero.active {
+  opacity: 1;
 }
 
 @media (min-width: 1024px) and (max-width: 1439px) {
