@@ -43,7 +43,6 @@ class Reservation extends Component {
 
   onSubmit = () => {
     const { firebase, firestore, history } = this.props;
-    const newReservation = { ...this.state };
     const { name, email, password, phone, role } = this.state;
 
     /* Create Reservation */
@@ -52,14 +51,12 @@ class Reservation extends Component {
     firebase
       .createUser({ email, password }, { name, email, phone, role })
       .then(userData => {
-        console.log("User: ", userData);
-        console.log(this.props.user);
-
+        console.log('userData', userData)
         const userId = this.props.user;
         this.setState({ client_id: userId });
 
         firestore
-          .add({ collection: "reservations" }, newReservation)
+          .add({ collection: "reservations" }, this.state)
           .then(() => history.push("/user"));
       })
       .catch(err => alert("That user already exists", "error"));

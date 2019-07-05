@@ -6,7 +6,7 @@ import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 
 function CardDynamic(props) {
-  const { 
+  const {
     data,
     handleDelete
   } = props;
@@ -17,30 +17,30 @@ function CardDynamic(props) {
       <Row gutter={16}>
         <Col span={12}>
           <div className="request__item mb-5">
-            {/* <Icon type="team" className="c-primary" /> */}
-            <span className="fsize-12">13 - 20 personas</span>
-          </div>
-          {/* <div className="request__item mb-5">
-            <Icon type="hourglass" className="c-primary" />
-            <span className="fsize-12">Cena</span>
+            <label className="c-primary fsize-11">Numero de invitados</label>
+            <div>
+              <span className="fsize-12">13 - 20</span>
+            </div>
           </div>
           <div className="request__item mb-5">
-            <Icon type="pushpin" className="c-primary" />
-            <span className="fsize-12">Avenida José Pardo 600, Miraflores</span>
+            <label className="c-primary fsize-11">Categoria de cocina</label>
+            <div>
+              <span className="fsize-12">13 - 20</span>
+            </div>
           </div>
-          <div className="request__item mb-5">
-            <Icon type="check" className="c-primary" />
-            <span className="fsize-12">Tienes 1 propuestas</span>
-          </div> */}
         </Col>
         <Col span={12}>
           <div className="request__item mb-5">
-            <Icon type="user" className="c-primary" />
-            <span className="fsize-12">S/ 160.00 - S/ 180.00 / persona</span>
+            <label className="c-primary fsize-11">Fecha</label>
+            <div>
+              <span className="fsize-12">13 - 20</span>
+            </div>
           </div>
           <div className="request__item mb-5">
-            <Icon type="fire" className="c-primary" />
-            <span className="fsize-12">Comida Italiana</span>
+            <label className="c-primary fsize-11">Direccion</label>
+            <div>
+              <span className="fsize-12">13 - 20</span>
+            </div>
           </div>
         </Col>
       </Row>
@@ -71,24 +71,30 @@ class DashboardRequests extends Component {
 
   render() {
     const {
-      reservations = []
+      reservations = [],
+      id
     } = this.props;
 
+    console.log('props', this.props)
     return (
       <div className="view view-requests">
-        <Breadcrumb separator=">">
+        {/* <Breadcrumb separator=">">
           <Breadcrumb.Item>
             <NavLink to="/user">Inicio</NavLink>
           </Breadcrumb.Item>
           <Breadcrumb.Item>Solicitudes</Breadcrumb.Item>
         </Breadcrumb>
-        <br />
-        <h1 className="title c-primary">Mis Solicitudes</h1>
+        <br /> */}
+        <h1 className="title c-white">Mis Solicitudes</h1>
         <br />
         {
-          reservations.map((reservation, id) => {
+          reservations.filter((reservation) => reservation.client_id === id)
+          .map((reservation) => {
             return <CardDynamic data={reservation} key={id} onDelete={this.handleDelete} onCancel={this.handleCancel} />
           })
+          // reservations.map((reservation, id) => {
+          //   return <CardDynamic data={reservation} key={id} onDelete={this.handleDelete} onCancel={this.handleCancel} />
+          // })
         }
         <Modal
           title="Eliminar solicitud"
@@ -104,7 +110,8 @@ class DashboardRequests extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  reservations: state.firestore.ordered.reservations
+  reservations: state.firestore.ordered.reservations,
+  id: state.firebase.auth.uid
 });
 
 export default compose(
