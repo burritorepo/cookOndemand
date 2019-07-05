@@ -86,6 +86,10 @@ export class Header extends Component {
     prevProps.history.push("/register");
   }
 
+  handleMenuClick = () => {
+    console.log("object");
+  };
+
   getWindowWidth() {
     return Math.max(
       document.documentElement.clientWidth,
@@ -97,11 +101,6 @@ export class Header extends Component {
     const { isAuthenticated } = this.state;
     const { user } = this.props;
 
-    if (user.name) {
-      let newName = user.name.split(" ")[0];
-      console.log(newName);
-    }
-
     return (
       <Fragment>
         <header>
@@ -109,6 +108,14 @@ export class Header extends Component {
             className="inner-header d-flex f-justify js_header"
             ref={this.js_header}
           >
+            <div
+              className="menu-btn d-flex f-center f-col"
+              onClick={this.handleMenuClick}
+            >
+              <div className="btn-line" />
+              <div className="btn-line" />
+              <div className="btn-line" />
+            </div>
             <div className="logo">
               Cook <span>On</span> Demand
             </div>
@@ -134,7 +141,7 @@ export class Header extends Component {
                 </li>
                 {isAuthenticated ? (
                   <button
-                    onClick={this.shrinkUsername}
+                    onClick={this.userDashboard}
                     className="nav__action__link"
                   >
                     <i className="fas fa-user-tie" />
