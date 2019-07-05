@@ -13,19 +13,25 @@ function CardDynamic(props) {
 
   console.log('data', data)
   return (
-    <Card className="card request__card mb-20" title="Solicitud 22/06/19">
+    <Card className="card request__card mb-20" title={`Solicitud de ${data.dateTime}`}>
       <Row gutter={16}>
         <Col span={12}>
           <div className="request__item mb-5">
             <label className="c-primary fsize-11">Numero de invitados</label>
             <div>
-              <span className="fsize-12">13 - 20</span>
+              <span className="fsize-12">{data.pax}</span>
             </div>
           </div>
           <div className="request__item mb-5">
             <label className="c-primary fsize-11">Categoria de cocina</label>
             <div>
-              <span className="fsize-12">13 - 20</span>
+              <span className="fsize-12">{data.preferences}</span>
+            </div>
+          </div>
+          <div className="request__item mb-5">
+            <label className="c-primary fsize-11">Tipo de cocina</label>
+            <div>
+              <span className="fsize-12">{data.energy}</span>
             </div>
           </div>
         </Col>
@@ -33,13 +39,37 @@ function CardDynamic(props) {
           <div className="request__item mb-5">
             <label className="c-primary fsize-11">Fecha</label>
             <div>
-              <span className="fsize-12">13 - 20</span>
+              <span className="fsize-12">{data.dateTime}</span>
             </div>
           </div>
           <div className="request__item mb-5">
             <label className="c-primary fsize-11">Direccion</label>
             <div>
-              <span className="fsize-12">13 - 20</span>
+              <span className="fsize-12">{data.address}</span>
+            </div>
+          </div>
+          <div className="request__item mb-5">
+            <label className="c-primary fsize-11">Tiene horno</label>
+            <div>
+              <span className="fsize-12">{data.oven}</span>
+            </div>
+          </div>
+        </Col>
+      </Row>
+      <Row gutter={16}>
+        <Col span={12}>
+          <div className="request__item mb-5">
+            <label className="c-primary fsize-11">Alergias</label>
+            <div>
+              <span className="fsize-12">{data.restrictions}</span>
+            </div>
+          </div>
+        </Col>
+        <Col span={12}>
+          <div className="request__item mb-5">
+            <label className="c-primary fsize-11">Comentarios</label>
+            <div>
+              <span className="fsize-12">{data.obs}</span>
             </div>
           </div>
         </Col>
@@ -47,7 +77,7 @@ function CardDynamic(props) {
       <div className="card__footer d-flex jc-space-between ai-center">
         <Icon type="delete" onClick={handleDelete} />
         <Button type="primary">
-          <NavLink to="/user/request/1">Ver propuestas</NavLink>
+          <NavLink to={`/user/request/${data.id}`}>Ver propuestas</NavLink>
         </Button>
       </div>
     </Card>
@@ -89,9 +119,9 @@ class DashboardRequests extends Component {
         <br />
         {
           reservations.filter((reservation) => reservation.client_id === id)
-          .map((reservation) => {
-            return <CardDynamic data={reservation} key={id} onDelete={this.handleDelete} onCancel={this.handleCancel} />
-          })
+            .map((reservation) => {
+              return <CardDynamic data={reservation} key={id} onDelete={this.handleDelete} onCancel={this.handleCancel} />
+            })
           // reservations.map((reservation, id) => {
           //   return <CardDynamic data={reservation} key={id} onDelete={this.handleDelete} onCancel={this.handleCancel} />
           // })

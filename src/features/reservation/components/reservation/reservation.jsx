@@ -52,7 +52,11 @@ class Reservation extends Component {
     firebase
       .createUser({ email, password }, { name, email, phone, role })
       .then(userData => {
+
+        console.log('propos', this.props)
         this.setState({ client_id: this.props.user });
+
+        console.log('this.props.user', this.props.user)
 
         firestore
           .add({ collection: "reservations" }, this.state)
