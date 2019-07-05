@@ -3,14 +3,13 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { firebaseConnect, firestoreConnect } from "react-redux-firebase";
 import PropTypes from "prop-types";
-
 import { Steps, Button } from "antd";
 import EventForm from "./eventForm";
 import Start from "./start";
 import KitchenForm from "./kitchenForm";
 import DetailsForm from "./detailsForm";
 import PersonalInfo from "./personalInfo";
-import { Confirmation } from "./confirmation";
+import Confirmation from "./confirmation";
 import { Success } from "./success";
 
 class Reservation extends Component {
@@ -18,6 +17,7 @@ class Reservation extends Component {
     super(props);
     this.state = {
       current: 0,
+      confirmDirty: false,
       client_id: null,
       address: "",
       pax: "",
@@ -41,35 +41,105 @@ class Reservation extends Component {
     firestore: PropTypes.object.isRequired
   };
 
+  // componentDidMount() {
+  //   const store = JSON.parse(sessionStorage.getItem("reservation"));
+  //   this.setState({
+  //     address: store.address,
+  //     pax: store.pax,
+  //     preferences: store.preferences,
+  //     energy: store.energy,
+  //     burners: store.burners,
+  //     oven: store.oven,
+  //     restrictions: store.restrictions,
+  //     obs: store.obs
+  //   });
+  // } 
+
   onSubmit = () => {
     const { firebase, firestore, history } = this.props;
-    const newReservation = { ...this.state };
-    const { name, email, password, phone, role } = this.state;
+    const {
+      client_id,
+      address,
+      pax,
+      preferences,
+      energy,
+      burners,
+      oven,
+      dateTime,
+      restrictions,
+      obs
+    } = this.state;
 
+    const newReservation = {
+      client_id,
+      address,
+      pax,
+      preferences,
+      energy,
+      burners,
+      oven,
+      dateTime,
+      restrictions,
+      obs
+    };
     /* Create Reservation */
 
     /* Register with firebase */
-    firebase
-      .createUser({ email, password }, { name, email, phone, role })
-      .then(userData => {
+    if (!this.props.user) {
+      firebase
+        .createUser({ email, password }, { name, email, phone, role })
+        .then(userData => {
+          console.log("propos", this.props);
+          this.setState({ client_id: this.props.user });
 
-        console.log('propos', this.props)
-        this.setState({ client_id: this.props.user });
+          console.log("this.props.user", this.props.user);
 
-        console.log('this.props.user', this.props.user)
-
-        firestore
-          .add({ collection: "reservations" }, this.state)
-          .then(() => history.push("/user"));
-      })
-      .catch(err => alert("That user already exists", "error"));
+          firestore
+            .add({ collection: "reservations" }, this.state)
+            .then(() => history.push("/user"));
+        })
+        .catch(err => alert("That user already exists", "error"));
+      sessionStorage.clear();
+    } else {
+      firestore
+        .add({ collection: "reservations" }, newReservation)
+        .then(this.setStep(6));
+      sessionStorage.clear();
+    }
+    console.log("this", newReservation);
   };
 
   next = () => {
-    const { current } = this.state;
+    // const {
+    //   current,
+    //   address,
+    //   pax,
+    //   preferences,
+    //   energy,
+    //   burners,
+    //   oven,
+    //   restrictions,
+    //   obs
+    // } = this.state;
+    // const stateCut = {
+    //   address,
+    //   pax,
+    //   preferences,
+    //   energy,
+    //   burners,
+    //   oven,
+    //   restrictions,
+    //   obs
+    // };
+    const { current } = this.state
+    const { user } = this.props;
     this.setState({
-      current: current + 1
+      current: current + 1,
+      client_id: user
     });
+    // if (current !== 0) {
+    //   sessionStorage.setItem("reservation", JSON.stringify(stateCut));
+    // }
   };
 
   prev = () => {
@@ -107,6 +177,12 @@ class Reservation extends Component {
     });
   };
 
+  setStep = current => {
+    this.setState({
+      current
+    });
+  };
+
   render() {
     const { current } = this.state;
 
@@ -119,10 +195,12 @@ class Reservation extends Component {
       oven,
       dateTime,
       restrictions,
-      obs
+      obs,
+      confirmDirty
     } = this.state;
 
     const values = {
+      current,
       address,
       pax,
       preferences,
@@ -131,7 +209,8 @@ class Reservation extends Component {
       oven,
       dateTime,
       restrictions,
-      obs
+      obs,
+      confirmDirty
     };
 
     const { Step } = Steps;
@@ -149,6 +228,7 @@ class Reservation extends Component {
             handleSelectChange={this.handleSelectChange}
             next={this.next}
             prev={this.prev}
+            values={values}
           />
         )
       },
@@ -160,6 +240,7 @@ class Reservation extends Component {
             handleRatio={this.handleRatio}
             next={this.next}
             prev={this.prev}
+            values={values}
           />
         )
       },
@@ -171,6 +252,7 @@ class Reservation extends Component {
             handleDate={this.handleDate}
             next={this.next}
             prev={this.prev}
+            values={values}
           />
         )
       },
@@ -180,8 +262,8 @@ class Reservation extends Component {
           <Confirmation
             next={this.next}
             prev={this.prev}
-            {...this.state}
             values={values}
+            onSubmit={this.onSubmit}
           />
         )
       },
@@ -193,6 +275,7 @@ class Reservation extends Component {
             next={this.next}
             onChange={this.onChange}
             onSubmit={this.onSubmit}
+            values={values}
           />
         )
       },
@@ -207,8 +290,8 @@ class Reservation extends Component {
       marginTop: "16px",
       minHeight: "400px",
       textAlign: "center",
-      paddingTop: "80px",
-      width: "40%",
+      paddingTop: "30px",
+      width: "70%",
       margin: "auto"
     };
 

@@ -16,17 +16,26 @@ class DetailsForm extends Component {
     const { handleChange, handleDate, prev } = this.props;
     const { getFieldDecorator } = this.props.form;
     const { TextArea } = Input;
-
+    const formItemLayout = {
+      labelCol: {
+        xs: { span: 0 },
+        sm: { span: 5 },
+      },
+      wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 16 },
+      },
+    };
     return (
       <Fragment>
-        <h1 style={{ marginBottom: "40px", textAlign: "center", color: 'white' }}>
+        <h1 style={{ marginBottom: "10px", textAlign: "center", color: 'white' }}>
           Ahora veamos algunos detalles
         </h1>
         <Form
           onSubmit={this.handleSubmit}
-          wrapperCol={{ span: 24 }}
+          {...formItemLayout}
         >
-          <Form.Item>
+          <Form.Item label='Fecha'>
             {getFieldDecorator("dateTime", {
               rules: [
                 {
@@ -37,8 +46,9 @@ class DetailsForm extends Component {
               ]
             })(<DatePicker style={{ width: '100%' }} onChange={handleDate.bind(this, "dateTime")} />)}
           </Form.Item>
-          <Form.Item>
+          <Form.Item label='Restricciones'>
             {getFieldDecorator("restrictions", {
+              initialValue: this.props.values.restrictions,
               rules: [{ required: false, message: "" }]
             })(
               <TextArea
@@ -47,8 +57,9 @@ class DetailsForm extends Component {
               />
             )}
           </Form.Item>
-          <Form.Item style={{ marginBottom: '20px' }}>
+          <Form.Item label='Observaciones' style={{ paddingBottom: '40px' }}>
             {getFieldDecorator("obs", {
+              initialValue: this.props.values.obs,
               rules: [
                 {
                   required: false,

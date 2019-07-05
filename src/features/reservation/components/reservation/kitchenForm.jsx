@@ -16,15 +16,26 @@ class KitchenForm extends Component {
     const { handleSelectChange, handleRatio, prev } = this.props;
     const { Option } = Select;
     const { getFieldDecorator } = this.props.form;
+    const formItemLayout = {
+      labelCol: {
+        xs: { span: 0 },
+        sm: { span: 5 },
+      },
+      wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 16 },
+      },
+    };
 
     return (
       <Fragment>
-        <h1 style={{ marginBottom: "40px", textAlign: "center", color: 'white' }}>
+        <h1 style={{ marginBottom: "20px", textAlign: "center", color: 'white' }}>
           ¿Como es tu cocina?
         </h1>
-        <Form onSubmit={this.handleSubmit} wrapperCol={{ span: 24 }}>
-          <Form.Item>
+        <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+          <Form.Item label='Cocina'>
             {getFieldDecorator("energy", {
+              initialValue: this.props.values.energy,
               rules: [
                 { required: true, message: "Selecciona tu tipo de cocina" }
               ]
@@ -38,8 +49,9 @@ class KitchenForm extends Component {
               </Select>
             )}
           </Form.Item>
-          <Form.Item>
+          <Form.Item label='Honillas'>
             {getFieldDecorator("burners", {
+              initialValue: this.props.values.burners,
               rules: [
                 { required: true, message: "Selecciona el número de hornillas" }
               ]
@@ -55,8 +67,9 @@ class KitchenForm extends Component {
               </Select>
             )}
           </Form.Item>
-          <Form.Item style={{ marginBottom: '20px' }}>
+          <Form.Item label='Horno' style={{ paddingBottom: '40px' }}>
             {getFieldDecorator("oven", {
+              initialValue: this.props.values.oven,
               rules: [
                 { required: true, message: "Completa el campo" }
               ]
@@ -64,7 +77,7 @@ class KitchenForm extends Component {
               <Radio.Group
                 onChange={handleRatio.bind(this, 'oven')}
               >
-                <Radio style={{ color: 'white' }} value="si">Tengo horno</Radio>
+                <Radio style={{ color: 'white' }} value="si">Sí Tengo horno</Radio>
                 <Radio style={{ color: 'white' }} value="no">No tengo horno</Radio>
               </Radio.Group>
             )}
