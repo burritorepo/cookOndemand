@@ -26,7 +26,7 @@ function RoutingDashboardCheff(prop) {
           <Sidebar />
           <Main>
             <Switch>
-              <Route exact path={`${path}/home`} component={Home} />
+              {/* <Route exact path={`${path}/home`} component={Home} /> */}
               <Route
                 exact
                 path={`${path}/request`}
@@ -36,7 +36,7 @@ function RoutingDashboardCheff(prop) {
               {/* <Route exact path={`${path}/dishes`} component={RoutingDishes}></Route> */}
               {/* <Route exact path={`${path}/request-cheff`} component={DashboardRequestCheffs}></Route>
               <Route exact path={`${path}/request-cheff/:id`} component={DashboardRequestCheffDetail}></Route> */}
-              <Redirect exact from={`${path}`} to={`${path}/home`} />
+              <Redirect exact from={`${path}`} to={`${path}/request`} />
             </Switch>
           </Main>
         </Layout>

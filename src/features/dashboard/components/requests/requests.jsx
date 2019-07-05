@@ -115,16 +115,13 @@ class DashboardRequests extends Component {
           <Breadcrumb.Item>Solicitudes</Breadcrumb.Item>
         </Breadcrumb>
         <br /> */}
-        <h1 className="title c-white">Mis Solicitudes</h1>
+        <h1 className="title c-white view-title">Mis Solicitudes</h1>
         <br />
         {
           reservations.filter((reservation) => reservation.client_id === id)
             .map((reservation) => {
               return <CardDynamic data={reservation} key={id} onDelete={this.handleDelete} onCancel={this.handleCancel} />
             })
-          // reservations.map((reservation, id) => {
-          //   return <CardDynamic data={reservation} key={id} onDelete={this.handleDelete} onCancel={this.handleCancel} />
-          // })
         }
         <Modal
           title="Eliminar solicitud"

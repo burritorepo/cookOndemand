@@ -44,9 +44,9 @@ class Proposal extends Component {
     const newProposal = { ...this.state };
     const { firestore, history } = this.props;
 
-    /* firestore
-      .add({ collection: "proposals" }, newProposal)
-      .then(() => history.push("/cheff")); */
+    firestore
+    .add({ collection: "proposals" }, newProposal)
+    .then(() => history.push("/cheff"));
 
     // fetch('https://apichef.herokuapp.com/api/propuesta', {
     //   method: 'POST',
@@ -79,19 +79,19 @@ class Proposal extends Component {
     //   starter_desc: "choritos de callao"
     // };
 
-    const body = {
-      ...newProposal
-    };
+    // const body = {
+    //   ...newProposal
+    // };
 
-    fetch("https://apichef.herokuapp.com/api/propuesta", {
-      method: "POST",
-      body: JSON.stringify(body),
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-    }).then(value => {
-      console.log("value", value);
-    });
+    // fetch("https://apichef.herokuapp.com/api/propuesta", {
+    //   method: "POST",
+    //   body: JSON.stringify(body),
+    //   headers: {
+    //     "Content-Type": "application/x-www-form-urlencoded"
+    //   }
+    // }).then(value => {
+    //   console.log("value", value);
+    // });
   };
 
   handleChange = input => e => {
@@ -115,12 +115,16 @@ class Proposal extends Component {
   };
 
   render() {
+    console.log('proposal', this.props)
     const {
       match: {
         params: { id }
-      }
+      },
+      reservations = []
     } = this.props;
 
+    const userReservation = reservations.filter((reservation) => reservation.id == id)[0] || {}
+    console.log('userReservation', userReservation)
     const { step } = this.state;
     const {
       starter,
@@ -149,19 +153,19 @@ class Proposal extends Component {
         return (
           <div className="view view-request-detail">
             <Breadcrumb separator=">">
-              <Breadcrumb.Item>
+              {/* <Breadcrumb.Item>
                 <NavLink to="/cheff">Home</NavLink>
-              </Breadcrumb.Item>
+              </Breadcrumb.Item> */}
               <Breadcrumb.Item>
                 <NavLink to="/cheff/request">Solicitudes</NavLink>
               </Breadcrumb.Item>
               <Breadcrumb.Item>Propuesta</Breadcrumb.Item>
             </Breadcrumb>
             <br />
-            <h1 className="title c-primary">Solicitud de {id}</h1>
+            <h1 className="title c-white view-title">Solicitud de {userReservation.name}</h1>
             <br />
             <Card className="content">
-              <h2>Solicitud 22/06/19</h2>
+              <h2>Propuesta</h2>
               <hr />
               <br />
               <WrappedProposal
@@ -232,11 +236,12 @@ class Proposal extends Component {
 
 const mapStateToProps = (state, props) => ({
   user: state.firebase.auth,
-  profile: state.firebase.profile
+  profile: state.firebase.profile,
+  reservations: state.firestore.ordered.reservations
 });
 
 export default compose(
-  firestoreConnect(),
   firebaseConnect(),
+  firestoreConnect([{ collection: 'reservations' }]),
   connect(mapStateToProps)
 )(Proposal);

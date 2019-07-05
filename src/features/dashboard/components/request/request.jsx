@@ -1,6 +1,84 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Breadcrumb, Card, Row, Col, Icon, Button, Modal } from "antd";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { firebaseConnect } from "react-redux-firebase";
+import { firestoreConnect } from "react-redux-firebase";
+
+function CardDynamic(props) {
+  const {
+    idKey,
+    data,
+    handleDelete
+  } = props;
+
+  console.log('data', data)
+  return (
+    <Card className="card request__card mb-20" title={`Propuesta de ${data.chef_id}`}>
+      <Row gutter={16}>
+        <Col span={12}>
+          <div className="request__item mb-5">
+            <label className="c-primary fsize-11">Abre boca</label>
+            <div>
+              <span className="fsize-12">{data.starter}</span>
+            </div>
+          </div>
+          <div className="request__item mb-5">
+            <label className="c-primary fsize-11">Entrada</label>
+            <div>
+              <span className="fsize-12">{data.entry}</span>
+            </div>
+          </div>
+          <div className="request__item mb-5">
+            <label className="c-primary fsize-11">Fondo</label>
+            <div>
+              <span className="fsize-12">{data.main}</span>
+            </div>
+          </div>
+          <div className="request__item mb-5">
+            <label className="c-primary fsize-11">Postre</label>
+            <div>
+              <span className="fsize-12">{data.dessert}</span>
+            </div>
+          </div>
+        </Col>
+        <Col span={12}>
+          <div className="request__item mb-5">
+            <label className="c-primary fsize-11">Abre boca descripcion</label>
+            <div>
+              <span className="fsize-12">{data.starter_desc}</span>
+            </div>
+          </div>
+          <div className="request__item mb-5">
+            <label className="c-primary fsize-11">Entrada descripcion</label>
+            <div>
+              <span className="fsize-12">{data.entry_desc}</span>
+            </div>
+          </div>
+          <div className="request__item mb-5">
+            <label className="c-primary fsize-11">Fondo descripcion</label>
+            <div>
+              <span className="fsize-12">{data.main_desc}</span>
+            </div>
+          </div>
+          <div className="request__item mb-5">
+            <label className="c-primary fsize-11">Postre descripcion</label>
+            <div>
+              <span className="fsize-12">{data.entry_desc}</span>
+            </div>
+          </div>
+        </Col>
+      </Row>
+      <div className="card__footer d-flex jc-space-between ai-center">
+        <Icon type="delete" onClick={handleDelete} />
+        <Button type="primary">
+          <NavLink to={`/user/request/${idKey}/${data.chef_id}`}>Ver</NavLink>
+        </Button>
+      </div>
+    </Card>
+  )
+}
 
 class DashboardRequest extends Component {
   constructor(props) {
@@ -23,80 +101,32 @@ class DashboardRequest extends Component {
   render() {
     const {
       match: {
-        params: { id }
-      }
+        params: { id : keyId }
+      },
+      proposals = []
     } = this.props;
+
+    console.log('id', keyId)
+
     return (
       <div className="view view-request">
         <Breadcrumb separator=">">
-          <Breadcrumb.Item>
+          {/* <Breadcrumb.Item>
             <NavLink to="/user">Inicio</NavLink>
-          </Breadcrumb.Item>
+          </Breadcrumb.Item> */}
           <Breadcrumb.Item>
             <NavLink to="/user/request">Solicitudes</NavLink>
           </Breadcrumb.Item>
           <Breadcrumb.Item>Propuestas Cheffs</Breadcrumb.Item>
         </Breadcrumb>
         <br />
-        <h1 className="title c-primary">Propuestas Cheffs</h1>
+        <h1 className="title c-white view-title">Propuestas Cheffs</h1>
         <br />
-        <Row gutter={16}>
-          <Col span={24}>
-            <Card className="card request__card" title="Cheff Jonathan">
-              <Row gutter={16}>
-                <Col span={12}>
-                  <div className="request__item mb-5">
-                    <Icon type="user" className="c-primary" />
-                    <span className="fsize-12">
-                      S/ 160.00 - S/ 180.00 / persona
-                    </span>
-                  </div>
-                </Col>
-                <Col span={12}>
-                  <div className="request__item mb-5">
-                    <Icon type="mail" className="c-primary" />
-                    <span className="fsize-12">1 mensaje</span>
-                  </div>
-                </Col>
-              </Row>
-              <div className="card__footer d-flex jc-space-between ai-center">
-                <Icon type="delete" onClick={this.handleDelete} />
-                <Button type="primary">
-                  <NavLink to={`/user/request/${id}/jonathan`}>Ver</NavLink>
-                </Button>
-              </div>
-            </Card>
-          </Col>
-        </Row>
-        <br />
-        <Row gutter={16}>
-          <Col span={24}>
-            <Card className="card request__card" title="Cheff Luis">
-              <Row gutter={16}>
-                <Col span={12}>
-                  <div className="request__item mb-5">
-                    <Icon type="user" className="c-primary" />
-                    <span className="fsize-12">
-                      S/ 160.00 - S/ 180.00 / persona
-                    </span>
-                  </div>
-                </Col>
-                <Col span={12}>
-                  <div className="request__item mb-5">
-                    <Icon type="mail" className="c-primary" />
-                    <span className="fsize-12">1 mensaje</span>
-                  </div>
-                </Col>
-              </Row>
-              <div className="card__footer d-flex jc-space-between ai-center">
-                <Icon type="delete" onClick={this.handleDelete} />
-                <Button type="primary">
-                  <NavLink to={`/user/request/${id}/luis`}>Ver</NavLink>
-                </Button>
-              </div>
-            </Card>
-          </Col>
-        </Row>
+        {
+          (Array.isArray(proposals)) ? proposals.map((reservation, id) => {
+            return <CardDynamic idKey={keyId} data={reservation} key={id} onDelete={this.handleDelete} onCancel={this.handleCancel} />
+          }) : <CardDynamic data={proposals} onDelete={this.handleDelete} onCancel={this.handleCancel} />
+        }
         <Modal
           title="Eliminar propuesta"
           visible={this.state.visible}
@@ -110,4 +140,13 @@ class DashboardRequest extends Component {
   }
 }
 
-export { DashboardRequest };
+const mapStateToProps = (state, props) => ({
+  proposals: state.firestore.ordered.proposals
+});
+
+
+export default compose(
+  firebaseConnect(),
+  firestoreConnect([{ collection: 'proposals' }]),
+  connect(mapStateToProps)
+)(DashboardRequest);

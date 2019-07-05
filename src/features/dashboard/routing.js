@@ -7,12 +7,12 @@ import {
 import { Layout } from 'antd';
 
 import {
-  DashboardHome,
-  DashboardRequest,
-  DashboardRequestDetail
+  DashboardHome
 } from './components';
 
-import DashboardRequests from './components/requests/requests'
+import DashboardRequests from './components/requests/requests';
+import DashboardRequest from './components/request/request';
+import DashboardRequestDetail from './components/requestDetail/requestDetail';
 
 import Header from '../../components/header/header';1
 import {

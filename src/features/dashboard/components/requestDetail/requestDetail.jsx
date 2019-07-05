@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Breadcrumb, Card, Button, Modal } from "antd";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { firebaseConnect } from "react-redux-firebase";
+import { firestoreConnect } from "react-redux-firebase";
 
 class DashboardRequestDetail extends Component {
   constructor(props) {
@@ -29,14 +33,18 @@ class DashboardRequestDetail extends Component {
       },
       match: {
         params: { user }
-      }
+      },
+      proposals = []
     } = this.props;
+
+    const dataFilter = proposals.filter((proposal) => proposal.chef_id === user)[0] || {}
+    console.log('datafileter', dataFilter)
     return (
       <div className="view view-request-detail">
         <Breadcrumb separator=">">
-          <Breadcrumb.Item>
+          {/* <Breadcrumb.Item>
             <NavLink to="/user">Home</NavLink>
-          </Breadcrumb.Item>
+          </Breadcrumb.Item> */}
           <Breadcrumb.Item>
             <NavLink to="/user/request">Solicitudes</NavLink>
           </Breadcrumb.Item>
@@ -46,38 +54,34 @@ class DashboardRequestDetail extends Component {
           <Breadcrumb.Item>{user}</Breadcrumb.Item>
         </Breadcrumb>
         <br />
-        <h1 className="title c-primary">Propuestas del Chef {user}</h1>
+        <h1 className="title c-white view-title">Propuestas del Chef {user}</h1>
         <br />
         <div className="card">
           <Card bordered={false}>
-            <h2>Solicitud 22/06/19</h2>
-            <hr />
-            <br />
+            {/* <hr />
+            <br /> */}
             <div className="content" style={{ textAlign: "center" }}>
               <h3>Abreboca</h3>
               <h5 className="c-primary">
-                Bruschetta de espárragos a la parmesana
+                {dataFilter.starter}
               </h5>
               <p>
-                Tostas de espárragos grillados gratinados con queso parmesano.
+                {dataFilter.starter_desc}
               </p>
               <h3>Entrada</h3>
-              <h5 className="c-primary">Vitello tonatto</h5>
+              <h5 className="c-primary">{dataFilter.entry}</h5>
               <p>
-                Láminas de asado de res cocido a baja temperatura con mayonesa
-                de atún y alcaparras.
+                {dataFilter.entry_desc}
               </p>
               <h3>Fondo</h3>
-              <h5 className="c-primary">Spaghetti frutti di mare</h5>
+              <h5 className="c-primary">{dataFilter.main}</h5>
               <p>
-                Spaghetti salteados con aceite de oilva, ajo, mejillones y
-                langostinos.
+                {dataFilter.main_desc}
               </p>
               <h3>Postre</h3>
-              <h5 className="c-primary">Panna Cotta</h5>
+              <h5 className="c-primary">{dataFilter.dessert}</h5>
               <p>
-                Mousse de crema de leche saborizada con mermelada de frutos
-                rojos.
+                {dataFilter.dessert_desc}
               </p>
             </div>
             <hr />
@@ -104,4 +108,13 @@ class DashboardRequestDetail extends Component {
   }
 }
 
-export { DashboardRequestDetail };
+const mapStateToProps = (state, props) => ({
+  proposals: state.firestore.ordered.proposals
+});
+
+
+export default compose(
+  firebaseConnect(),
+  firestoreConnect([{ collection: 'proposals' }]),
+  connect(mapStateToProps)
+)(DashboardRequestDetail);
