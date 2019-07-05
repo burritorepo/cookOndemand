@@ -91,6 +91,14 @@ header {
   background: #ff6700;
   width: 10vw;
   height: 40px;
+
+  &__link {
+    color: #fff;
+    font-weight: bold;
+    background: transparent;
+    width: 10vw;
+    height: 40px;
+  }
 }
 
 @media (min-width: 1024px) and (max-width: 1439px) {

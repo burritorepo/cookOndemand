@@ -6,7 +6,6 @@ import { firebaseConnect } from "react-redux-firebase";
 import PropTypes from "prop-types";
 
 import { TimelineLite, Power2, Back } from "gsap";
-import Spinner from "../../../../components/spinner/Spinner";
 import "./header.scss";
 
 export class Header extends Component {
@@ -68,6 +67,20 @@ export class Header extends Component {
     firebase.logout();
   };
 
+  userDashboard = () => {
+    const { role } = this.props.user;
+
+    if (role) {
+      if (role === "client") {
+        this.props.prevProps.history.push("/user");
+      } else if (role === "chef") {
+        this.props.prevProps.history.push("/cheff");
+      }
+    } else {
+      console.log("loading...");
+    }
+  };
+
   handleChange() {
     const { prevProps } = this.props;
     prevProps.history.push("/register");
@@ -83,6 +96,11 @@ export class Header extends Component {
   render() {
     const { isAuthenticated } = this.state;
     const { user } = this.props;
+
+    if (user.name) {
+      let newName = user.name.split(" ")[0];
+      console.log(newName);
+    }
 
     return (
       <Fragment>
@@ -115,12 +133,15 @@ export class Header extends Component {
                   </Link>
                 </li>
                 {isAuthenticated ? (
-                  <li className="header-nav__item">
-                    <Link to="/login" className="header-nav__link">
-                      <i className="fas fa-user-tie" />
-                      {user ? `Bienvenido ${user.name}` : ""}
-                    </Link>
-                  </li>
+                  <button
+                    onClick={this.shrinkUsername}
+                    className="nav__action__link"
+                  >
+                    <i className="fas fa-user-tie" />
+                    {user.name
+                      ? `Bienvenido ${user.name.split(" ")[0]}`
+                      : "Bienvenido"}
+                  </button>
                 ) : (
                   <li className="header-nav__item">
                     <Link to="/login" className="header-nav__link">

@@ -68,7 +68,14 @@ class Login extends Component {
                   rules: [
                     { required: true, message: "Por favor ingresa tu correo!" }
                   ]
-                })(<Input name="email" onChange={this.onChange} placeholder="Ingresar Correo"/>)}
+                })(
+                  <Input
+                    name="email"
+                    onChange={this.onChange}
+                    placeholder="Ingresar Correo"
+                    autoComplete="off"
+                  />
+                )}
               </Form.Item>
               <Form.Item>
                 {getFieldDecorator("password", {
