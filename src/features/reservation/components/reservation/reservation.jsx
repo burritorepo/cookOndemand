@@ -3,14 +3,13 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { firebaseConnect, firestoreConnect } from "react-redux-firebase";
 import PropTypes from "prop-types";
-
 import { Steps, Button } from "antd";
 import EventForm from "./eventForm";
 import Start from "./start";
 import KitchenForm from "./kitchenForm";
 import DetailsForm from "./detailsForm";
 import PersonalInfo from "./personalInfo";
-import { Confirmation } from "./confirmation";
+import Confirmation from "./confirmation";
 import { Success } from "./success";
 
 class Reservation extends Component {
@@ -43,47 +42,95 @@ class Reservation extends Component {
   };
 
   onSubmit = () => {
-    const { firebase, firestore, history } = this.props;
-    const newReservation = { ...this.state };
-    const { name, email, password, phone, role } = this.state;
+    const { firebase, firestore, history, user } = this.props;
+    const {
+      address,
+      pax,
+      preferences,
+      energy,
+      burners,
+      oven,
+      dateTime,
+      restrictions,
+      obs,
+      client_id,
+      name,
+      email,
+      password,
+      phone,
+      role
+    } = this.state;
+    const newFirstReservation = {
+      address,
+      pax,
+      preferences,
+      energy,
+      burners,
+      oven,
+      dateTime,
+      restrictions,
+      obs,
+      client_id,
+      name,
+      email,
+      password,
+      phone
+    };
+    const newReservation = {
+      address,
+      pax,
+      preferences,
+      energy,
+      burners,
+      oven,
+      dateTime,
+      restrictions,
+      obs,
+      client_id
+    };
 
     /* Create Reservation */
 
     /* Register with firebase */
-    firebase
-      .createUser({ email, password }, { name, email, phone, role })
-      .then(userData => {
-        console.log("User: ", userData);
-        console.log(this.props.user);
+    if (!user) {
+      firebase
+        .createUser({ email, password }, { name, email, phone, role })
+        .then(userData => {
+          console.log("User: ", userData);
+          console.log(this.props.user);
 
-        const userId = this.props.user;
-        this.setState({ client_id: userId });
+          const userId = this.props.user;
+          this.setState({ client_id: userId });
 
-        firestore
-          .add({ collection: "reservations" }, newReservation)
-          .then(() => history.push("/user"));
-      })
-      .catch(err => alert("That user already exists", "error"));
+          firestore
+            .add({ collection: "reservations" }, newFirstReservation)
+            .then(this.next());
+        })
+        .catch(err => alert("That user already exists", "error"));
+    } else {
+      firestore.add({ collection: "reservations" }, newReservation);
+      this.setStep(6);
+    }
 
-    fetch("https://apichef.herokuapp.com/api/solicitud", {
-      method: "POST",
-      body: JSON.stringify({
-        address: "",
-        pax: "",
-        preferences: "",
-        energy: "",
-        burners: "",
-        oven: "",
-        dateTime: "",
-        restrictions: "",
-        obs: ""
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      }
-    })
-      .then(res => res.json())
-      .then(this.props.history.push("/home"));
+    //   fetch("https://apichef.herokuapp.com/api/solicitud", {
+    //     method: "POST",
+    //     body: JSON.stringify({
+    //       address: "",
+    //       pax: "",
+    //       preferences: "",
+    //       energy: "",
+    //       burners: "",
+    //       oven: "",
+    //       dateTime: "",
+    //       restrictions: "",
+    //       obs: ""
+    //     }),
+    //     headers: {
+    //       "Content-type": "application/json; charset=UTF-8"
+    //     }
+    //   })
+    //     .then(res => res.json())
+    //     .then(this.props.history.push("/home"));
   };
 
   next = () => {
@@ -128,6 +175,12 @@ class Reservation extends Component {
     });
   };
 
+  setStep = current => {
+    this.setState({
+      current
+    });
+  };
+
   render() {
     const { current } = this.state;
 
@@ -145,6 +198,7 @@ class Reservation extends Component {
     } = this.state;
 
     const values = {
+      current,
       address,
       pax,
       preferences,
@@ -204,6 +258,7 @@ class Reservation extends Component {
             next={this.next}
             prev={this.prev}
             values={values}
+            onSubmit={this.onSubmit}
           />
         )
       },
@@ -249,6 +304,8 @@ class Reservation extends Component {
       backgroundRepeat: "noRepeat",
       backgroundSize: "cover"
     };
+
+    console.log("step", this.state.current);
 
     return (
       <div className="view view-request" style={backGround}>

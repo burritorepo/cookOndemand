@@ -138,7 +138,7 @@ class PersonalInfo extends Component {
             )}
           </Form.Item>
           <Button type="primary" htmlType="submit">
-            Siguiente
+            Reservar
           </Button>
         </Form>
       </Fragment>
