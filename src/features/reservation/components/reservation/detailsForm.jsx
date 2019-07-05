@@ -48,6 +48,7 @@ class DetailsForm extends Component {
           </Form.Item>
           <Form.Item label='Restricciones'>
             {getFieldDecorator("restrictions", {
+              initialValue: this.props.values.restrictions,
               rules: [{ required: false, message: "" }]
             })(
               <TextArea
@@ -58,6 +59,7 @@ class DetailsForm extends Component {
           </Form.Item>
           <Form.Item label='Observaciones' style={{ paddingBottom: '40px' }}>
             {getFieldDecorator("obs", {
+              initialValue: this.props.values.obs,
               rules: [
                 {
                   required: false,

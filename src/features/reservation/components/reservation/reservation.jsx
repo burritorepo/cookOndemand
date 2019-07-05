@@ -42,12 +42,17 @@ class Reservation extends Component {
   };
 
   componentDidMount() {
-    const { user } = this.props;
-    if (user) {
-      this.setState({
-        client_id: user
-      });
-    }
+    const store = JSON.parse(sessionStorage.getItem("reservation"));
+    this.setState({
+      address: store.address,
+      pax: store.pax,
+      preferences: store.preferences,
+      energy: store.energy,
+      burners: store.burners,
+      oven: store.oven,
+      restrictions: store.restrictions,
+      obs: store.obs
+    });
   }
 
   onSubmit = () => {
@@ -77,37 +82,63 @@ class Reservation extends Component {
       restrictions,
       obs
     };
-    console.log("client_id", this.state.client_id);
     /* Create Reservation */
 
     /* Register with firebase */
-    // if (!this.props.user) {
-    //   firebase
-    //     .createUser({ email, password }, { name, email, phone, role })
-    //     .then(userData => {
-    //       console.log("propos", this.props);
-    //       this.setState({ client_id: this.props.user });
+    if (!this.props.user) {
+      firebase
+        .createUser({ email, password }, { name, email, phone, role })
+        .then(userData => {
+          console.log("propos", this.props);
+          this.setState({ client_id: this.props.user });
 
-    //       console.log("this.props.user", this.props.user);
+          console.log("this.props.user", this.props.user);
 
-    //       firestore
-    //         .add({ collection: "reservations" }, this.state)
-    //         .then(() => history.push("/user"));
-    //     })
-    //     .catch(err => alert("That user already exists", "error"));
-    // } else {
-    //   firestore
-    //     .add({ collection: "reservations" }, newReservation)
-    //     .then(this.setStep(6));
-    // }
+          firestore
+            .add({ collection: "reservations" }, this.state)
+            .then(() => history.push("/user"));
+        })
+        .catch(err => alert("That user already exists", "error"));
+      sessionStorage.clear();
+    } else {
+      firestore
+        .add({ collection: "reservations" }, newReservation)
+        .then(this.setStep(6));
+      sessionStorage.clear();
+    }
+    console.log("this", newReservation);
   };
-  
+
   next = () => {
-    console.log("client_id", this.state);
-    const { current } = this.state;
+    const {
+      current,
+      address,
+      pax,
+      preferences,
+      energy,
+      burners,
+      oven,
+      restrictions,
+      obs
+    } = this.state;
+    const stateCut = {
+      address,
+      pax,
+      preferences,
+      energy,
+      burners,
+      oven,
+      restrictions,
+      obs
+    };
+    const { user } = this.props;
     this.setState({
-      current: current + 1
+      current: current + 1,
+      client_id: user
     });
+    if (current !== 0) {
+      sessionStorage.setItem("reservation", JSON.stringify(stateCut));
+    }
   };
 
   prev = () => {
@@ -152,7 +183,6 @@ class Reservation extends Component {
   };
 
   render() {
-    console.log("user", this.props.user);
     const { current } = this.state;
 
     const {
@@ -197,6 +227,7 @@ class Reservation extends Component {
             handleSelectChange={this.handleSelectChange}
             next={this.next}
             prev={this.prev}
+            values={values}
           />
         )
       },
@@ -208,6 +239,7 @@ class Reservation extends Component {
             handleRatio={this.handleRatio}
             next={this.next}
             prev={this.prev}
+            values={values}
           />
         )
       },
@@ -219,6 +251,7 @@ class Reservation extends Component {
             handleDate={this.handleDate}
             next={this.next}
             prev={this.prev}
+            values={values}
           />
         )
       },

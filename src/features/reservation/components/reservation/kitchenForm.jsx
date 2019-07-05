@@ -35,6 +35,7 @@ class KitchenForm extends Component {
         <Form {...formItemLayout} onSubmit={this.handleSubmit}>
           <Form.Item label='Cocina'>
             {getFieldDecorator("energy", {
+              initialValue: this.props.values.energy,
               rules: [
                 { required: true, message: "Selecciona tu tipo de cocina" }
               ]
@@ -50,6 +51,7 @@ class KitchenForm extends Component {
           </Form.Item>
           <Form.Item label='Honillas'>
             {getFieldDecorator("burners", {
+              initialValue: this.props.values.burners,
               rules: [
                 { required: true, message: "Selecciona el número de hornillas" }
               ]
@@ -67,6 +69,7 @@ class KitchenForm extends Component {
           </Form.Item>
           <Form.Item label='Horno' style={{ paddingBottom: '40px' }}>
             {getFieldDecorator("oven", {
+              initialValue: this.props.values.oven,
               rules: [
                 { required: true, message: "Completa el campo" }
               ]

@@ -9,12 +9,10 @@ class Confirmation extends Component {
 
   onClickUser = () => {
     this.props.onSubmit();
-    console.log('click');
   };
 
   render() {
     const { values, prev, user } = this.props;
-    console.log("user", user);
     const button = !user ? (
       <Button type="primary" onClick={this.onClick}>
         Siguiente

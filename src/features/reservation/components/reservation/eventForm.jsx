@@ -21,12 +21,12 @@ class EventForm extends Component {
     const formItemLayout = {
       labelCol: {
         xs: { span: 0 },
-        sm: { span: 5 },
+        sm: { span: 5 }
       },
       wrapperCol: {
         xs: { span: 24 },
-        sm: { span: 16 },
-      },
+        sm: { span: 16 }
+      }
     };
 
     return (
@@ -37,8 +37,9 @@ class EventForm extends Component {
           Coméntanos un poco sobre tu evento
         </h1>
         <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-          <Form.Item label='Dirección'>
+          <Form.Item label="Dirección">
             {getFieldDecorator("address", {
+              initialValue: this.props.values.address,
               rules: [
                 { required: true, message: "Ingrese dirección del evento" }
               ]
@@ -50,8 +51,9 @@ class EventForm extends Component {
               />
             )}
           </Form.Item>
-          <Form.Item label='Invitados'>
+          <Form.Item label="Invitados">
             {getFieldDecorator("pax", {
+              initialValue: this.props.values.pax,
               rules: [
                 { required: true, message: "Seleccione número de invitados" }
               ]
@@ -67,8 +69,9 @@ class EventForm extends Component {
               </Select>
             )}
           </Form.Item>
-          <Form.Item label='Preferencia' style={{ paddingBottom: '40px' }}>
+          <Form.Item label="Preferencia" style={{ paddingBottom: "40px" }}>
             {getFieldDecorator("preferences", {
+              initialValue: this.props.values.preferences,
               rules: [
                 {
                   required: true,
