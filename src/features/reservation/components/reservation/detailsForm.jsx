@@ -37,6 +37,7 @@ class DetailsForm extends Component {
         >
           <Form.Item label='Fecha'>
             {getFieldDecorator("dateTime", {
+              defaultValue: this.props.values.dateTime,
               rules: [
                 {
                   type: "object",
