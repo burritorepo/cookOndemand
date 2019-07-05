@@ -3,7 +3,7 @@ import { Row, Col, Button } from "antd";
 
 class Confirmation extends Component {
   onClick = e => {
-    console.log("submitted", this.props.values);
+    this.props.onSubmit();
     this.props.next();
   };
 
@@ -12,7 +12,7 @@ class Confirmation extends Component {
 
     return (
       <div className="confirmation">
-        <div className="content" style={{ textAlign: 'center' }}>
+        <div className="content" style={{ textAlign: "center" }}>
           <h1 style={{ color: "black" }}>Confirma tu propuesta</h1>
           <h3 style={{ color: "#ff6700" }}>Abreboca</h3>
           <h5>{values.starter}</h5>
@@ -27,8 +27,8 @@ class Confirmation extends Component {
           <h5>{values.dessert}</h5>
           <p>{values.dessert_desc}</p>
         </div>
-        <hr/>
-        <br/>
+        <hr />
+        <br />
         <div
           style={{ display: "flex", justifyContent: "space-evenly" }}
           className="buttons"

@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { TimelineLite, Power2 } from "gsap";
+import classnames from "classnames";
 import "./Hero.scss";
 import heroBanner from "./img/hero-banner.jpg";
 
@@ -12,42 +13,20 @@ export class Hero extends Component {
     this.js_text = React.createRef();
   }
 
-  componentDidMount() {
-    const tl = new TimelineLite();
-
-    tl.from(this.js_hero.current, 2.5, {
-      opacity: 0,
-      delay: 0.5,
-      ease: Power2.easeInOut
-    });
-
-    tl.from(
-      this.js_title.current,
-      0.5,
-      {
-        opacity: 0,
-        x: -40,
-        ease: Power2.easeOut
-      },
-      "-=1"
-    );
-
-    tl.from(
-      this.js_text.current,
-      0.5,
-      {
-        opacity: 0,
-        x: 40,
-        ease: Power2.easeOut
-      },
-      "-=1"
-    );
-  }
+  componentDidMount() {}
 
   render() {
+    const { step } = this.props;
+
     return (
       <Fragment>
-        <div className="hero d-flex f-center js_hero" ref={this.js_hero}>
+        <div
+          className={classnames({
+            "hero d-flex f-center js_hero": step != 1,
+            "hero active d-flex f-center js_hero": step == 1
+          })}
+          ref={this.js_hero}
+        >
           <figure className="hero-overlay">
             <img src={heroBanner} alt="" />
           </figure>

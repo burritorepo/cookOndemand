@@ -5,6 +5,8 @@
   height: 100vh;
   overflow: hidden;
   z-index: 100;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
 
   .how--section-overlay {
     /* Positioning */
@@ -71,6 +73,10 @@
       align-items: flex-end;
     }
   }
+}
+
+.how--section.active {
+  opacity: 1;
 }
 
 .how--card {

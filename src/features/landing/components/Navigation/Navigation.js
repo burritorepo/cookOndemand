@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react';
-import './Navigation.scss';
+import React, { Component, Fragment } from "react";
+import "./Navigation.scss";
 
 export class Navigation extends Component {
   constructor(props) {
@@ -10,10 +10,10 @@ export class Navigation extends Component {
   componentDidMount() {
     const tl = new TimelineLite();
 
-    tl.from(this.js_nav.current, 1.5, {
+    tl.from(this.js_nav.current, 0.5, {
       opacity: 0,
       x: 40,
-      delay: 1.25,
+      delay: 0.5,
       ease: Power2.easeInOut
     });
   }
@@ -32,18 +32,18 @@ export class Navigation extends Component {
     return (
       <Fragment>
         <div
-          className='navigation d-flex f-center f-col js_nav'
+          className="navigation d-flex f-center f-col js_nav"
           ref={this.js_nav}
         >
-          <button onClick={this.back} className='navigation__button nav-up'>
-            <i className='fas fa-angle-double-up' />
+          <button onClick={this.back} className="navigation__button nav-up">
+            <i className="fas fa-angle-double-up" />
           </button>
           <span>Scroll</span>
           <button
             onClick={this.continue}
-            className='navigation__button nav-down active'
+            className="navigation__button nav-down active"
           >
-            <i className='fas fa-angle-double-down' />
+            <i className="fas fa-angle-double-down" />
           </button>
         </div>
       </Fragment>
