@@ -14,10 +14,6 @@ class Register extends Component {
     role: "chef"
   };
 
-  static propTypes = {
-    user: PropTypes.object.isRequired
-  };
-
   handleSubmit = e => {
     e.preventDefault();
 
@@ -33,7 +29,7 @@ class Register extends Component {
       })
       .catch(err => alert("That user already exists", "error"));
 
-    fetch("http://localhost:3000/users", {
+    /* fetch("http://localhost:3000/users", {
       method: "POST",
       body: JSON.stringify(this.state),
       headers: {
@@ -41,7 +37,7 @@ class Register extends Component {
       }
     })
       .then(res => res.json())
-      .then(this.props.history.push("/home"));
+      .then(this.props.history.push("/home")); */
   };
 
   onChange = e => {

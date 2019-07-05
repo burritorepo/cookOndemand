@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Layout, Menu, Icon, Dropdown, Button } from "antd";
+import { Layout, Menu, Icon, Dropdown, Button, Badge } from "antd";
 import { NavLink } from "react-router-dom";
 import { compose } from "redux";
 import { connect } from "react-redux";
@@ -11,7 +11,6 @@ import "./header.scss";
 class Header extends Component {
   constructor(props) {
     super(props);
-    console.log("woww!!");
   }
 
   static propTypes = {
@@ -25,8 +24,6 @@ class Header extends Component {
 
   render() {
     const { name } = this.props.profile;
-
-    const { firebase } = this.props;
 
     const menu = (
       <Menu>
@@ -46,12 +43,14 @@ class Header extends Component {
         <NavLink className="header__logo logo" to="/">
           Cook <span>on</span> Demand
         </NavLink>
-        <Dropdown overlay={menu}>
-          <Button>
-            Hola {name}
-            <Icon type="user" className="c-primary" />
-          </Button>
-        </Dropdown>
+        <div className="user-nav d-flex f-justify">
+          <Dropdown overlay={menu}>
+            <Button>
+              Hola {name}
+              <Icon type="user" className="c-primary" />
+            </Button>
+          </Dropdown>
+        </div>
       </Layout.Header>
     );
   }

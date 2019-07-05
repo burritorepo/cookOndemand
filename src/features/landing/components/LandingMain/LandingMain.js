@@ -42,8 +42,6 @@ export class LandingMain extends Component {
   } */
 
   render() {
-    console.log(this.props.step);
-
     return (
       <Fragment>
         <Hero step={this.props.step} />
