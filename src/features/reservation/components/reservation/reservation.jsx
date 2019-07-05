@@ -41,19 +41,19 @@ class Reservation extends Component {
     firestore: PropTypes.object.isRequired
   };
 
-  componentDidMount() {
-    const store = JSON.parse(sessionStorage.getItem("reservation"));
-    this.setState({
-      address: store.address,
-      pax: store.pax,
-      preferences: store.preferences,
-      energy: store.energy,
-      burners: store.burners,
-      oven: store.oven,
-      restrictions: store.restrictions,
-      obs: store.obs
-    });
-  }
+  // componentDidMount() {
+  //   const store = JSON.parse(sessionStorage.getItem("reservation"));
+  //   this.setState({
+  //     address: store.address,
+  //     pax: store.pax,
+  //     preferences: store.preferences,
+  //     energy: store.energy,
+  //     burners: store.burners,
+  //     oven: store.oven,
+  //     restrictions: store.restrictions,
+  //     obs: store.obs
+  //   });
+  // } 
 
   onSubmit = () => {
     const { firebase, firestore, history } = this.props;
@@ -110,35 +110,36 @@ class Reservation extends Component {
   };
 
   next = () => {
-    const {
-      current,
-      address,
-      pax,
-      preferences,
-      energy,
-      burners,
-      oven,
-      restrictions,
-      obs
-    } = this.state;
-    const stateCut = {
-      address,
-      pax,
-      preferences,
-      energy,
-      burners,
-      oven,
-      restrictions,
-      obs
-    };
+    // const {
+    //   current,
+    //   address,
+    //   pax,
+    //   preferences,
+    //   energy,
+    //   burners,
+    //   oven,
+    //   restrictions,
+    //   obs
+    // } = this.state;
+    // const stateCut = {
+    //   address,
+    //   pax,
+    //   preferences,
+    //   energy,
+    //   burners,
+    //   oven,
+    //   restrictions,
+    //   obs
+    // };
+    const { current } = this.state
     const { user } = this.props;
     this.setState({
       current: current + 1,
       client_id: user
     });
-    if (current !== 0) {
-      sessionStorage.setItem("reservation", JSON.stringify(stateCut));
-    }
+    // if (current !== 0) {
+    //   sessionStorage.setItem("reservation", JSON.stringify(stateCut));
+    // }
   };
 
   prev = () => {
