@@ -18,6 +18,7 @@ class Reservation extends Component {
     super(props);
     this.state = {
       current: 0,
+      confirmDirty: false,
       client_id: null,
       address: "",
       pax: "",
@@ -139,7 +140,8 @@ class Reservation extends Component {
       oven,
       dateTime,
       restrictions,
-      obs
+      obs,
+      confirmDirty
     } = this.state;
 
     const values = {
@@ -151,7 +153,8 @@ class Reservation extends Component {
       oven,
       dateTime,
       restrictions,
-      obs
+      obs,
+      confirmDirty
     };
 
     const { Step } = Steps;
@@ -200,7 +203,6 @@ class Reservation extends Component {
           <Confirmation
             next={this.next}
             prev={this.prev}
-            {...this.state}
             values={values}
           />
         )
@@ -213,6 +215,7 @@ class Reservation extends Component {
             next={this.next}
             onChange={this.onChange}
             onSubmit={this.onSubmit}
+            values={values}
           />
         )
       },
@@ -227,8 +230,8 @@ class Reservation extends Component {
       marginTop: "16px",
       minHeight: "400px",
       textAlign: "center",
-      paddingTop: "80px",
-      width: "40%",
+      paddingTop: "30px",
+      width: "70%",
       margin: "auto"
     };
 
