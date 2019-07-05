@@ -105,9 +105,8 @@ class DashboardRequest extends Component {
       },
       proposals = []
     } = this.props;
-
-    console.log('id', keyId)
-
+    const dataFilter = proposals.filter(proposal => proposal.reservation_id === keyId);
+    
     return (
       <div className="view view-request">
         <Breadcrumb separator=">">
@@ -123,9 +122,12 @@ class DashboardRequest extends Component {
         <h1 className="title c-white view-title">Propuestas Cheffs</h1>
         <br />
         {
-          (Array.isArray(proposals)) ? proposals.map((reservation, id) => {
-            return <CardDynamic idKey={keyId} data={reservation} key={id} onDelete={this.handleDelete} onCancel={this.handleCancel} />
-          }) : <CardDynamic data={proposals} onDelete={this.handleDelete} onCancel={this.handleCancel} />
+          (dataFilter.length > 0) ?
+              dataFilter
+              .map((reservation, id) => {
+                console.log('wow', reservation)
+                return <CardDynamic idKey={keyId} data={reservation} key={id} onDelete={this.handleDelete} onCancel={this.handleCancel} />
+              }) : <Card className="card request__card mb-20">Aun no hay propuestas</Card>
         }
         <Modal
           title="Eliminar propuesta"

@@ -119,7 +119,7 @@ class DashboardRequests extends Component {
         <br />
         {
           reservations.filter((reservation) => reservation.client_id === id)
-            .map((reservation) => {
+            .map((reservation, id) => {
               return <CardDynamic data={reservation} key={id} onDelete={this.handleDelete} onCancel={this.handleCancel} />
             })
         }
