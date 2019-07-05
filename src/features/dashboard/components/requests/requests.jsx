@@ -1,6 +1,88 @@
 import React, { Component } from "react";
 import { NavLink } from 'react-router-dom';
 import { Breadcrumb, Card, Row, Col, Icon, Button, Modal } from 'antd';
+import { connect } from 'react-redux'
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
+
+function CardDynamic(props) {
+  const {
+    data,
+    handleDelete
+  } = props;
+
+  console.log('data', data)
+  return (
+    <Card className="card request__card mb-20" title={`Solicitud de ${data.dateTime}`}>
+      <Row gutter={16}>
+        <Col span={12}>
+          <div className="request__item mb-5">
+            <label className="c-primary fsize-11">Numero de invitados</label>
+            <div>
+              <span className="fsize-12">{data.pax}</span>
+            </div>
+          </div>
+          <div className="request__item mb-5">
+            <label className="c-primary fsize-11">Categoria de cocina</label>
+            <div>
+              <span className="fsize-12">{data.preferences}</span>
+            </div>
+          </div>
+          <div className="request__item mb-5">
+            <label className="c-primary fsize-11">Tipo de cocina</label>
+            <div>
+              <span className="fsize-12">{data.energy}</span>
+            </div>
+          </div>
+        </Col>
+        <Col span={12}>
+          <div className="request__item mb-5">
+            <label className="c-primary fsize-11">Fecha</label>
+            <div>
+              <span className="fsize-12">{data.dateTime}</span>
+            </div>
+          </div>
+          <div className="request__item mb-5">
+            <label className="c-primary fsize-11">Direccion</label>
+            <div>
+              <span className="fsize-12">{data.address}</span>
+            </div>
+          </div>
+          <div className="request__item mb-5">
+            <label className="c-primary fsize-11">Tiene horno</label>
+            <div>
+              <span className="fsize-12">{data.oven}</span>
+            </div>
+          </div>
+        </Col>
+      </Row>
+      <Row gutter={16}>
+        <Col span={12}>
+          <div className="request__item mb-5">
+            <label className="c-primary fsize-11">Alergias</label>
+            <div>
+              <span className="fsize-12">{data.restrictions}</span>
+            </div>
+          </div>
+        </Col>
+        <Col span={12}>
+          <div className="request__item mb-5">
+            <label className="c-primary fsize-11">Comentarios</label>
+            <div>
+              <span className="fsize-12">{data.obs}</span>
+            </div>
+          </div>
+        </Col>
+      </Row>
+      <div className="card__footer d-flex jc-space-between ai-center">
+        <Icon type="delete" onClick={handleDelete} />
+        <Button type="primary">
+          <NavLink to={`/user/request/${data.id}`}>Ver propuestas</NavLink>
+        </Button>
+      </div>
+    </Card>
+  )
+}
 class DashboardRequests extends Component {
 
   state = { visible: false }
@@ -18,102 +100,32 @@ class DashboardRequests extends Component {
   }
 
   render() {
+    const {
+      reservations = [],
+      id
+    } = this.props;
+
+    console.log('props', this.props)
     return (
       <div className="view view-requests">
-        <Breadcrumb separator=">">
+        {/* <Breadcrumb separator=">">
           <Breadcrumb.Item>
             <NavLink to="/user">Inicio</NavLink>
           </Breadcrumb.Item>
           <Breadcrumb.Item>Solicitudes</Breadcrumb.Item>
         </Breadcrumb>
+        <br /> */}
+        <h1 className="title c-white">Mis Solicitudes</h1>
         <br />
-        <h1 className="title c-primary">Mis Solicitudes</h1>
-        <br />
-        <Row gutter={16}>
-          <Col span={24}>
-            <Card className="card request__card" title="Solicitud 22/06/19">
-              <Row gutter={16}>
-                <Col span={12}>
-                  <div className="request__item mb-5">
-                    <Icon type="team" className="c-primary" />
-                    <span className="fsize-12">13 - 20 personas</span>
-                  </div>
-                  <div className="request__item mb-5">
-                    <Icon type="hourglass" className="c-primary" />
-                    <span className="fsize-12">Cena</span>
-                  </div>
-                  <div className="request__item mb-5">
-                    <Icon type="pushpin" className="c-primary" />
-                    <span className="fsize-12">Avenida José Pardo 600, Miraflores</span>
-                  </div>
-                  <div className="request__item mb-5">
-                    <Icon type="check" className="c-primary" />
-                    <span className="fsize-12">Tienes 1 propuestas</span>
-                  </div>
-                </Col>
-                <Col span={12}>
-                  <div className="request__item mb-5">
-                    <Icon type="user" className="c-primary" />
-                    <span className="fsize-12">S/ 160.00 - S/ 180.00 / persona</span>
-                  </div>
-                  <div className="request__item mb-5">
-                    <Icon type="fire" className="c-primary" />
-                    <span className="fsize-12">Comida Italiana</span>
-                  </div>
-                </Col>
-              </Row>
-              <div className="card__footer d-flex jc-space-between ai-center">
-                <Icon type="delete" onClick={this.handleDelete} />
-                <Button type="primary">
-                  <NavLink to="/user/request/1">Ver propuestas</NavLink>
-                </Button>
-              </div>
-            </Card>
-          </Col>
-        </Row>
-        <br />
-        <Row gutter={16}>
-          <Col span={24}>
-            <Card className="request__card" title="Solicitud 22/06/19">
-              <Row gutter={16}>
-                <Col span={12}>
-                  <div className="request__item mb-5">
-                    <Icon type="team" className="c-primary" />
-                    <span className="fsize-12">13 - 20 personas</span>
-                  </div>
-                  <div className="request__item mb-5">
-                    <Icon type="hourglass" className="c-primary" />
-                    <span className="fsize-12">Cena</span>
-                  </div>
-                  <div className="request__item mb-5">
-                    <Icon type="pushpin" className="c-primary" />
-                    <span className="fsize-12">Avenida José Pardo 600, Miraflores</span>
-                  </div>
-                  <div className="request__item mb-5">
-                    <Icon type="check" className="c-primary" />
-                    <span className="fsize-12">Tienes 1 propuestas</span>
-                  </div>
-                </Col>
-                <Col span={12}>
-                  <div className="request__item mb-5">
-                    <Icon type="user" className="c-primary" />
-                    <span className="fsize-12">S/ 160.00 - S/ 180.00 / persona</span>
-                  </div>
-                  <div className="request__item mb-5">
-                    <Icon type="fire" className="c-primary" />
-                    <span className="fsize-12">Comida Italiana</span>
-                  </div>
-                </Col>
-              </Row>
-              <div className="card__footer d-flex jc-space-between ai-center">
-                <Icon type="delete" onClick={this.handleDelete}/>
-                <Button type="primary">
-                  <NavLink to="/user/request/1">Ver propuestas</NavLink>
-                </Button>
-              </div>
-            </Card>
-          </Col>
-        </Row>
+        {
+          reservations.filter((reservation) => reservation.client_id === id)
+            .map((reservation) => {
+              return <CardDynamic data={reservation} key={id} onDelete={this.handleDelete} onCancel={this.handleCancel} />
+            })
+          // reservations.map((reservation, id) => {
+          //   return <CardDynamic data={reservation} key={id} onDelete={this.handleDelete} onCancel={this.handleCancel} />
+          // })
+        }
         <Modal
           title="Eliminar solicitud"
           visible={this.state.visible}
@@ -127,6 +139,12 @@ class DashboardRequests extends Component {
   }
 }
 
-export {
-  DashboardRequests
-}
+const mapStateToProps = (state) => ({
+  reservations: state.firestore.ordered.reservations,
+  id: state.firebase.auth.uid
+});
+
+export default compose(
+  firestoreConnect([{ collection: 'reservations' }]),
+  connect(mapStateToProps)
+)(DashboardRequests)

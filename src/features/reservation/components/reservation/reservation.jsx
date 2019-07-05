@@ -41,99 +41,69 @@ class Reservation extends Component {
     firestore: PropTypes.object.isRequired
   };
 
-  onSubmit = () => {
-    const { firebase, firestore, history, user } = this.props;
-    const {
-      address,
-      pax,
-      preferences,
-      energy,
-      burners,
-      oven,
-      dateTime,
-      restrictions,
-      obs,
-      client_id,
-      name,
-      email,
-      password,
-      phone,
-      role
-    } = this.state;
-    const newFirstReservation = {
-      address,
-      pax,
-      preferences,
-      energy,
-      burners,
-      oven,
-      dateTime,
-      restrictions,
-      obs,
-      client_id,
-      name,
-      email,
-      password,
-      phone
-    };
-    const newReservation = {
-      address,
-      pax,
-      preferences,
-      energy,
-      burners,
-      oven,
-      dateTime,
-      restrictions,
-      obs,
-      client_id
-    };
+  componentDidMount() {
+    const { user } = this.props;
+    if (user) {
+      this.setState({
+        client_id: user
+      });
+    }
+  }
 
+  onSubmit = () => {
+    const { firebase, firestore, history } = this.props;
+    const {
+      client_id,
+      address,
+      pax,
+      preferences,
+      energy,
+      burners,
+      oven,
+      dateTime,
+      restrictions,
+      obs
+    } = this.state;
+
+    const newReservation = {
+      client_id,
+      address,
+      pax,
+      preferences,
+      energy,
+      burners,
+      oven,
+      dateTime,
+      restrictions,
+      obs
+    };
+    console.log("client_id", this.state.client_id);
     /* Create Reservation */
 
     /* Register with firebase */
-    if (!user) {
-      firebase
-        .createUser({ email, password }, { name, email, phone, role })
-        .then(userData => {
-          console.log("User: ", userData);
-          console.log(this.props.user);
+    // if (!this.props.user) {
+    //   firebase
+    //     .createUser({ email, password }, { name, email, phone, role })
+    //     .then(userData => {
+    //       console.log("propos", this.props);
+    //       this.setState({ client_id: this.props.user });
 
-          const userId = this.props.user;
-          this.setState({ client_id: userId });
+    //       console.log("this.props.user", this.props.user);
 
-          firestore
-            .add({ collection: "reservations" }, newFirstReservation)
-            .then(this.next());
-        })
-        .catch(err => alert("That user already exists", "error"));
-    } else {
-      firestore.add({ collection: "reservations" }, newReservation);
-      this.setStep(6);
-    }
-
-    //   fetch("https://apichef.herokuapp.com/api/solicitud", {
-    //     method: "POST",
-    //     body: JSON.stringify({
-    //       address: "",
-    //       pax: "",
-    //       preferences: "",
-    //       energy: "",
-    //       burners: "",
-    //       oven: "",
-    //       dateTime: "",
-    //       restrictions: "",
-    //       obs: ""
-    //     }),
-    //     headers: {
-    //       "Content-type": "application/json; charset=UTF-8"
-    //     }
-    //   })
-    //     .then(res => res.json())
-    //     .then(this.props.history.push("/home"));
+    //       firestore
+    //         .add({ collection: "reservations" }, this.state)
+    //         .then(() => history.push("/user"));
+    //     })
+    //     .catch(err => alert("That user already exists", "error"));
+    // } else {
+    //   firestore
+    //     .add({ collection: "reservations" }, newReservation)
+    //     .then(this.setStep(6));
+    // }
   };
-
+  
   next = () => {
+    console.log("client_id", this.state);
     const { current } = this.state;
     this.setState({
       current: current + 1
@@ -182,6 +152,7 @@ class Reservation extends Component {
   };
 
   render() {
+    console.log("user", this.props.user);
     const { current } = this.state;
 
     const {
@@ -304,8 +275,6 @@ class Reservation extends Component {
       backgroundRepeat: "noRepeat",
       backgroundSize: "cover"
     };
-
-    console.log("step", this.state.current);
 
     return (
       <div className="view view-request" style={backGround}>

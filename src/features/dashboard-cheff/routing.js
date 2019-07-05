@@ -6,7 +6,12 @@ import { Home } from "./components";
 import DashboardRequests from './components/requests/requests';
 import Proposal from "./components/proposal/proposal";
 import Header from "../../components/header/header";
-import { Main, Footer, Sidebar } from "../../components";
+import { 
+  Main, 
+  Footer 
+} from "../../components";
+import Sidebar from '../../components/sidebar/sidebar';
+
 
 function RoutingDashboardCheff(prop) {
   const {
