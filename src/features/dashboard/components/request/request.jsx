@@ -7,15 +7,13 @@ import { firebaseConnect } from "react-redux-firebase";
 import { firestoreConnect } from "react-redux-firebase";
 
 function CardDynamic(props) {
-  const {
-    idKey,
-    data,
-    handleDelete
-  } = props;
+  const { idKey, data, handleDelete } = props;
 
-  console.log('data', data)
   return (
-    <Card className="card request__card mb-20" title={`Propuesta de ${data.chef_id}`}>
+    <Card
+      className="card request__card mb-20"
+      title={`Propuesta de ${data.chef_id}`}
+    >
       <Row gutter={16}>
         <Col span={12}>
           <div className="request__item mb-5">
@@ -77,7 +75,7 @@ function CardDynamic(props) {
         </Button>
       </div>
     </Card>
-  )
+  );
 }
 
 class DashboardRequest extends Component {
@@ -101,12 +99,10 @@ class DashboardRequest extends Component {
   render() {
     const {
       match: {
-        params: { id : keyId }
+        params: { id: keyId }
       },
       proposals = []
     } = this.props;
-
-    console.log('id', keyId)
 
     return (
       <div className="view view-request">
@@ -122,11 +118,25 @@ class DashboardRequest extends Component {
         <br />
         <h1 className="title c-white view-title">Propuestas Cheffs</h1>
         <br />
-        {
-          (Array.isArray(proposals)) ? proposals.map((reservation, id) => {
-            return <CardDynamic idKey={keyId} data={reservation} key={id} onDelete={this.handleDelete} onCancel={this.handleCancel} />
-          }) : <CardDynamic data={proposals} onDelete={this.handleDelete} onCancel={this.handleCancel} />
-        }
+        {Array.isArray(proposals) ? (
+          proposals.map((reservation, id) => {
+            return (
+              <CardDynamic
+                idKey={keyId}
+                data={reservation}
+                key={id}
+                onDelete={this.handleDelete}
+                onCancel={this.handleCancel}
+              />
+            );
+          })
+        ) : (
+          <CardDynamic
+            data={proposals}
+            onDelete={this.handleDelete}
+            onCancel={this.handleCancel}
+          />
+        )}
         <Modal
           title="Eliminar propuesta"
           visible={this.state.visible}
@@ -144,9 +154,8 @@ const mapStateToProps = (state, props) => ({
   proposals: state.firestore.ordered.proposals
 });
 
-
 export default compose(
   firebaseConnect(),
-  firestoreConnect([{ collection: 'proposals' }]),
+  firestoreConnect([{ collection: "proposals" }]),
   connect(mapStateToProps)
 )(DashboardRequest);

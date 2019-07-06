@@ -14,14 +14,75 @@ class DashboardRequestDetail extends Component {
     };
   }
 
+  /* showModal = () => {
+    this.setState({
+      visible: true
+    });
+  };
+
+  handleOk = () => {
+    this.setState({
+      ModalText: "The modal will be closed after two seconds",
+      confirmLoading: true
+    });
+    setTimeout(() => {
+      this.setState({
+        visible: false,
+        confirmLoading: false
+      });
+    }, 2000);
+  };
+
+  handleCancel = () => {
+    console.log("Clicked cancel button");
+    this.setState({
+      visible: false
+    });
+  }; */
+
   confirm = () => {
     Modal.confirm({
       title: "Confirmar",
       content: "Deseas aceptar esta propuesta?",
       okText: "Aceptar",
       cancelText: "Cancelar",
-      onOk() {
-        console.log('submitted')
+      onOk: () => {
+        const { firestore, history } = this.props;
+        const {
+          match: {
+            params: { id }
+          },
+          match: {
+            params: { user }
+          },
+          proposals = []
+        } = this.props;
+        const dataFilter =
+          proposals.filter(proposal => proposal.chef_id === user)[0] || {};
+        /* console.log("dataFilter", dataFilter);
+        console.log("proposl id: ", dataFilter.id);
+        console.log("props", this.props);
+        console.log("firebase", this.props.firebase); */
+
+        const proposalStatus = {
+          status: "Accepted"
+        };
+
+        const reservationStatus = {
+          status: "Accepted"
+        };
+
+        firestore.update(
+          { collection: "proposals", doc: dataFilter.id },
+          proposalStatus
+        );
+
+        firestore
+          .update(
+            { collection: "reservations", doc: dataFilter.reservation_id },
+            reservationStatus
+          )
+          .then(history.push("/user"));
       }
     });
   };
@@ -37,8 +98,11 @@ class DashboardRequestDetail extends Component {
       proposals = []
     } = this.props;
 
-    const dataFilter = proposals.filter((proposal) => proposal.chef_id === user)[0] || {}
-    console.log('datafileter', dataFilter)
+    const { visible } = this.state;
+
+    const dataFilter =
+      proposals.filter(proposal => proposal.chef_id === user)[0] || {};
+
     return (
       <div className="view view-request-detail">
         <Breadcrumb separator=">">
@@ -62,27 +126,17 @@ class DashboardRequestDetail extends Component {
             <br /> */}
             <div className="content" style={{ textAlign: "center" }}>
               <h3>Abreboca</h3>
-              <h5 className="c-primary">
-                {dataFilter.starter}
-              </h5>
-              <p>
-                {dataFilter.starter_desc}
-              </p>
+              <h5 className="c-primary">{dataFilter.starter}</h5>
+              <p>{dataFilter.starter_desc}</p>
               <h3>Entrada</h3>
               <h5 className="c-primary">{dataFilter.entry}</h5>
-              <p>
-                {dataFilter.entry_desc}
-              </p>
+              <p>{dataFilter.entry_desc}</p>
               <h3>Fondo</h3>
               <h5 className="c-primary">{dataFilter.main}</h5>
-              <p>
-                {dataFilter.main_desc}
-              </p>
+              <p>{dataFilter.main_desc}</p>
               <h3>Postre</h3>
               <h5 className="c-primary">{dataFilter.dessert}</h5>
-              <p>
-                {dataFilter.dessert_desc}
-              </p>
+              <p>{dataFilter.dessert_desc}</p>
             </div>
             <hr />
             <br />
@@ -95,9 +149,11 @@ class DashboardRequestDetail extends Component {
               }}
             >
               <Button type="secondary">
-                <NavLink to="/user/request/1">Volver a propuestas</NavLink>
+                <NavLink to={`/user/request/${id}`}>
+                  Volver a propuestas
+                </NavLink>
               </Button>
-              <Button type="primary" onClick={this.confirm}>
+              <Button type="primary" onClick={this.confirm} props={this.props}>
                 Aceptar propuesta
               </Button>
             </div>
@@ -112,9 +168,8 @@ const mapStateToProps = (state, props) => ({
   proposals: state.firestore.ordered.proposals
 });
 
-
 export default compose(
   firebaseConnect(),
-  firestoreConnect([{ collection: 'proposals' }]),
+  firestoreConnect([{ collection: "proposals" }]),
   connect(mapStateToProps)
 )(DashboardRequestDetail);
