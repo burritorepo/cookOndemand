@@ -19,6 +19,13 @@ function ItemUser() {
         </Menu.Item> */}
         <Menu.Item>
           <NavLink
+            to="/reservation"
+          >
+            Crear reserva
+          </NavLink>
+        </Menu.Item>
+        <Menu.Item>
+          <NavLink
             to="/user/request"
             activeClassName="is-active ant-menu-item-selected"
           >

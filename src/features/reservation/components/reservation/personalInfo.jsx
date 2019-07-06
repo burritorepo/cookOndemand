@@ -12,9 +12,41 @@ class PersonalInfo extends Component {
     });
   };
 
+  handleConfirmBlur = e => {
+    const { value } = e.target;
+    this.setState({ confirmDirty: this.props.values.confirmDirty || !!value });
+  };
+
+  compareToFirstPassword = (rule, value, callback) => {
+    const { form } = this.props;
+    if (value && value !== form.getFieldValue('password')) {
+      callback('Two passwords that you enter is inconsistent!');
+    } else {
+      callback();
+    }
+  };
+
+  validateToNextPassword = (rule, value, callback) => {
+    const { form } = this.props;
+    if (value && this.state.confirmDirty) {
+      form.validateFields(['confirm'], { force: true });
+    }
+    callback();
+  };
+
   render() {
     const { handleChange, onChange } = this.props;
     const { getFieldDecorator } = this.props.form;
+    const formItemLayout = {
+      labelCol: {
+        xs: { span: 24 },
+        sm: { span: 4 },
+      },
+      wrapperCol: {
+        xs: { span: 28 },
+        sm: { span: 20 },
+      },
+    };
 
     return (
       <Fragment>
@@ -23,21 +55,20 @@ class PersonalInfo extends Component {
         >
           Ingresa tu información
         </h1>
-        <Form onSubmit={this.handleSubmit} wrapperCol={{ span: 24 }}>
-          <Form.Item>
+        <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+          <Form.Item label='Nombre'>
             {getFieldDecorator("name", {
               rules: [
                 { required: true, message: "Ingresa tu nombre completo!" }
               ]
             })(
               <Input
-                style={{ width: "100%", margin: "auto" }}
                 onChange={handleChange("name")}
                 placeholder="Ingrese tu nombre completo"
               />
             )}
           </Form.Item>
-          <Form.Item>
+          <Form.Item label='E-mail'>
             {getFieldDecorator("email", {
               rules: [
                 {
@@ -48,13 +79,12 @@ class PersonalInfo extends Component {
               ]
             })(
               <Input
-                style={{ width: "100%", margin: "auto" }}
                 onChange={handleChange("email")}
                 placeholder="Ingresa tu correo electrónico"
               />
             )}
           </Form.Item>
-          <Form.Item hasFeedback>
+          <Form.Item label='Contraseña' hasFeedback>
             {getFieldDecorator("password", {
               rules: [
                 {
@@ -73,7 +103,7 @@ class PersonalInfo extends Component {
               />
             )}
           </Form.Item>
-          <Form.Item hasFeedback>
+          <Form.Item label='Confirmar Contraseña' hasFeedback>
             {getFieldDecorator("confirm", {
               rules: [
                 {
@@ -93,7 +123,7 @@ class PersonalInfo extends Component {
               />
             )}
           </Form.Item>
-          <Form.Item>
+          <Form.Item label='Número de teléfono' style={{ marginBottom: '40px' }}>
             {getFieldDecorator("phone", {
               rules: [
                 { required: true, message: "Ingresa tu número de télefono!" }
@@ -108,7 +138,7 @@ class PersonalInfo extends Component {
             )}
           </Form.Item>
           <Button type="primary" htmlType="submit">
-            Siguiente
+            Reservar
           </Button>
         </Form>
       </Fragment>

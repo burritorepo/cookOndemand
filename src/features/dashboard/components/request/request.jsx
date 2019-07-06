@@ -103,7 +103,6 @@ class DashboardRequest extends Component {
       },
       proposals = []
     } = this.props;
-
     return (
       <div className="view view-request">
         <Breadcrumb separator=">">

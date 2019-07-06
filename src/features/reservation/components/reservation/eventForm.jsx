@@ -18,16 +18,28 @@ class EventForm extends Component {
     const { Option } = Select;
     const { getFieldDecorator } = this.props.form;
 
+    const formItemLayout = {
+      labelCol: {
+        xs: { span: 0 },
+        sm: { span: 5 }
+      },
+      wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 16 }
+      }
+    };
+
     return (
       <Fragment>
         <h1
-          style={{ marginBottom: "40px", textAlign: "center", color: "white" }}
+          style={{ marginBottom: "20px", textAlign: "center", color: "white" }}
         >
           Coméntanos un poco sobre tu evento
         </h1>
-        <Form onSubmit={this.handleSubmit} wrapperCol={{ span: 24 }}>
-          <Form.Item>
+        <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+          <Form.Item label="Dirección">
             {getFieldDecorator("address", {
+              initialValue: this.props.values.address,
               rules: [
                 { required: true, message: "Ingrese dirección del evento" }
               ]
@@ -39,8 +51,9 @@ class EventForm extends Component {
               />
             )}
           </Form.Item>
-          <Form.Item>
+          <Form.Item label="Invitados">
             {getFieldDecorator("pax", {
+              initialValue: this.props.values.pax,
               rules: [
                 { required: true, message: "Seleccione número de invitados" }
               ]
@@ -56,8 +69,9 @@ class EventForm extends Component {
               </Select>
             )}
           </Form.Item>
-          <Form.Item style={{ marginBottom: '20px' }}>
+          <Form.Item label="Preferencia" style={{ paddingBottom: "40px" }}>
             {getFieldDecorator("preferences", {
+              initialValue: this.props.values.preferences,
               rules: [
                 {
                   required: true,
